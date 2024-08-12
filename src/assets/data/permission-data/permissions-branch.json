@@ -1,0 +1,267 @@
+{
+    "N01_dashboard": [
+        {
+            "name": "dashboard-access",
+            "display_name": "Display User Listing",
+            "description": "See only Listing Of User",
+            "type": "User",
+            "navigation_ref_id": "N01",
+            "access_level": [
+                "ORGADMIN",
+                "ADMINPORTAL"
+            ],
+            "perm_slug": "ACTION_TYPE_VIEW"
+        }
+    ],
+
+    "N03_branch": [
+        {
+            "name": "branch-access",
+            "display_name": "access branch",
+            "description": "access New branch",
+            "type": "branch",
+            "navigation_ref_id": "N03",
+            "access_level": [
+                "ORGADMIN",
+                "ADMINPORTAL"
+            ],
+            "perm_slug": "ACTION_TYPE_VIEW"
+        },
+        {
+            "name": "branch-create",
+            "display_name": "Create branch",
+            "description": "Create New branch",
+            "type": "branch",
+            "navigation_ref_id": "N03",
+            "access_level": [
+                "ORGADMIN",
+                "ADMINPORTAL"
+            ],
+            "perm_slug": "ACTION_TYPE_CREATE"
+        },
+        {
+            "name": "branch-edit",
+            "display_name": "Edit branch",
+            "description": "Edit branch",
+            "type": "branch",
+            "navigation_ref_id": "N03",
+            "access_level": [
+                "ORGADMIN",
+                "ADMINPORTAL"
+            ],
+            "perm_slug": "ACTION_TYPE_EDIT"
+        },
+        {
+            "name": "branch-delete",
+            "display_name": "Delete branch",
+            "description": "Delete branch",
+            "type": "branch",
+            "navigation_ref_id": "N03",
+            "access_level": [
+                "ORGADMIN",
+                "ADMINPORTAL"
+            ],
+            "perm_slug": "ACTION_TYPE_DELETE"
+        }
+    ],
+    "N04_user": [
+        {
+            "name": "user-access",
+            "display_name": "access user",
+            "description": "access New user",
+            "type": "user",
+            "navigation_ref_id": "N04",
+            "access_level": [
+                "ORGADMIN",
+                "ADMINPORTAL"
+            ],
+            "perm_slug": "ACTION_TYPE_VIEW"
+        },
+        {
+            "name": "user-create",
+            "display_name": "Create user",
+            "description": "Create New user",
+            "type": "user",
+            "navigation_ref_id": "N04",
+            "access_level": [
+                "ORGADMIN",
+                "ADMINPORTAL"
+            ],
+            "perm_slug": "ACTION_TYPE_CREATE"
+        },
+        {
+            "name": "user-edit",
+            "display_name": "Edit user",
+            "description": "Edit user",
+            "type": "user",
+            "navigation_ref_id": "N04",
+            "access_level": [
+                "ORGADMIN",
+                "ADMINPORTAL"
+            ],
+            "perm_slug": "ACTION_TYPE_EDIT"
+        },
+        {
+            "name": "user-delete",
+            "display_name": "Delete User",
+            "description": "Delete User",
+            "type": "User",
+            "navigation_ref_id": "N04",
+            "access_level": [
+                "ORGADMIN",
+                "ADMINPORTAL"
+            ],
+            "perm_slug": "ACTION_TYPE_DELETE"
+        }
+    ],
+    "N05_role": [
+        {
+            "name": "role-access",
+            "display_name": "access role",
+            "description": "access New role",
+            "type": "role",
+            "navigation_ref_id": "N05",
+            "access_level": [
+                "ORGADMIN",
+                "ADMINPORTAL"
+            ],
+            "perm_slug": "ACTION_TYPE_VIEW"
+        },
+        {
+            "name": "role-create",
+            "display_name": "Create role",
+            "description": "Create New role",
+            "type": "role",
+            "navigation_ref_id": "N05",
+            "access_level": [
+                "ORGADMIN",
+                "ADMINPORTAL"
+            ],
+            "perm_slug": "ACTION_TYPE_CREATE"
+        },
+        {
+            "name": "role-edit",
+            "display_name": "Edit role",
+            "description": "Edit role",
+            "type": "role",
+            "navigation_ref_id": "N05",
+            "access_level": [
+                "ORGADMIN",
+                "ADMINPORTAL"
+            ],
+            "perm_slug": "ACTION_TYPE_EDIT"
+        },
+        {
+            "name": "role-delete",
+            "display_name": "Delete role",
+            "description": "Delete role",
+            "type": "role",
+            "navigation_ref_id": "N05",
+            "access_level": [
+                "ORGADMIN",
+                "ADMINPORTAL"
+            ],
+            "perm_slug": "ACTION_TYPE_DELETE"
+        }
+    ],
+    "N06_invitation": [
+        {
+            "name": "invitation-access",
+            "display_name": "access invitation",
+            "description": "access invitation",
+            "type": "invitation",
+            "navigation_ref_id": "N06",
+            "access_level": [
+                "ORGADMIN",
+                "ADMINPORTAL"
+            ],
+            "perm_slug": "ACTION_TYPE_VIEW"
+        },
+        {
+            "name": "invitation-create",
+            "display_name": "Create invitation",
+            "description": "Create New invitation",
+            "type": "invitation",
+            "navigation_ref_id": "N06",
+            "access_level": [
+                "ORGADMIN",
+                "ADMINPORTAL"
+            ],
+            "perm_slug": "ACTION_TYPE_CREATE"
+        },
+        {
+            "name": "invitation-edit",
+            "display_name": "Edit invitation",
+            "description": "Edit invitation",
+            "type": "invitation",
+            "navigation_ref_id": "N06",
+            "access_level": [
+                "ORGADMIN",
+                "ADMINPORTAL"
+            ],
+            "perm_slug": "ACTION_TYPE_EDIT"
+        },
+        {
+            "name": "invitation-delete",
+            "display_name": "Delete invitation",
+            "description": "Delete invitation",
+            "type": "invitation",
+            "navigation_ref_id": "N06",
+            "access_level": [
+                "ORGADMIN",
+                "ADMINPORTAL"
+            ],
+            "perm_slug": "ACTION_TYPE_DELETE"
+        }
+    ],
+    "N08_supply_chain": [
+        {
+            "name": "Supply chain-access",
+            "display_name": "access Supply chain",
+            "description": "access Supply chain",
+            "type": "product",
+            "navigation_ref_id": "N08",
+            "access_level": [
+                "ORGADMIN",
+                "ADMINPORTAL"
+            ],
+            "perm_slug": "ACTION_TYPE_VIEW"
+        },
+        {
+            "name": "Supply chain-create",
+            "display_name": "Create Supply chain",
+            "description": "Create New Supply chain",
+            "type": "Supply chain",
+            "navigation_ref_id": "N08",
+            "access_level": [
+                "ORGADMIN",
+                "ADMINPORTAL"
+            ],
+            "perm_slug": "ACTION_TYPE_CREATE"
+        },
+        {
+            "name": "Supply chain-edit",
+            "display_name": "Edit Supply chain",
+            "description": "Edit Supply chain",
+            "type": "Supply chain",
+            "navigation_ref_id": "N08",
+            "access_level": [
+                "ORGADMIN",
+                "ADMINPORTAL"
+            ],
+            "perm_slug": "ACTION_TYPE_EDIT"
+        },
+        {
+            "name": "Supply chain-delete",
+            "display_name": "Delete Supply chain",
+            "description": "Delete Supply chain",
+            "type": "product",
+            "navigation_ref_id": "N07",
+            "access_level": [
+                "ORGADMIN",
+                "ADMINPORTAL"
+            ],
+            "perm_slug": "ACTION_TYPE_DELETE"
+        }
+    ]
+}

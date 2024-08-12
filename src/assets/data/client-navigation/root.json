@@ -1,0 +1,170 @@
+{
+    "default": [
+        {
+            "id": "N01",
+            "perms": [
+                "AC0"
+            ],
+            "title": "Dashboards",
+            "type": "basic",
+            "link": "/dashboards/project",
+            "icon": "assets/icons/flat-icons/supply-chain.png"
+        },
+        {
+            "id": "N02",
+            "perms": [
+                "AC0"
+            ],
+            "title": "Organization",
+            "type": "basic",
+            "link": "/dashboards/manage-organization",
+            "icon": "assets/icons/flat-icons/enterprise.png"
+        },
+        {
+            "id": "N03",
+            "perms": [
+                "AC0"
+            ],
+            "title": "Branch",
+            "type": "basic",
+            "link": "/dashboards/manage-branch",
+            "icon": "assets/icons/flat-icons/branch.png"
+        },
+        {
+            "id": "N04",
+            "perms": [
+                "AC0"
+            ],
+            "title": "Manage Users",
+            "type": "collapsable",
+            "icon": "assets/icons/flat-icons/user-group.png",
+            "link": "/dashboards/user",
+            "children": [
+                {
+                    "id": "N04",
+                    "perms": [
+                        "AC0"
+                    ],
+                    "title": "Users",
+                    "type": "basic",
+                    "icon": "assets/icons/flat-icons/working.png",
+                    "link": "/dashboards/user"
+                },
+                {
+                    "id": "N05",
+                    "perms": [
+                        "AC0"
+                    ],
+                    "title": "Role",
+                    "type": "basic",
+                    "icon": "assets/icons/flat-icons/user-role.png",
+                    "link": "/dashboards/manage-role"
+                }
+            ]
+        },
+        {
+            "id": "N06",
+            "perms": [
+                "AC0"
+            ],
+            "title": "Manage invitation",
+            "type": "collapsable",
+            "icon": "assets/icons/flat-icons/invitation.png",
+            "children": [
+                {
+                    "id": "N06",
+                    "perms": [
+                        "AC0"
+                    ],
+                    "title": "Invitation",
+                    "type": "basic",
+                    "icon": "assets/icons/flat-icons/invitation1.png",
+                    "link": "/dashboards/manage-invitation"
+                }
+            ]
+        },
+        {
+            "id": "N07",
+            "perms": [
+                "AC0"
+            ],
+            "title": "Product Management",
+            "type": "basic",
+            "icon": "assets/icons/flat-icons/first-aid-bag.png",
+            "link": "/dashboards/master-product"
+        },
+        {
+            "id": "N08",
+            "perms": [
+                "AC0"
+            ],
+            "title": "Supply chain",
+            "type": "collapsable",
+            "icon": "assets/icons/flat-icons/supply-chain.png",
+            "link": "/dashboards/supply-chain",
+            "children": [
+                {
+                    "id": "N08",
+                    "perms": [
+                        "AC0"
+                    ],
+                    "title": "Supply chain",
+                    "type": "basic",
+                    "icon": "assets/icons/flat-icons/supply-chain.png",
+                    "link": "/dashboards/supply-chain"
+                },
+                {
+                    "id": "N08",
+                    "perms": [
+                        "AC0"
+                    ],
+                    "title": "Order",
+                    "type": "basic",
+                    "icon": "assets/icons/flat-icons/supply-chain.png",
+                    "link": "/dashboards/supply-chain"
+                },
+                {
+                    "id": "N08",
+                    "perms": [
+                        "AC0"
+                    ],
+                    "title": "Invoice",
+                    "type": "basic",
+                    "icon": "assets/icons/flat-icons/supply-chain.png",
+                    "link": "/dashboards/supply-chain"
+                },
+                {
+                    "id": "N08",
+                    "perms": [
+                        "AC0"
+                    ],
+                    "title": "Repost",
+                    "type": "basic",
+                    "icon": "assets/icons/flat-icons/supply-chain.png",
+                    "link": "/dashboards/supply-chain"
+                }
+            ]
+        },
+        {
+            "id": "N09",
+            "perms": [
+                "AC0"
+            ],
+            "title": "Finance",
+            "type": "collapsable",
+            "icon": "assets/icons/flat-icons/payment.png",
+            "children": [
+                {
+                    "id": "N09",
+                    "perms": [
+                        "AC0"
+                    ],
+                    "title": "Payment",
+                    "type": "basic",
+                    "icon": "assets/icons/flat-icons/payment.png",
+                    "link": "/dashboards/finance"
+                }
+            ]
+        }
+    ]
+}

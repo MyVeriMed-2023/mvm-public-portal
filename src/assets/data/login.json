@@ -1,0 +1,89 @@
+{
+  "data": {
+    "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTcxOTgyMjY5MiwianRpIjoiYmUwNTkxOWQtNzJmMi00M2FkLWFmZjYtN2U0NmFmNjFmZTAxIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MTQsIm5iZiI6MTcxOTgyMjY5MiwiY3NyZiI6ImI0MGNkMGZkLWIzMDYtNDkxMy1iNDU1LTI5OTMwN2MzNGYyOSIsImV4cCI6MTcxOTgyNjI5Miwib3JnX2lkIjo3LCJicmFuY2hfaWQiOjExLCJyb2xlX2lkIjoxMSwidXNlcl90eXBlIjoiRnJlZV91c2VyIn0.aIzGTyP7-h_5rP6Cf5HzGWNEoChA6bPtqb6GH-5MNNk",
+    "refresh_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTcxOTgyMjY5MiwianRpIjoiMTQzN2FhMDUtYTk0Yi00MTRhLWE2YjYtMTRjMzcyNDJkYjcwIiwidHlwZSI6InJlZnJlc2giLCJzdWIiOjE0LCJuYmYiOjE3MTk4MjI2OTIsImNzcmYiOiJhMWQxODJmYi1jYWNjLTQ4MDktOWYyMi04ZDljMWVmMzgwNGEiLCJleHAiOjE3MjI0MTQ2OTJ9.7MFBfmxaL0Z0JDsuca0YZe2mRKusL5apOBWtZAT4m8w",
+    "expires_in": "2024-07-01 09:31:32.547202+00:00",
+    "user": {
+      "branch_id": "gAAAAABmgmlki4JiU1VkcBwbulsSpcNFiCCs86--cE0COPcMHd0erL1XcIWtxCEg4W_g41XfAWKPAKXgg8LNIapEeHXC-YaUVw==",
+      "org_id": "gAAAAABmgmlkqKLa_lXKpEfESKkV-zQVaFaY85AS5hSIVLwKZLnc6fFAEjzPXKHzXbWBjeOi_PvnbaSIwzFTw1nTfi-mBuwa1g==",
+      "role_id": "gAAAAABmgmlkypZFbdMIrgzLgL_VKUR2IKUVgLbTJITVLE9oiAYAMcG3H2ePrxxGBn0Ec6qiY87F_TR3T8EwD1dPM25hGgId6A==",
+      "user_type": "Free_user",
+      "first_name": "HFGHFGH",
+      "last_name": "FGHGFH",
+      "email": "root@gmail.com",
+      "description": "string",
+      "user_id": "gAAAAABmgmlk5mBxBz7n68GC8cxW_izir0uolN-za1UYzGIe0EaUTzUu6WXsSnUoGvO6nSrbIJVBOJAe7HwXV-l4xfKpdIecTw==",
+      "account_verification": "UNVERIFIED",
+      "account_status": "DISABLED",
+      "is_account_locked": true,
+      "deleted_date": "2024-06-26T14:32:23.339339",
+      "created_date": "2024-06-26T14:32:23.339339",
+      "modified_date": "2024-06-26T14:32:23.339339",
+      "created_by": "created_by 2024-06-26 14:32:23.339339+00:00",
+      "modified_by": "modified_by 2024-06-26 14:32:23.339339+00:00",
+      "organization": {
+        "org_name": "ANSM",
+        "org_type": "Health_authority",
+        "email": "ansm@gmail.com",
+        "time_zone": "Europe/Paris",
+        "phone_no": "0658094270",
+        "address1": "58",
+        "address2": "av",
+        "zip_code": "95190",
+        "city": "95190",
+        "state": "J",
+        "country": "FRA",
+        "description": "this is ANSM"
+      },
+      "branch": {
+        "org_id": "gAAAAABmgmlkqKLa_lXKpEfESKkV-zQVaFaY85AS5hSIVLwKZLnc6fFAEjzPXKHzXbWBjeOi_PvnbaSIwzFTw1nTfi-mBuwa1g==",
+        "branch_name": "Novauiouiouio",
+        "branch_type": "Pharma_companies",
+        "email": "nova@gmail.com",
+        "phone_no": "0658094270",
+        "address1": "58",
+        "address2": "av",
+        "zip_code": "95190",
+        "city": "95190",
+        "state": "J",
+        "country": "FRA",
+        "description": "this is nova",
+        "branch_id": "gAAAAABmgmlki4JiU1VkcBwbulsSpcNFiCCs86--cE0COPcMHd0erL1XcIWtxCEg4W_g41XfAWKPAKXgg8LNIapEeHXC-YaUVw==",
+        "created_date": "2024-06-25T14:24:55.063052",
+        "modified_date": "2024-06-26T07:40:33.924837",
+        "created_by": "created_by",
+        "modified_by": "modified_by2024-06-26 07:40:33.924837+00:00"
+      },
+      "role": {
+        "org_id": "gAAAAABmgmlkqKLa_lXKpEfESKkV-zQVaFaY85AS5hSIVLwKZLnc6fFAEjzPXKHzXbWBjeOi_PvnbaSIwzFTw1nTfi-mBuwa1g==",
+        "branch_id": "gAAAAABmgmlki4JiU1VkcBwbulsSpcNFiCCs86--cE0COPcMHd0erL1XcIWtxCEg4W_g41XfAWKPAKXgg8LNIapEeHXC-YaUVw==",
+        "role_type": "Staff",
+        "permission": {
+          "N01": [
+            "AC0"
+          ],
+          "N02": [
+            "AC0"
+          ],
+          "N03": [
+            "AC0"
+          ],
+          "N04": [
+            "AC0"
+          ],
+          "N05": [
+            "AC0"
+          ]
+        },
+        "description": "testing update",
+        "role_id": "gAAAAABmgmlkypZFbdMIrgzLgL_VKUR2IKUVgLbTJITVLE9oiAYAMcG3H2ePrxxGBn0Ec6qiY87F_TR3T8EwD1dPM25hGgId6A==",
+        "created_date": "2024-06-26T09:13:38.003491",
+        "modified_date": "2024-06-26T09:35:09.700468",
+        "created_by": "created_by 2024-06-26 09:13:38.003491+00:00",
+        "modified_by": "modified_by2024-06-26 09:35:09.700468+00:00"
+      }
+    }
+  },
+  "message": "Successful request",
+  "status_code": 200
+}

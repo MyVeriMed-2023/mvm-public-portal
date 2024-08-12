@@ -1,0 +1,29 @@
+{
+    "data":[
+        {
+            "id": "1",
+            "name":"dilaksanraj",
+            "email":"dilaksanraj@gmail.com",
+            "status":true,
+            "isExpired":false,
+            "expireDate":"24-10-2024"
+        },
+        {
+            "id": "2",
+            "name":"Dinesh",
+            "email":"Dinesh@gmail.com",
+            "status":true,
+            "isExpired":false,
+            "expireDate":"24-10-2024"
+        },
+        {
+            "id": "3",
+            "name":"MyVeriMed",
+            "email":"MyVeriMed@gmail.com",
+            "status":true,
+            "isExpired":false,
+            "expireDate":"24-10-2024"
+        }
+    ]
+}
+    

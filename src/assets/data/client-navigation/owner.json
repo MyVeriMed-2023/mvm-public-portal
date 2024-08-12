@@ -1,0 +1,212 @@
+{
+    "default": [
+        {
+            "id": "N01",
+            "perms": [
+                "AC0"
+            ],
+            "title": "Dashboards",
+            "type": "basic",
+            "link": "/dashboards/project",
+            "icon": "assets/icons/flat-icons/supply-chain.png"
+        },
+        {
+            "id": "N03",
+            "perms": [
+                "AC0"
+            ],
+            "title": "MyProducts",
+            "type": "basic",
+            "link": "/dashboards/manage-branch",
+            "icon": "assets/icons/flat-icons/branch.png"
+        },
+        {
+            "id": "N03",
+            "perms": [
+                "AC0"
+            ],
+            "title": "MyChannels",
+            "type": "basic",
+            "link": "/dashboards/manage-branch",
+            "icon": "assets/icons/flat-icons/branch.png"
+        },
+        {
+            "id": "N08",
+            "perms": [
+                "AC0"
+            ],
+            "title": "MyShipments",
+            "type": "collapsable",
+            "icon": "assets/icons/flat-icons/supply-chain.png",
+            "link": "/dashboards/supply-chain",
+            "children": [
+                {
+                    "id": "N08",
+                    "perms": [
+                        "AC0"
+                    ],
+                    "title": "MyShipments",
+                    "type": "basic",
+                    "icon": "assets/icons/flat-icons/supply-chain.png",
+                    "link": "/dashboards/supply-chain"
+                },
+                {
+                    "id": "N08",
+                    "perms": [
+                        "AC0"
+                    ],
+                    "title": "Order",
+                    "type": "basic",
+                    "icon": "assets/icons/flat-icons/supply-chain.png",
+                    "link": "/dashboards/supply-chain"
+                },
+                {
+                    "id": "N08",
+                    "perms": [
+                        "AC0"
+                    ],
+                    "title": "Invoice",
+                    "type": "basic",
+                    "icon": "assets/icons/flat-icons/supply-chain.png",
+                    "link": "/dashboards/supply-chain"
+                },
+                {
+                    "id": "N08",
+                    "perms": [
+                        "AC0"
+                    ],
+                    "title": "Repost",
+                    "type": "basic",
+                    "icon": "assets/icons/flat-icons/supply-chain.png",
+                    "link": "/dashboards/supply-chain"
+                }
+            ]
+        },
+        {
+            "id": "N04",
+            "perms": [
+                "AC0"
+            ],
+            "title": "MyUser",
+            "type": "collapsable",
+            "icon": "assets/icons/flat-icons/user-group.png",
+            "link": "/dashboards/user",
+            "children": [
+                {
+                    "id": "N04",
+                    "perms": [
+                        "AC0"
+                    ],
+                    "title": "Users",
+                    "type": "basic",
+                    "icon": "assets/icons/flat-icons/working.png",
+                    "link": "/dashboards/user"
+                },
+                {
+                    "id": "N05",
+                    "perms": [
+                        "AC0"
+                    ],
+                    "title": "Role",
+                    "type": "basic",
+                    "icon": "assets/icons/flat-icons/user-role.png",
+                    "link": "/dashboards/manage-role"
+                }
+            ]
+        },
+        {
+            "id": "N06",
+            "perms": [
+                "AC0"
+            ],
+            "title": "MyInvitation",
+            "type": "collapsable",
+            "icon": "assets/icons/flat-icons/invitation.png",
+            "children": [
+                {
+                    "id": "N06",
+                    "perms": [
+                        "AC0"
+                    ],
+                    "title": "Invitation",
+                    "type": "basic",
+                    "icon": "assets/icons/flat-icons/invitation1.png",
+                    "link": "/dashboards/manage-invitation"
+                }
+            ]
+        },
+
+        {
+            "id": "N03",
+            "perms": [
+                "AC0"
+            ],
+            "title": "MyNotifications",
+            "type": "basic",
+            "link": "/dashboards/manage-branch",
+            "icon": "assets/icons/flat-icons/branch.png"
+        },
+        {
+            "id": "N03",
+            "perms": [
+                "AC0"
+            ],
+            "title": "MyReports",
+            "type": "basic",
+            "link": "/dashboards/manage-branch",
+            "icon": "assets/icons/flat-icons/branch.png"
+        },
+        {
+            "id": "N03",
+            "perms": [
+                "AC0"
+            ],
+            "title": "MyComplaints",
+            "type": "basic",
+            "link": "/dashboards/manage-branch",
+            "icon": "assets/icons/flat-icons/branch.png"
+        },
+        {
+            "id": "N03",
+            "perms": [
+                "AC0"
+            ],
+            "title": "MyChatbox",
+            "type": "basic",
+            "link": "/dashboards/manage-branch",
+            "icon": "assets/icons/flat-icons/branch.png"
+        },
+        {
+            "id": "N03",
+            "perms": [
+                "AC0"
+            ],
+            "title": "MyChanges",
+            "type": "basic",
+            "link": "/dashboards/manage-branch",
+            "icon": "assets/icons/flat-icons/branch.png"
+        },
+
+        {
+            "id": "N09",
+            "perms": [
+                "AC0"
+            ],
+            "title": "Finance",
+            "type": "collapsable",
+            "icon": "assets/icons/flat-icons/payment.png",
+            "children": [
+                {
+                    "id": "N09",
+                    "perms": [
+                        "AC0"
+                    ],
+                    "title": "Payment",
+                    "type": "basic",
+                    "icon": "assets/icons/flat-icons/payment.png",
+                    "link": "/dashboards/finance"
+                }
+            ]
+        }
+    ]
+}

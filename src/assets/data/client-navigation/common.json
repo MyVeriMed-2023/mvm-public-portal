@@ -1,0 +1,14 @@
+{
+    "default": [
+        {
+            "id": "N00",
+            "perms": [
+                "AC0"
+            ],
+            "title": "Home",
+            "type": "basic",
+            "link": "/home",
+            "icon": "assets/icons/flat-icons/supply-chain.png"
+        }
+    ]
+}
