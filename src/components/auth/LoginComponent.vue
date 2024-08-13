@@ -1,9 +1,11 @@
 <template>
   <div class="flex h-screen">
     <!-- Left Side -->
-    <div class="relative hidden md:flex flex-auto items-center justify-center w-1/2 h-full p-16 lg:px-12 overflow-hidden bg-app-color dark:border-l">
+    <div
+      class="relative hidden md:flex flex-auto items-center justify-center w-1/2 h-full p-16 lg:px-12 overflow-hidden bg-app-color dark:border-l">
       <!-- Background Rings -->
-      <svg class="absolute inset-0 pointer-events-none" viewBox="0 0 960 540" width="100%" height="100%" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg">
+      <svg class="absolute inset-0 pointer-events-none" viewBox="0 0 960 540" width="100%" height="100%"
+        preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg">
         <g class="text-gray-700 opacity-25" fill="none" stroke="currentColor" stroke-width="100">
           <circle r="234" cx="196" cy="23"></circle>
           <circle r="234" cx="790" cy="491"></circle>
@@ -12,7 +14,8 @@
       <!-- Background Dots -->
       <svg class="absolute -top-16 -right-16 text-gray-700" viewBox="0 0 220 192" width="220" height="152" fill="none">
         <defs>
-          <pattern id="837c3e70-6c3a-44e6-8854-cc48c737b659" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+          <pattern id="837c3e70-6c3a-44e6-8854-cc48c737b659" x="0" y="0" width="20" height="20"
+            patternUnits="userSpaceOnUse">
             <rect x="0" y="0" width="4" height="4" fill="currentColor"></rect>
           </pattern>
         </defs>
@@ -25,14 +28,23 @@
           <div>MyVeriMed</div>
         </div>
         <div class="mt-6 text-lg tracking-tight leading-6 text-gray-400">
-          An AI-driven Anomaly Detection Solution securing the pharmaceutical supply chain, protecting patients from falsified medicines and preventing stock shortages.
+          An AI-driven Anomaly Detection Solution securing the pharmaceutical supply chain, protecting patients from
+          falsified medicines and preventing stock shortages.
         </div>
         <div class="flex items-center mt-8">
           <div class="flex flex-0 items-center -space-x-1.5">
-            <img class="flex-0 w-10 h-10 rounded-full ring-4 ring-offset-1 ring-gray-800 ring-offset-gray-800 object-cover" src="@/assets/images/avatars/female-18.jpg" alt="Avatar" />
-            <img class="flex-0 w-10 h-10 rounded-full ring-4 ring-offset-1 ring-gray-800 ring-offset-gray-800 object-cover" src="@/assets/images/avatars/female-11.jpg" alt="Avatar" />
-            <img class="flex-0 w-10 h-10 rounded-full ring-4 ring-offset-1 ring-gray-800 ring-offset-gray-800 object-cover" src="@/assets/images/avatars/male-09.jpg" alt="Avatar" />
-            <img class="flex-0 w-10 h-10 rounded-full ring-4 ring-offset-1 ring-gray-800 ring-offset-gray-800 object-cover" src="@/assets/images/avatars/male-16.jpg" alt="Avatar" />
+            <img
+              class="flex-0 w-10 h-10 rounded-full ring-4 ring-offset-1 ring-gray-800 ring-offset-gray-800 object-cover"
+              src="@/assets/images/avatars/female-18.jpg" alt="Avatar" />
+            <img
+              class="flex-0 w-10 h-10 rounded-full ring-4 ring-offset-1 ring-gray-800 ring-offset-gray-800 object-cover"
+              src="@/assets/images/avatars/female-11.jpg" alt="Avatar" />
+            <img
+              class="flex-0 w-10 h-10 rounded-full ring-4 ring-offset-1 ring-gray-800 ring-offset-gray-800 object-cover"
+              src="@/assets/images/avatars/male-09.jpg" alt="Avatar" />
+            <img
+              class="flex-0 w-10 h-10 rounded-full ring-4 ring-offset-1 ring-gray-800 ring-offset-gray-800 object-cover"
+              src="@/assets/images/avatars/male-16.jpg" alt="Avatar" />
           </div>
           <div class="ml-4 font-medium tracking-tight text-gray-400">
             More than 17k people joined us, it's your turn
@@ -46,7 +58,8 @@
       <div class="w-full max-w-sm text-center bg-white p-8 rounded-2xl">
         <!-- Logo -->
         <div class="w-full flex justify-center">
-          <img class="justify-center w-50 sm:w-full" src="@/assets/images/logo/myverimedLogo.png" alt="MyVeriMed Logo" />
+          <img class="justify-center w-50 sm:w-full" src="@/assets/images/logo/myverimedLogo.png"
+            alt="MyVeriMed Logo" />
         </div>
 
         <!-- Title -->
@@ -72,8 +85,10 @@
 
           <!-- Password field -->
           <n-form-item label="Password" :rules="{ required: true }">
-            <n-input v-model:value="signInForm.password" :type="showPassword ? 'text' : 'password'" placeholder="Enter your password" />
-            <n-icon @click="togglePasswordVisibility" class="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer">
+            <n-input v-model:value="signInForm.password" :type="showPassword ? 'text' : 'password'"
+              placeholder="Enter your password" />
+            <n-icon @click="togglePasswordVisibility"
+              class="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer">
               <n-icon :name="showPassword ? 'eye-off' : 'eye'" />
             </n-icon>
           </n-form-item>
@@ -84,11 +99,13 @@
               <input type="checkbox" v-model="signInForm.rememberMe" class="form-checkbox text-primary-500" />
               <span class="ml-2">Remember me</span>
             </label>
-            <router-link to="/forgot-password" class="text-md font-medium text-primary-500 hover:underline">Forgot password?</router-link>
+            <router-link to="/forgot-password" class="text-md font-medium text-primary-500 hover:underline">Forgot
+              password?</router-link>
           </div>
 
           <!-- Submit button -->
-          <n-button @click="signIn" type="submit" class="w-full mt-6 bg-app-color text-white font-bold" :disabled="!isValidEmail(signInForm.email) || !signInForm.password">
+          <n-button @click="signIn" type="submit" class="w-full mt-6 bg-app-color text-white font-bold"
+            :disabled="!isValidEmail(signInForm.email) || !signInForm.password">
             Sign in
           </n-button>
 
@@ -174,6 +191,8 @@ export default {
     };
 
     const signIn = async () => {
+
+      router.push('/dashboard');
       console.log('sign in working ');
       if (!isValidEmail(signInForm.value.email) || !signInForm.value.password) {
         showAlert.value = true;
@@ -185,8 +204,10 @@ export default {
         const response = await loginUser(signInForm.value.email, signInForm.value.password);
 
         if (response.success) {
-          // Handle successful login (e.g., redirect, store token, etc.)
-          store.commit('setToken', response.token); // Commit token to Vuex store
+          console.log(response);
+          const { token, user } = response;
+          store.commit('setAuth', { token, user });
+
           alert.value = {
             type: 'success',
             message: 'Login successful!'
