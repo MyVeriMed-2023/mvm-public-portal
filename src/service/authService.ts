@@ -42,38 +42,41 @@ export async function logoutUser(store: any) {
   }
 }
 
-export async function registerUser(firstName: string, lastName: string, email: string, password: string, userType: string) {
+export async function registerUser(obj: any) {
   try {
-    const response = await fetch(`${apiUrl}/user/`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        first_name: firstName,
-        last_name: lastName,
-        email: email,
-        password: password,
-        user_type: userType, // Assuming the server expects a 'user_type' field
-      }),
-    });
+    // Make an HTTP POST request using axios
+    const response = await axios.post(`${apiUrl}/user/`,
+      obj
+      , {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
 
-    const data = await response.json();
-
-    if (response.ok) {
+    // Check if the response is successful
+    if (response.status === 200) {
       return {
         success: true,
         message: 'Registration successful!',
-        data: data,
+        data: response.data,
       };
     } else {
       return {
         success: false,
-        message: data.message || 'Registration failed',
+        message: response.data.message || 'Registration failed',
       };
     }
-  } catch (error) {
+  } catch (error: any) {
     console.error('Error during registration:', error);
+
+    // Handle errors that are responses from the server
+    if (error.response) {
+      return {
+        success: false,
+        message: error.response.data.message || 'Registration failed',
+      };
+    }
+
     return {
       success: false,
       message: 'An error occurred during registration',

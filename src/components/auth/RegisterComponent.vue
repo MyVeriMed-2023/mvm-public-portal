@@ -1,5 +1,5 @@
 <template>
-  <div class="flex h-screen">
+  <div class="flex h-screen" ref="resizeElement">
     <!-- Left Side -->
     <div
       class="relative hidden md:flex flex-auto items-center justify-center w-1/2 h-full p-16 lg:px-12 overflow-hidden bg-app-color dark:border-l">
@@ -54,10 +54,10 @@
     </div>
 
     <!-- Right Side -->
-    <div class="flex flex-col justify-center items-center w-full sm:w-auto md:w-full p-8 sm:p-8 h-full bg-gray-1000">
+    <div class="flex flex-col justify-center items-center w-full sm:w-auto md:w-full p-0 sm:p-8 h-full bg-gray-1000">
       <div class="w-full max-w-4xl text-center bg-white p-8 rounded-2xl">
         <!-- Logo -->
-        <div class="w-full flex justify-center">
+        <div class="w-full flex justify-center mt-12 sm:mt-2">
           <img class="justify-center w-20 xs:w-full" src="@/assets/images/logo/myverimedLogo.png"
             alt="MyVeriMed Logo" />
         </div>
@@ -71,7 +71,7 @@
 
         <!-- Alert -->
         <div v-if="showAlert" class="mt-8 -mb-4">
-          <n-alert :type="alert.type" :show-icon="true" class="w-full mt-4">
+          <n-alert :type="alert.type" show-icon class="w-full mt-4">
             {{ alert.message }}
           </n-alert>
         </div>
@@ -97,7 +97,8 @@
 
             <!-- User Type field -->
             <n-form-item label="User Type" :rules="{ required: true }">
-              <n-select v-model:value="selectedUserType" :options="userTypeOptions" />
+              <n-select
+                v-model:value="signUpForm.userType" :options="userTypeOptions" />
             </n-form-item>
 
             <!-- Password field -->
@@ -170,115 +171,93 @@
   </div>
 </template>
 
-<script>
-import { ref,defineComponent} from 'vue';
+<script setup>
+import { ref } from 'vue';
 import { NButton, NInput, NForm, NFormItem, NAlert, NIcon, NSelect } from 'naive-ui';
 import { LogoChrome, LogoGithub, LogoTwitter } from "@vicons/ionicons4";
 import { Icon } from "@vicons/utils";
 import { registerUser } from '@/service/authService'; // Adjust the path as necessary
 import { useRouter } from 'vue-router';
-import { useStore } from 'vuex';
 
-export default defineComponent({
-  components: {
-    NButton,
-    NInput,
-    NForm,
-    NFormItem,
-    NAlert,
-    NIcon,
-    NSelect,
-    LogoChrome,
-    LogoGithub,
-    LogoTwitter,
-    Icon
-  },
-  setup() {
+const router = useRouter();
 
-    const store = useStore();
-    const router = useRouter();
+const userTypeOptions = ref([
+  { label: 'Medical Doctor', value: 'medical-doctor' },
+  { label: 'Non-Medical Staffs', value: 'non-medical-staff' },
+  { label: 'Patients', value: 'patients' },
+]);
 
-    const selectedUserType = ref('');
-    const userTypeOptions = ref([
-      { label: 'Medical Doctor', value: 'medical-doctor' },
-      { label: 'Non-Medical Staffs', value: 'non-medical-staff' },
-      { label: 'Patients', value: 'patients' },
-    ]);
-
-
-    const signUpForm = ref({
-      firstName: '',
-      lastName: '',
-      email: '',
-      password: '',
-      confirmPassword: '',
-      userType: '',
-      rememberMe: false,
-    });
-    const showPassword = ref(false);
-    const showAlert = ref(false);
-    const alert = ref({
-      type: 'error',
-      message: '',
-    });
-
-    const togglePasswordVisibility = () => {
-      showPassword.value = !showPassword.value;
-    };
-
-    const isValidEmail = (email) => {
-      const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      return re.test(email);
-    };
-
-    const isFormValid = () => {
-      return (
-        isValidEmail(signUpForm.value.email) &&
-        signUpForm.value.password === signUpForm.value.confirmPassword &&
-        signUpForm.value.password.length > 0 &&
-        signUpForm.value.confirmPassword.length > 0 &&
-        signUpForm.value.userType
-      );
-    };
-
-    const signUp = async () => {
-      if (!isFormValid()) {
-        showAlert.value = true;
-        alert.value.message = 'Please fill out the form correctly';
-        return;
-      }
-
-      try {
-        const response = await registerUser(signUpForm.value);
-
-        if (response.success) {
-          store.commit('setAuth', { token: response.token, user: response.user });
-          alert.value = { type: 'success', message: 'Registration successful!' };
-          router.push('/dashboard');
-        } else {
-          showAlert.value = true;
-          alert.value.message = response.message;
-        }
-      } catch (error) {
-        showAlert.value = true;
-        alert.value.message = 'An error occurred. Please try again later.';
-      }
-    };
-
-    return {
-      signUpForm,
-      showPassword,
-      showAlert,
-      alert,
-      togglePasswordVisibility,
-      isFormValid,
-      signUp,
-      userTypeOptions,
-      selectedUserType
-    };
-  }
+const signUpForm = ref({
+  firstName: '',
+  lastName: '',
+  email: '',
+  password: '',
+  confirmPassword: '',
+  userType: '',
+  rememberMe: false,
 });
+const showPassword = ref(false);
+const showAlert = ref(false);
+const alert = ref({
+  type: 'error',
+  message: '',
+});
+
+
+const togglePasswordVisibility = () => {
+  showPassword.value = !showPassword.value;
+};
+
+const isValidEmail = (email) => {
+  const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return re.test(email);
+};
+
+const isFormValid = () => {
+  return (
+    isValidEmail(signUpForm.value.email) &&
+    signUpForm.value.password === signUpForm.value.confirmPassword &&
+    signUpForm.value.password.length > 0 &&
+    signUpForm.value.confirmPassword.length > 0 &&
+    signUpForm.value.userType
+  );
+};
+
+const signUp = async () => {
+  if (!isFormValid()) {
+    showAlert.value = true;
+    alert.value.message = 'Please fill out the form correctly';
+    return;
+  }
+
+  try {
+    const obj = {
+      branch_id: '',
+      org_id: '',
+      role_id: '',
+      description: '',
+      user_type: 'Free_user',
+      first_name: signUpForm.value.firstName,
+      last_name: signUpForm.value.lastName,
+      email: signUpForm.value.email,
+      password: signUpForm.value.password,
+    };
+    const response = await registerUser(obj);
+
+    if (response.success) {
+      alert.value = { type: 'success', message: response.message };
+      router.push('/login');
+    } else {
+      showAlert.value = true;
+      alert.value.message = response.message;
+    }
+  } catch (error) {
+    showAlert.value = true;
+    alert.value.message = 'An error occurred. Please try again later.';
+  }
+};
 </script>
+
 
 <style scoped>
 /* Custom styles for the alert */

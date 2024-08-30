@@ -6,6 +6,14 @@ import DashboardPage from '@/components/DashboardComponent.vue';
 import ScannerComponent from '@/components/scanner/ScannerComponent.vue'
 import UserProfile from '@/components/profile/UserProfile.vue'
 import ScanResult from '@/components/scanner/ScanResult.vue'
+import ElectronicProduct from '@/components/electronic-product/ElectronicProduct.vue'
+import ElectronicProductDetails from '@/components/electronic-product/ElectronicProductDetails.vue'
+import ReportAnEvent from '@/components/report/ReportAnEvent.vue'
+import WhereGetProductDifficulty from '@/components/where-to-buy-product-in-difficulty/WhereToGetProductDifficulty.vue'
+import SelectProductToBuy from '@/components/where-to-buy-product-in-difficulty/SelectByProduct.vue'
+import ComminSoon from '@/shared/components/ComingSoon.vue'
+import Blog from '@/components/blogs/layout/BlogLayout.vue'
+
 
 const routes = [
     {
@@ -19,10 +27,22 @@ const routes = [
         component: MainLayout, // Apply layout to these routes
         children: [
             { path: 'dashboard', name: 'Dashboard', component: DashboardPage, meta: { requiresAuth: true } },
-            { path: 'scanning', name: 'Scanning', component: ScannerComponent, meta: { requiresAuth: false } },
+            { path: 'scanning', name: 'Scanning', component: ScannerComponent, meta: { requiresAuth: true } },
+            { path: 'electronic-product', name: 'electronic-product', component: ElectronicProduct, meta: { requiresAuth: true } },
+            { path: 'electronic-product-details/:type', name: 'electronic-product-details', component: ElectronicProductDetails, meta: { requiresAuth: true } },
+            { path: 'select-product-to-buy', name: 'select-product-to-buy', component: SelectProductToBuy, meta: { requiresAuth: true } },
+            { path: 'getProduct', name: 'getProduct', component: WhereGetProductDifficulty, meta: { requiresAuth: true } },
+            { path: 'report', name: 'report', component: ReportAnEvent, meta: { requiresAuth: true } },
             { path: 'profile', name: 'Profile', component: UserProfile, meta: { requiresAuth: true } },
         ],
     },
+    {
+        path: '/comingsoon',
+        name: 'comingsoon',
+        component: ComminSoon, // No layout for the login page
+    },
+
+    // public routes
     {
         path: '/login',
         name: 'Login',
@@ -33,6 +53,13 @@ const routes = [
         name: 'SignUp',
         component: RegisterComponent, // No layout for the login page
     },
+
+    {
+        path: '/blog',
+        name: 'Blog',
+        component: Blog, // No layout for the login page
+    },
+
     {
         path: '/:catchAll(.*)',
         redirect: '/login', // Redirect unknown routes to home

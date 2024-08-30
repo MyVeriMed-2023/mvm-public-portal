@@ -54,11 +54,11 @@
     </div>
 
     <!-- Right Side -->
-    <div class="flex flex-col justify-center items-center w-full sm:w-auto md:w-full p-8 sm:p-8 h-full bg-gray-1000">
-      <div class="w-full max-w-sm text-center bg-white p-8 rounded-2xl">
+    <div class="flex sm:flex-col sm:justify-center sm:items-center w-full sm:w-auto md:w-full p-2 sm:p-8 h-full bg-gray-1000">
+      <div class="w-full max-w-lg text-center bg-white p-8 rounded-2xl">
         <!-- Logo -->
         <div class="w-full flex justify-center">
-          <img class="justify-center w-50 sm:w-full" src="@/assets/images/logo/myverimedLogo.png"
+          <img class="justify-center w-42 h-24" src="@/assets/images/logo/myverimedLogo.png"
             alt="MyVeriMed Logo" />
         </div>
 
@@ -134,6 +134,12 @@
               <Icon color="skyblue" size="24">
                 <LogoTwitter />
               </Icon>
+            </n-button>
+          </div>
+
+          <div class="flex items-center mt-4 pb-8 space-x-4">
+            <n-button @click="goTo('/blog')" class="w-full mt-6 bg-yellow-400 text-white font-bold">
+              Read Information
             </n-button>
           </div>
         </n-form>
@@ -226,6 +232,11 @@ export default {
       }
     };
 
+    const goTo = (path)=> {
+
+      router.push(path)
+    }
+
     return {
       signInForm,
       showPassword,
@@ -233,7 +244,8 @@ export default {
       alert,
       togglePasswordVisibility,
       isValidEmail,
-      signIn
+      signIn,
+      goTo
     };
   }
 };

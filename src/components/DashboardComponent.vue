@@ -1,10 +1,10 @@
 <template>
   <div class="container mx-auto">
     <PageHeader subtitle="welcome to MVMED" />
-    <!-- <div class="my-6">
+    <div class="my-6">
       <Banner />
 
-    </div> -->
+    </div>
     <main class="">
 
 
@@ -40,7 +40,7 @@
 
 
 
-          <div class="flex xs:h-32 h-30 sm:h-64 w-auto  items-center justify-center rounded-lg bg-app-color cursor-pointer">
+          <div class="flex xs:h-32 h-30 md:h-64 w-auto  items-center justify-center rounded-lg bg-app-color cursor-pointer" @click="electronicProduct">
             <div class="flex flex-col space-x-2">
               <div class="text-center">
                 <IconConfigProvider color="white" size="40">
@@ -67,7 +67,7 @@
             </div>
           </div>
 
-          <div class="flex xs:h-32 h-30 sm:h-64 w-auto  items-center justify-center rounded-lg bg-app-color cursor-pointer">
+          <div class="flex xs:h-32 h-30 md:h-64 w-auto  items-center justify-center rounded-lg bg-app-color cursor-pointer" @click="report" >
             <div class="flex flex-col space-x-2">
               <div class="text-center">
                 <IconConfigProvider color="white" size="40">
@@ -83,7 +83,7 @@
             </div>
           </div>
 
-          <div class="flex xs:h-32 h-30 sm:h-64 w-auto  items-center justify-center rounded-lg bg-app-color cursor-pointer">
+          <div class="flex xs:h-32 h-30 md:h-64 w-auto  items-center justify-center rounded-lg bg-app-color cursor-pointer" @click="whereGetinDifficulty">
             <div class="flex flex-col space-x-2">
               <div class="text-center">
                 <IconConfigProvider color="white" size="40">
@@ -98,7 +98,7 @@
               </div>
             </div>
           </div>
-          <div class="flex xs:h-32 h-30 sm:h-64 w-auto  items-center justify-center rounded-lg bg-app-color cursor-pointer">
+          <div class="flex xs:h-32 h-30 md:h-64 w-auto  items-center justify-center rounded-lg bg-app-color cursor-pointer" @click="whereToBuy">
             <div class="flex flex-col space-x-2">
               <div class="text-center">
                 <IconConfigProvider color="white" size="40">
@@ -130,7 +130,7 @@ import { IconConfigProvider } from '@vicons/utils';
 import { Icon } from "@vicons/utils";
 import { AddLocationOutlined } from '@vicons/material'
 import PageHeader from '@/shared/components/PageHeader.vue'
-// import Banner from '@/shared/components/BannerComponent.vue'
+import Banner from '@/shared/components/BannerComponent.vue'
 
 export default defineComponent({
   name: 'DashboardComponent',
@@ -138,7 +138,7 @@ export default defineComponent({
     IconConfigProvider, Icon,
     IosQrScanner, IosInformationCircleOutline, IosPaper, AddLocationOutlined,
     PageHeader,
-    // Banner
+    Banner
   },
   setup() {
     const router = useRouter();
@@ -156,11 +156,23 @@ export default defineComponent({
 
     }
 
+    const report = ()=> {
+      router.push('/report')
+    }
+
+    const whereGetinDifficulty = ()=>{
+      router.push('/getProduct')
+    }
+
+    const whereToBuy = ()=> {
+      router.push('/comingsoon')
+    }
+
     const fillForm = () => {
       window.open('https://signalement.social-sante.gouv.fr/', '_blank');
     }
 
-    return { logout, scanProduct, fillForm, electronicProduct,PageHeader,
+    return { logout, scanProduct, fillForm, electronicProduct,PageHeader, report, whereGetinDifficulty, whereToBuy
       // Banner
     };
   },

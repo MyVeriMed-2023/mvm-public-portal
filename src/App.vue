@@ -1,28 +1,21 @@
 <template>
-
+  <component :is="layoutComponent">
     <router-view />
-
+  </component>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import { computed } from 'vue';
 import { useRoute } from 'vue-router';
 import MainLayout from '@/layouts/MainLayout.vue';
 
-export default {
-  setup() {
-    const route = useRoute();
+// Access the route using the useRoute() hook
+const route = useRoute();
 
-    // Determine the layout component to use
-    const layoutComponent = computed(() => {
-      return route.meta.requiresAuth ? MainLayout : 'div';
-    });
-
-    return {
-      layoutComponent,
-    };
-  },
-};
+// Determine the layout component to use
+const layoutComponent = computed(() => {
+  return route.meta.requiresAuth ? MainLayout : 'div';
+});
 </script>
 
 <style>

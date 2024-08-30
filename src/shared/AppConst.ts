@@ -3,6 +3,7 @@ export class AppConst {
     static readonly appUrl = 'https://www.myverimed.com/';
     static readonly appLinkedinUrl = 'https://www.linkedin.com/company/mvmed-agency/';
     static readonly euUnionUrl = 'https://plm-portal.ema.europa.eu/ePIDetails/?epiid=76aee351-1a2d-ee11-a81c-6045bda028a5';
+    static readonly ansmproductUrl = 'https://base-donnees-publique.medicaments.gouv.fr/';
 
     static readonly status = {
         valid: {
@@ -18,7 +19,7 @@ export class AppConst {
             title: 'DANGER'
         },
         warning: {
-            value: 'WARNING',
+            value: '',
             color: '#FF8C00',
             desc: 'Product recorded in Health Authority database where manufatured. But Orgin of the product unknown by MyVeriMed',
             title: 'NOT KNOWN'

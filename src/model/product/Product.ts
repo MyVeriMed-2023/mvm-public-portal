@@ -1,3 +1,5 @@
+import { Organization } from '../organization/organization';
+import { ProductBdpm } from './ProductBdpm';
 import { ProductCIS } from './ProductCIS';
 import { ProductInfo } from './ProductInfo';
 
@@ -16,9 +18,12 @@ export class Product {
   prix_du_medicament_en_euro: string;
   product_cis: ProductCIS;
   product_info: ProductInfo[]; // Define a more specific type if available
+  product_bdpm: ProductBdpm;
   remboursement: any;  // Define a more specific type if available
   statut_administratif_de_la_presentation: string;
   taux_de_remboursement: string;
+  organization:Organization;
+  is_verified: boolean;
 
   constructor(product?: any) {
       this.id = product?.id || '';
@@ -38,5 +43,8 @@ export class Product {
       this.remboursement = product?.remboursement || null;
       this.statut_administratif_de_la_presentation = product?.statut_administratif_de_la_presentation || '';
       this.taux_de_remboursement = product?.taux_de_remboursement || '';
+      this.product_bdpm = product?.product_bdpm? new ProductBdpm(product.product_bdpm): new ProductBdpm();
+      this.organization = product?.is_verified? new Organization(product.organization) : new Organization()
+      this.is_verified = product.is_verified
   }
 }
