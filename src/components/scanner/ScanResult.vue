@@ -68,7 +68,7 @@
 
         <span class="font-medium text-left">CIP</span>
         <span class="text-primary-primaryblueET text-left font-semibold">
-          {{ productDetails.code_13 }}
+          {{ productDetails.code_cip13 }}
         </span>
 
         <span class="font-medium text-left">Form</span>
@@ -116,7 +116,7 @@
         {{ item.description }}
 
         <div class="text-gray-500 font-thin text-sm pt-1">
-          <span>{{ item.description }}</span>
+          <span>{{ formattedCreatedDate(item.created_date) }}</span>
         </div>
       </a>
     </div>
@@ -132,6 +132,7 @@ import { ref, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { getProductByCode13 } from '@/service/productService'
 import { AppConst } from '@/shared/AppConst'
+import { formatDate } from '@/shared/utils/dateFormatter'
 
 const route = useRoute()
 const router = useRouter()
@@ -225,6 +226,10 @@ function getStatus(item, expDate) {
   }
 
 
+}
+
+function formattedCreatedDate(date) {
+  return formatDate(date)
 }
 </script>
 

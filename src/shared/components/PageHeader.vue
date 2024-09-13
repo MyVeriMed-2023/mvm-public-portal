@@ -1,7 +1,7 @@
 <template>
     <header class="text-center py-4 sm:py-8 bg-app-color">
       <h1 class="text-xl sm:text-3xl font-bold text-white">{{ title }}</h1>
-      <p class="text-white" v-if="subtitle">{{ subtitle }}</p>
+      <p class="text-white text-lg" v-if="subtitle">{{  $t('pageHeader.welcome') }}</p>
     </header>
   </template>
 

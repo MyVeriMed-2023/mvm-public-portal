@@ -5,6 +5,7 @@ module.exports = {
     extend: {
       backgroundImage: {
         'app-color': 'linear-gradient(180deg, #0c5087 0%, #289c43 100%)',
+        'bg-blue-custom' : '#0e5680'
       },
       animation: {
         'infinite-scroll': 'infinite-scroll 10s linear infinite',

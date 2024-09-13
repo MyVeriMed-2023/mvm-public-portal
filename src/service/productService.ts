@@ -3,7 +3,7 @@ import { Product } from '@/model/product/Product';
 import { ProductShort } from '@/model/product/ProductShort';
 import axiosInstance from '@/shared/intecepter/axiosInstance';
 
-const apiUrl = 'http://127.0.0.1:5000/api/v1';
+const apiUrl = 'http://172.21.111.241:5000/api/v1';
 
 export async function getProductByCode13(code13: string): Promise<{ success: boolean; product?: Product; message?: string }> {
     try {
@@ -33,7 +33,7 @@ export async function getProductByCode13(code13: string): Promise<{ success: boo
 export async function getProductShort(search: string): Promise<{ success: boolean; product?: ProductShort[]; message?: string }> {
     try {
         const response = await axiosInstance.get(`${apiUrl}/product/cis`, {
-            params: { search: encodeURIComponent(search) },
+            params: { search: encodeURIComponent(search), filter:encodeURIComponent('my') },
             headers: { 'Content-Type': 'application/json' },
         });
 

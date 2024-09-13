@@ -1,0 +1,17 @@
+{
+    "welcome": "Willkommen",
+    "logout": "Abmelden",
+    "profile": "Profil",
+    "language": "Sprache",
+    "pageHeader": {
+    "title": "MyVeriMed",
+    "welcome": "Willkommen"
+  },
+  "dashboard":{
+    "scanAProduct":"Ein Produkt scannen",
+    "electronicProductInfo":"Elektronische Produktinformationen",
+    "reportOrFillForm":"Melden Sie ein Ereignis ODER füllen Sie ein Formular aus",
+    "whereToGetSupplyDiff": "Wo bekommt man Produkte in Lieferschwierigkeiten",
+    "whereToGetSecureProd": "Wo kann man ein gesichertes Produkt kaufen"
+  }
+  }

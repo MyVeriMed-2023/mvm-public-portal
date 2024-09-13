@@ -100,6 +100,6 @@ const router = useRouter()
 
 
 function goTo() {
-    router.push('/comingsoon')
+    router.push('/adverse-reaction')
 }
 </script>

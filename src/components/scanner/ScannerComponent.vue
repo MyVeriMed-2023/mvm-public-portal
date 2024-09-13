@@ -249,26 +249,8 @@ const trackFunctionSelected = ref(trackFunctionOptions[1])
 /*** barcode formats ***/
 
 const barcodeFormats = ref({
-    aztec: true,
-    code_128: true,
-    code_39: true,
-    code_93: true,
-    codabar: true,
-    databar: true,
-    databar_expanded: true,
+
     data_matrix: true,
-    dx_film_edge: true,
-    ean_13: true,
-    ean_8: true,
-    itf: true,
-    maxi_code: true,
-    micro_qr_code: true,
-    pdf417: true,
-    qr_code: true,
-    rm_qr_code: true,
-    upc_a: true,
-    upc_e: true,
-    linear_codes: true,
     matrix_codes: true
 })
 const selectedBarcodeFormats = computed(() => {

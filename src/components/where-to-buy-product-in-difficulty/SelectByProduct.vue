@@ -1,35 +1,48 @@
 <template>
     <div ref="container" class="py-4">
-        <div class="max-w-5xl mx-auto mt-6 p-6">
+        <div class="max-w-5xl mx-auto mt-6">
             <div class="max-w-5xl mx-auto mt-6 p-6">
                 <div class="grid md:grid-cols-1 lg:grid-cols-1 sm:grid-cols-1 gap-4 grid-cols-1">
                     <n-space vertical>
-                        <n-select placeholder="Select a file" v-model:value="selectedValue" :options="filteredOptions"
-                            filterable @input="handleInputChange" />
+                        <n-select placeholder="Select product" v-model:value="selectedValue" :options="filteredOptions"
+                            :on-search="searchHandle" filterable />
                     </n-space>
 
-                    <n-button @click="openPdf" type="primary" :disabled="!selectedValue">
+                    <n-button @click="openMap" type="primary" :disabled="!selectedValue">
                         View
                     </n-button>
                 </div>
+            </div>
+
+            <!-- Google Map will be displayed here -->
+            <div v-if="showMap" class="map-container mt-6">
+                <iframe width="100%" height="100%" style="border:0" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade" :src="mapSrc"></iframe>
             </div>
         </div>
     </div>
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onBeforeUnmount } from 'vue';
 import { getProductShort } from '@/service/productService';
+import { ref, onMounted, onBeforeUnmount } from 'vue';
 
+const selectedValue = ref(''); // Holds the selected product code
+const container = ref(null);
 let filteredOptions = ref<{ label: string; value: string; }[]>([]);
-const selectedValue = ref<string | null>(null);
-const container = ref<HTMLElement | null>(null);
+const showMap = ref(false);
+
+const mapData = [
+    "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2558.8638401728945!2d8.6636624!3d50.1075555!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47bd095578f0beb5%3A0x2b5aff660258787f!2sPharmacy%20in%20the%20Central%20Station!5e0!3m2!1sen!2sfr!4v1725975807035!5m2!1sen!2sfr",
+    "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2561.9614793457836!2d8.5714157!3d50.049552899999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47bd0ac08a5872f3%3A0x375da203972dba48!2sMetropolitan%20Pharmacy!5e0!3m2!1sen!2sfr!4v1725978984552!5m2!1sen!2sfr"
+]
+// Dynamic map source URL
+const mapSrc = ref('');
 
 onMounted(async () => {
     const observer = new ResizeObserver((entries) => {
         for (let entry of entries) {
             console.log('Element resized:', entry.contentRect);
-            // Add any logic here that should be triggered on resize.
         }
     });
 
@@ -38,17 +51,12 @@ onMounted(async () => {
     }
 
     try {
-        // Fetch product data
         const response = await getProductShort('');
         if (response.success && response.product) {
-            // Transform product data to match the select options structure
             filteredOptions.value = response.product.map((item: any) => ({
                 label: item.denomination_du_medicament, // Product name
-                value: item.code_cis, // Example of unique value
+                value: item.code_cis, // Unique product code
             }));
-
-            // Filter options based on the desired type
-            console.log('Filtered Options:', filteredOptions.value);
         } else {
             console.error('Error fetching product:', response.message);
         }
@@ -63,42 +71,59 @@ onMounted(async () => {
     });
 });
 
-function openPdf() {
-    if (selectedValue.value) {
-        window.open(selectedValue.value, '_blank');
-    }
+
+function getRandomMapUrl() {
+    const randomIndex = Math.floor(Math.random() * mapData.length);
+    return mapData[randomIndex];
 }
 
-// Function to handle input changes dynamically
-function handleInputChange(value: any) {
-    console.log('Input value:', value.target.value);
+// Function to update the map when "View" is clicked
+function openMap() {
+    // Example: Set dynamic address or coordinates based on the selected product
+    const selectedProduct = filteredOptions.value.find((option) => option.value === selectedValue.value);
 
-    if (value) {
-        fetchFilteredOptions(value);
-    } else {
-        filteredOptions.value = []; // Clear options if input is empty
+    if (selectedProduct) {
+        // Here, we're simulating a Google Maps URL based on the product's code
+        // You can adjust the address dynamically if you have actual addresses
+        mapSrc.value = getRandomMapUrl();
     }
+
+    // Display the map
+    showMap.value = true;
 }
 
-async function fetchFilteredOptions(searchTerm: string) {
+// Search handler to filter options dynamically
+const searchHandle = async (value: string) => {
     try {
-        // Fetch options based on the search term
-        const response = await getProductShort(searchTerm);
+        const response = await getProductShort(value);
         if (response.success && response.product) {
             filteredOptions.value = response.product.map((item: any) => ({
-                label: item.denomination_du_medicament,
-                value: item.code_cis,
+                label: item.denomination_du_medicament, // Product name
+                value: item.code_cis, // Unique product code
             }));
         } else {
-            console.error('Error fetching filtered options:', response.message);
+            console.error('Error fetching product:', response.message);
         }
     } catch (error) {
-        console.error('An error occurred while fetching filtered options:', error);
+        console.error('An error occurred while fetching the product:', error);
     }
-}
-
+};
 </script>
 
 <style scoped>
-/* Add any necessary custom styles here */
+.map-container {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%; /* Aspect ratio for 16:9 */
+  height: 0;
+  overflow: hidden;
+}
+
+.map-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
 </style>

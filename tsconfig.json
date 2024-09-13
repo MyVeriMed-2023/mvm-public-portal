@@ -6,6 +6,7 @@
     "strict": true,
     "jsx": "preserve",
     "moduleResolution": "node",
+    "resolveJsonModule": true,  // Enable JSON module support
     "experimentalDecorators": true,
     "allowJs": true,
     "esModuleInterop": true,

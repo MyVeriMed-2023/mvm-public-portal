@@ -20,7 +20,7 @@
                   </Icon>
                 </IconConfigProvider>
               </div>
-              <div class="text-center  text-sm md:text-sm font-bold text-white">Scan a product</div>
+              <div class="text-center  text-sm md:text-sm font-bold text-white"> {{$t('dashboard.scanAProduct')}}</div>
               <div class="my-2 text-center text-gray-500">
 
               </div>
@@ -49,7 +49,7 @@
                   </Icon>
                 </IconConfigProvider>
               </div>
-              <div class="text-center  text-sm md:text-sm font-bold text-white">Electronic product information</div>
+              <div class="text-center  text-sm md:text-sm font-bold text-white">{{ $t('dashboard.electronicProductInfo') }}</div>
               <div class="my-2 text-center text-gray-500">
 
               </div>
@@ -76,7 +76,7 @@
                   </Icon>
                 </IconConfigProvider>
               </div>
-              <div class="text-center  text-sm md:text-sm font-bold text-white"> Report an event OR fill a form </div>
+              <div class="text-center  text-sm md:text-sm font-bold text-white">{{ $t('dashboard.reportOrFillForm') }}  </div>
               <div class="my-2 text-center text-gray-500">
 
               </div>
@@ -92,7 +92,7 @@
                   </Icon>
                 </IconConfigProvider>
               </div>
-              <div class="text-center  text-sm md:text-sm font-bold text-white"> Where to get products in supply difficulty </div>
+              <div class="text-center  text-sm md:text-sm font-bold text-white">{{ $t('dashboard.whereToGetSupplyDiff') }}</div>
               <div class="my-2 text-center text-gray-500">
 
               </div>
@@ -107,7 +107,7 @@
                   </Icon>
                 </IconConfigProvider>
               </div>
-              <div class="text-center text-sm md:text-sm font-bold text-white"> Where to buy secured product </div>
+              <div class="text-center text-sm md:text-sm font-bold text-white">{{ $t('dashboard.whereToGetSecureProd') }} </div>
               <div class="my-2 text-center text-gray-500">
 
               </div>
@@ -165,7 +165,7 @@ export default defineComponent({
     }
 
     const whereToBuy = ()=> {
-      router.push('/comingsoon')
+      router.push('/select-product-to-buy')
     }
 
     const fillForm = () => {
