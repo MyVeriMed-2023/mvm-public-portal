@@ -13,6 +13,11 @@ import WhereGetProductDifficulty from '@/components/where-to-buy-product-in-diff
 import SelectProductToBuy from '@/components/where-to-buy-product-in-difficulty/SelectByProduct.vue'
 import ComminSoon from '@/shared/components/ComingSoon.vue'
 import Blog from '@/components/blogs/layout/BlogLayout.vue'
+import BlogUpdates from '@/components/blogs/BlogUpdates.vue';
+import BlogDetails from '@/components/blogs/BlogDetails.vue';
+import AdverseReaction from  '@/components/report/AdverseReaction.vue'
+import MapView from  '@/components/where-to-buy-product-in-difficulty/MapView.vue'
+
 
 
 const routes = [
@@ -33,6 +38,9 @@ const routes = [
             { path: 'select-product-to-buy', name: 'select-product-to-buy', component: SelectProductToBuy, meta: { requiresAuth: true } },
             { path: 'getProduct', name: 'getProduct', component: WhereGetProductDifficulty, meta: { requiresAuth: true } },
             { path: 'report', name: 'report', component: ReportAnEvent, meta: { requiresAuth: true } },
+            { path: 'adverse-reaction', name: 'adverseReaction', component: AdverseReaction, meta: { requiresAuth: true } },
+            { path: 'map-view', name: 'mapView', component: MapView, meta: { requiresAuth: true } },
+
             { path: 'profile', name: 'Profile', component: UserProfile, meta: { requiresAuth: true } },
         ],
     },
@@ -55,9 +63,12 @@ const routes = [
     },
 
     {
-        path: '/blog',
-        name: 'Blog',
-        component: Blog, // No layout for the login page
+        path: '/',
+        component: Blog,
+        children: [
+            { path: 'blog', name: 'blog', component: BlogUpdates, meta: { requiresAuth: false } },
+            {path: '/blog/:id',name: 'BlogDetail',component: BlogDetails},
+        ] // No layout for the login page
     },
 
     {

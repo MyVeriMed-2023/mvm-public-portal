@@ -138,8 +138,8 @@
           </div>
 
           <div class="flex items-center mt-4 pb-8 space-x-4">
-            <n-button @click="goTo('/blog')" class="w-full mt-6 bg-yellow-400 text-white font-bold">
-              Read Information
+            <n-button @click="goTo('/blog')" class="w-full mt-6 bg-blue-custom text-white font-bold">
+              Read news
             </n-button>
           </div>
         </n-form>
@@ -258,6 +258,10 @@ export default {
   border-radius: 0.5rem;
   margin-top: 1rem;
   text-align: center;
+}
+
+.bg-blue-custom {
+  background-color:  #0e5680;
 }
 
 .alert.error {

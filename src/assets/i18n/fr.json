@@ -1,5 +1,18 @@
 {
-    "welcome-back": "welcome to Myverimed",
-    "Project": "Dashboard",
-    "Analytics": "User"
-}
+    "welcome": "Bienvenue",
+    "logout": "Déconnexion",
+    "profile": "Profil",
+    "language": "Langue",
+    "pageHeader": {
+    "title": "MonVeriMed",
+    "welcome": "Bienvenue"
+  },
+  "dashboard":{
+    "scanAProduct":"Scanner un produit",
+    "electronicProductInfo":"Informations électroniques sur les produits",
+    "reportOrFillForm":"Signaler un événement OU remplir un formulaire",
+    "whereToGetSupplyDiff": "Où se procurer des produits en difficulté d'approvisionnement",
+    "whereToGetSecureProd": "Où acheter un produit sécurisé"
+  }
+
+  }

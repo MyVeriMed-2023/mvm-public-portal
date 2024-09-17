@@ -19,7 +19,7 @@
                         </li>
                         <li class="w-full">
                             <n-alert title="Danger Alert" type="error" closable>
-                                Found some Fack product in your country.
+                                Found some fake product in your country.
                             </n-alert>
                         </li>
 

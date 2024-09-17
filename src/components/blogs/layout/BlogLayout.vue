@@ -7,7 +7,8 @@
       <HeroSection />
 
       <!-- Blog Updates Section -->
-      <BlogUpdates />
+      <RouterView></RouterView>
+      <!-- <BlogUpdates /> -->
 
       <!-- Footer Component -->
       <FooterComponent />
@@ -17,14 +18,12 @@
   <script>
   import HeaderComponent from '@/components/blogs/HeaderComponent.vue';
   import HeroSection from '@/components/blogs/HeroSection.vue';
-  import BlogUpdates from '@/components/blogs/BlogUpdates.vue';
   import FooterComponent from '@/components/blogs/FooterComponent.vue';
 
   export default {
     components: {
       HeaderComponent,
       HeroSection,
-      BlogUpdates,
       FooterComponent
     }
   }

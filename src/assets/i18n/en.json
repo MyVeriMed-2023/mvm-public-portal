@@ -1,5 +1,17 @@
 {
-    "welcome-back": "welcome to Myverimed",
-    "Project": "Dashboard",
-    "Analytics": "User"
+    "welcome": "Welcome",
+    "logout": "Logout",
+    "profile": "Profile",
+    "language": "Language",
+    "pageHeader": {
+    "title": "MyVeriMed",
+    "welcome": "Welcome"
+  },
+  "dashboard":{
+    "scanAProduct":"Scan a product",
+    "electronicProductInfo":"Electronic product information",
+    "reportOrFillForm":"Report an event OR fill a form",
+    "whereToGetSupplyDiff": "Where to get products in supply difficulty",
+    "whereToGetSecureProd": "Where to buy secured product"
+  }
 }

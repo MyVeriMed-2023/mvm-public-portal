@@ -2,6 +2,7 @@ import { Organization } from '../organization/organization';
 import { ProductBdpm } from './ProductBdpm';
 import { ProductCIS } from './ProductCIS';
 import { ProductInfo } from './ProductInfo';
+import { ProductRecalled } from './ProductRecalled';
 
 export class Product {
   id: string;
@@ -23,7 +24,10 @@ export class Product {
   statut_administratif_de_la_presentation: string;
   taux_de_remboursement: string;
   organization:Organization;
+  recalled?:ProductRecalled;
   is_verified: boolean;
+  is_recalled: boolean;
+
 
   constructor(product?: any) {
       this.id = product?.id || '';
@@ -44,7 +48,9 @@ export class Product {
       this.statut_administratif_de_la_presentation = product?.statut_administratif_de_la_presentation || '';
       this.taux_de_remboursement = product?.taux_de_remboursement || '';
       this.product_bdpm = product?.product_bdpm? new ProductBdpm(product.product_bdpm): new ProductBdpm();
-      this.organization = product?.is_verified? new Organization(product.organization) : new Organization()
-      this.is_verified = product.is_verified
+      this.organization = product?.is_verified? new Organization(product.organization) : new Organization();
+      this.recalled = product.recalled !== null? new ProductRecalled(product.recalled) :new ProductRecalled();
+      this.is_verified = product.is_verified;
+      this.is_recalled = product.is_recalled
   }
 }
