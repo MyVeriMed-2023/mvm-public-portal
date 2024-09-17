@@ -15,7 +15,7 @@ export class AppConst {
         danger: {
             value: 'DANGER',
             color: '#FF0800',
-            desc: 'Product known by myVeriMed. But Product was expired',
+            desc: 'Product known by myVeriMed. But Product was expired / recalled',
             title: 'DANGER'
         },
         warning: {
@@ -31,6 +31,10 @@ export class AppConst {
             title: 'CAUTION'
         },
 
+    }
+
+    static readonly scanningType = {
+        scanning: 'Scan'
     }
 
     static readonly userTypes = [

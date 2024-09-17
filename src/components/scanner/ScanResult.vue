@@ -121,6 +121,22 @@
       </a>
     </div>
 
+    <div v-if="productDetails.is_recalled"
+      class="flex flex-wrap gap-4 p-6 justify-center text-lg font-serif">
+      <a
+        class=" text-center shadow-2xl bg-gray-100 flex-grow text-black border-l-8 border-red-500 rounded-md px-3 py-2 w-full md:w-5/12 lg:w-3/12">
+        Alert
+
+        <div class="text-gray-500 font-thin text-sm pt-1">
+          <span>this product has been recalled from {{ formattedCreatedDate(productDetails.recalled.publish_date) }} </span>
+        </div>
+      </a>
+    </div>
+
+
+
+
+
   </div>
 </template>
 
@@ -128,11 +144,12 @@
 
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted} from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { getProductByCode13 } from '@/service/productService'
 import { AppConst } from '@/shared/AppConst'
 import { formatDate } from '@/shared/utils/dateFormatter'
+import { getGeolocation } from '@/shared/service/geolocationService';
 
 const route = useRoute()
 const router = useRouter()
@@ -140,10 +157,23 @@ const productDetails = ref(null)
 const code13 = route.query.code13
 const expDate = route.query.exp_date
 const lotNo = route.query.lot_no
+const error = ref(null);
+const loading = ref(true);
+const location = ref(null);
 
 onMounted(async () => {
+
   try {
-    const response = await getProductByCode13(code13)
+    location.value = await getGeolocation();
+  } catch (err) {
+    error.value = 'Failed to fetch location data.';
+  } finally {
+    loading.value = false;
+  }
+
+  try {
+
+    const response = await getProductByCode13(code13, lotNo, location.value)
     if (response.success) {
       // Get product status and additional details
       const statusDetails = getStatus(response.product, expDate)
@@ -159,7 +189,7 @@ onMounted(async () => {
         ...response.product
       }
 
-      console.log(productDetails.value);
+      console.log('product details', productDetails.value);
     } else {
       console.error('Error fetching product:', response.message)
     }
@@ -182,7 +212,7 @@ function getStatus(item, expDate) {
   let desc = AppConst.status.warning.desc
 
   // expired
-  if (expireDateF < currentDate) {
+  if (expireDateF < currentDate || item.is_recalled) {
     status = AppConst.status.danger.value
     color = AppConst.status.danger.color
     desc = AppConst.status.danger.desc
