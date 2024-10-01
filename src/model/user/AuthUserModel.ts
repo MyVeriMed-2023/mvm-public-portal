@@ -1,3 +1,5 @@
+import { ScanData } from "../scan/scan";
+
 export class AuthUserModel {
     user_id: string;
     email: string;
@@ -17,6 +19,7 @@ export class AuthUserModel {
     role: any;
     role_id: string;
     user_type: string;
+    scandata: ScanData[];
 
     constructor(data: any) {
       this.user_id = data.user_id || '';
@@ -37,5 +40,6 @@ export class AuthUserModel {
       this.role = data.role || {};
       this.role_id = data.role_id || '';
       this.user_type = data.user_type || '';
+      this.scandata = data.scans?.map((i:any,idx:number) => new ScanData(i,idx))
     }
   }

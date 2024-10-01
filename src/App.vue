@@ -1,13 +1,32 @@
 <template>
-  <component :is="layoutComponent">
-    <router-view />
-  </component>
+
+  <n-dialog-provider>
+    <n-message-provider>
+      <n-notification-provider>
+        <n-loading-bar-provider>
+          <component :is="layoutComponent">
+            <router-view />
+          </component>
+        </n-loading-bar-provider>
+      </n-notification-provider>
+    </n-message-provider>
+  </n-dialog-provider>
+
+
 </template>
 
 <script setup lang="ts">
 import { computed } from 'vue';
 import { useRoute } from 'vue-router';
 import MainLayout from '@/layouts/MainLayout.vue';
+
+import {
+	NMessageProvider,
+	NDialogProvider,
+	NNotificationProvider,
+	NLoadingBarProvider,
+} from 'naive-ui'
+
 
 // Access the route using the useRoute() hook
 const route = useRoute();

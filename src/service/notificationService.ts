@@ -1,9 +1,10 @@
+import { Notification } from '@/model/notification/notification';
 import { AppConst } from '@/shared/AppConst';
 import axiosInstance from '@/shared/intecepter/axiosInstance';
 
-export async function getBlogUpdates() {
+export async function getNotifications() {
     try {
-        const response = await axiosInstance.get(`${AppConst.apiBaseUrl}/blogs/`, {
+        const response = await axiosInstance.get(`${AppConst.apiBaseUrl}/notification/all`, {
             headers: { 'Content-Type': 'application/json' },
         });
 
@@ -11,7 +12,7 @@ export async function getBlogUpdates() {
             // Assuming the response data is an array of blog objects
             return {
                 success: true,
-                updates: response.data.data, // Adjust according to your API response structure
+                notification: response.data.data.map((i:any, idx:number)=> new Notification(i, idx)), // Adjust according to your API response structure
             };
         } else {
             return { success: false, message: response.data.message || 'Failed to fetch blog updates' };
@@ -22,17 +23,18 @@ export async function getBlogUpdates() {
     }
 }
 
-export async function getBlogById(id:any) {
+export async function updateNotification(id:string[]) {
     try {
-        const response = await axiosInstance.get(`${AppConst.apiBaseUrl}/blogs/action?id=${id}`, {
+        const response = await axiosInstance.put(`${AppConst.apiBaseUrl}/notification/update`, {
+            ids: id,
             headers: { 'Content-Type': 'application/json' },
         });
 
         if (response.status === 200) {
-            // Assuming the response data contains the blog object
+
             return {
                 success: true,
-                blog: response.data.data, // Adjust according to your API response structure
+                notification: response.data.data.map((i:any, idx:number)=> new Notification(i, idx)),
             };
         } else {
             return { success: false, message: response.data.message || 'Failed to fetch blog details' };

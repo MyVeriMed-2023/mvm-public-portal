@@ -4,9 +4,14 @@
 ```
 npm install
 ```
+setup backend api
+=================
 
 ### Compiles and hot-reloads for development
 ```
+run project in local
+===================
+
 npm run serve
 ```
 

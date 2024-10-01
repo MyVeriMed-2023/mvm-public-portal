@@ -1,9 +1,11 @@
 export class AppConst {
 
-    static readonly appUrl = 'https://www.myverimed.com/';
+    static readonly appUrl = 'https://www.app.myverimed.com/';
     static readonly appLinkedinUrl = 'https://www.linkedin.com/company/mvmed-agency/';
     static readonly euUnionUrl = 'https://plm-portal.ema.europa.eu/ePIDetails/?epiid=76aee351-1a2d-ee11-a81c-6045bda028a5';
     static readonly ansmproductUrl = 'https://base-donnees-publique.medicaments.gouv.fr/';
+    static readonly apiBaseUrl = 'https://www.testapi.myverimed.com/api/v1'
+    static readonly appName  = 'MyVeriMed®'
 
     static readonly status = {
         valid: {

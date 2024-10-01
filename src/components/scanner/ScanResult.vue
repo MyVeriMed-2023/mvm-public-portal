@@ -1,33 +1,13 @@
-<!-- <template>
-    <div class="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-75">
-        <div v-if="productDetails" class="bg-white shadow-lg p-6 max-w-3xl w-full h-full"
-            :style="{ backgroundColor: productDetails.color }">
-            <button @click="goBack" class="absolute top-4 right-4 text-gray-600 hover:text-gray-800">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
-                    </path>
-                </svg>
-            </button>
-            <h1 class="text-2xl font-bold mb-4">Product Details</h1>
-            <div>
-                <div class="mb-4">
-                    <p><strong>Code 13:</strong> {{ productDetails.code13 || 'N/A' }}</p>
-                    <p><strong>Expiry Date:</strong> {{ productDetails.expiryDate || 'N/A' }}</p>
-                    <p><strong>Lot Number:</strong> {{ productDetails.lotNo || 'N/A' }}</p>
-                </div>
-            </div>
-            <button @click="goBack" class="mt-4 bg-blue-500 text-white px-4 py-2 rounded">
-                Close
-            </button>
-        </div>
-        <div v-else class="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-75">
-            <p class="text-white">Loading product details...</p>
-        </div>
-    </div>
-</template> -->
 <template>
-  <div v-if="productDetails" class="flex flex-col justify-between items-center p-6"
+
+  <div v-if="loading" class="page-loader bg-app-color">
+    <div class="__inner">
+      <img class="w-24 h-24" src="@/assets/loading/ambulance-bg.gif" alt="Loading" />
+      <span>Loading! Please Wait...</span>
+    </div>
+  </div>
+
+  <div v-if="!loading && productDetails" class="flex flex-col justify-between items-center p-6"
     :style="{ backgroundColor: productDetails.color }" style="height: 100vh; overflow: hidden;">
     <div class="w-full relative flex-1 flex flex-col items-center text-center">
       <button @click="goBack" class="absolute top-4 right-4 text-gray-600 hover:text-gray-800">
@@ -96,18 +76,9 @@
           {{ productDetails.desc }}
         </span>
       </div>
-
-      <!-- <span class="text-center mt-24" v-for="(item, index) in productDetails.product_info " :key="index">
-            <a :href=item.link target='_blank'> click me</a>
-          </span> -->
     </div>
 
-    <!-- <button
-        @click="goBack"
-        class="mt-8 bg-blue-500 text-white px-6 py-2 rounded w-full"
-      >
-        Close
-      </button> -->
+
 
     <div v-if="productDetails.status === AppConst.status.info.value"
       class="flex flex-wrap gap-4 p-6 justify-center text-lg font-serif">
@@ -121,22 +92,27 @@
       </a>
     </div>
 
-    <div v-if="productDetails.is_recalled"
-      class="flex flex-wrap gap-4 p-6 justify-center text-lg font-serif">
-      <a
-        class=" text-center shadow-2xl bg-gray-100 flex-grow text-black border-l-8 border-red-500 rounded-md px-3 py-2 w-full md:w-5/12 lg:w-3/12">
+    <div v-if="productDetails.is_recalled" class="flex flex-wrap gap-4 p-6 justify-center text-lg font-serif">
+      <a style="background-color: #e5cf07bf;"
+        class=" text-white text-center shadow-2xl bg-gray-100 flex-grow text-black border-l-8 border-red-500 rounded-md px-3 py-2 w-full md:w-5/12 lg:w-3/12">
         Alert
 
-        <div class="text-gray-500 font-thin text-sm pt-1">
-          <span>this product has been recalled from {{ formattedCreatedDate(productDetails.recalled.publish_date) }} </span>
+        <div class="text-white font-thin text-sm pt-1">
+          <span>
+            {{ getContent(productDetails) }}
+          </span>
         </div>
+
+        <div class="text-white font-thin text-sm pt-1">
+          <span>
+            <a @click="report" href="" class="text-blue-500">
+              report
+            </a>
+          </span>
+        </div>
+
       </a>
     </div>
-
-
-
-
-
   </div>
 </template>
 
@@ -144,7 +120,7 @@
 
 
 <script setup>
-import { ref, onMounted} from 'vue'
+import { ref, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { getProductByCode13 } from '@/service/productService'
 import { AppConst } from '@/shared/AppConst'
@@ -168,7 +144,9 @@ onMounted(async () => {
   } catch (err) {
     error.value = 'Failed to fetch location data.';
   } finally {
-    loading.value = false;
+    setTimeout(() => {
+      loading.value = false;
+    }, 2000);
   }
 
   try {
@@ -200,6 +178,10 @@ onMounted(async () => {
 
 function goBack() {
   router.back()
+}
+
+function report() {
+  router.push('/report')
 }
 
 function getStatus(item, expDate) {
@@ -261,6 +243,21 @@ function getStatus(item, expDate) {
 function formattedCreatedDate(date) {
   return formatDate(date)
 }
+
+function getContent(product) {
+
+  let content = '';
+
+
+  // Using string interpolation correctly
+  if (product.is_batch_recalled) {
+    content = `This Batch (${product.lotNo}) has been recalled from ${ formattedCreatedDate(product.recalled.publish_date)}`;
+  } else {
+    content = `This Product has been recalled from ${ formattedCreatedDate(product.recalled.publish_date)}`;
+  }
+
+  return content;
+}
 </script>
 
 
@@ -272,5 +269,25 @@ function formattedCreatedDate(date) {
   left: 0;
   right: 0;
   bottom: 0;
+}
+
+.page-loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  /* Ensure it is on top of everything */
+}
+
+.page-loader .__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 </style>

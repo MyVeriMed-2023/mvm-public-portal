@@ -54,12 +54,12 @@
     </div>
 
     <!-- Right Side -->
-    <div class="flex sm:flex-col sm:justify-center sm:items-center w-full sm:w-auto md:w-full p-2 sm:p-8 h-full bg-gray-1000">
+    <div
+      class="flex sm:flex-col sm:justify-center sm:items-center w-full sm:w-auto md:w-full p-2 sm:p-8 h-full bg-gray-1000">
       <div class="w-full max-w-lg text-center bg-white p-8 rounded-2xl">
         <!-- Logo -->
         <div class="w-full flex justify-center">
-          <img class="justify-center w-42 h-24" src="@/assets/images/logo/myverimedLogo.png"
-            alt="MyVeriMed Logo" />
+          <img class="justify-center w-42 h-12" src="@/assets/images/logo/myverimedLogo.png" alt="MyVeriMed Logo" />
         </div>
 
         <!-- Title -->
@@ -87,10 +87,11 @@
           <n-form-item label="Password" :rules="{ required: true }">
             <n-input v-model:value="signInForm.password" :type="showPassword ? 'text' : 'password'"
               placeholder="Enter your password" />
-            <n-icon @click="togglePasswordVisibility"
+            <Icon @click="togglePasswordVisibility" color="gray" size="30"
               class="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer">
-              <n-icon :name="showPassword ? 'eye-off' : 'eye'" />
-            </n-icon>
+              <IosEye v-if="!showPassword" />
+              <IosEyeOff v-if="showPassword" />
+            </Icon>
           </n-form-item>
 
           <!-- Actions -->
@@ -137,11 +138,24 @@
             </n-button>
           </div>
 
-          <div class="flex items-center mt-4 pb-8 space-x-4">
+          <div class="flex items-center mt-4 pb-2 space-x-4">
             <n-button @click="goTo('/blog')" class="w-full mt-6 bg-blue-custom text-white font-bold">
               Read news
             </n-button>
           </div>
+
+          <div class="flex items-center pb-2 space-x-4">
+            <n-button @click="goTo('/blog')" class="w-full mt-6 bg-blue-custom text-white font-bold">
+              How to use MyVeriMed
+            </n-button>
+          </div>
+
+          <div class="flex items-center pb-8 space-x-4">
+            <n-button @click="goToMyVerimed()" class="w-full mt-6 bg-blue-custom text-white font-bold">
+              {{appName}} website
+            </n-button>
+          </div>
+
         </n-form>
       </div>
     </div>
@@ -150,12 +164,13 @@
 
 <script>
 import { ref } from 'vue';
-import { NButton, NInput, NForm, NFormItem, NAlert, NIcon } from 'naive-ui';
-import { LogoChrome, LogoGithub, LogoTwitter } from "@vicons/ionicons4";
+import { NButton, NInput, NForm, NFormItem, NAlert } from 'naive-ui';
+import { LogoChrome, LogoGithub, LogoTwitter, IosEye, IosEyeOff } from "@vicons/ionicons4";
 import { Icon } from "@vicons/utils";
 import { loginUser } from '@/service/authService'; // Adjust the path as necessary
 import { useRouter } from 'vue-router';
 import { useStore } from 'vuex';
+import { AppConst } from '@/shared/AppConst';
 
 export default {
   components: {
@@ -164,11 +179,12 @@ export default {
     NForm,
     NFormItem,
     NAlert,
-    NIcon,
     LogoChrome,
     LogoGithub,
     LogoTwitter,
-    Icon
+    Icon,
+    IosEye,
+    IosEyeOff
   },
   setup() {
 
@@ -182,6 +198,7 @@ export default {
     });
     const showPassword = ref(false);
     const showAlert = ref(false);
+    const appName = ref(AppConst.appName)
     const alert = ref({
       type: 'error',
       message: '',
@@ -232,10 +249,17 @@ export default {
       }
     };
 
-    const goTo = (path)=> {
+    const goTo = (path) => {
 
       router.push(path)
     }
+
+    const goToMyVerimed = () => {
+
+      window.open('https://www.myverimed.com/#contact')
+    }
+
+
 
     return {
       signInForm,
@@ -245,7 +269,9 @@ export default {
       togglePasswordVisibility,
       isValidEmail,
       signIn,
-      goTo
+      goTo,
+      goToMyVerimed,
+      appName
     };
   }
 };
@@ -261,7 +287,7 @@ export default {
 }
 
 .bg-blue-custom {
-  background-color:  #0e5680;
+  background-color: #0e5680;
 }
 
 .alert.error {

@@ -1,7 +1,12 @@
 // src/axiosInstance.js
 
 import axios from 'axios';
-const apiUrl = 'http://127.0.0.1:5000/api/v1';
+import { AppConst } from '../AppConst';
+
+import store from '@/store'; // Import your Vuex store
+import router from '@/router'; // Import your Vue Router instance
+
+const apiUrl = AppConst.apiBaseUrl;
 // Create an Axios instance
 const axiosInstance = axios.create({
   baseURL: apiUrl, // Replace with your API's base URL
@@ -29,6 +34,10 @@ axiosInstance.interceptors.response.use(
   },
   (error) => {
     // Handle errors, like refreshing token, redirecting to login, etc.
+
+    store.commit('clearAuth'); // Clear the auth details from the Vuex store
+    router.push('/login'); // Redirect to the login page
+
     return Promise.reject(error);
   }
 );

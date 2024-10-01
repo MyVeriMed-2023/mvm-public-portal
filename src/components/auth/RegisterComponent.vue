@@ -97,29 +97,30 @@
 
             <!-- User Type field -->
             <n-form-item label="User Type" :rules="{ required: true }">
-              <n-select
-                v-model:value="signUpForm.userType" :options="userTypeOptions" />
+              <n-select v-model:value="signUpForm.userType" :options="userTypeOptions" />
             </n-form-item>
 
             <!-- Password field -->
             <n-form-item label="Password" :rules="{ required: true }">
               <n-input v-model:value="signUpForm.password" :type="showPassword ? 'text' : 'password'"
                 placeholder="Enter your password" />
-              <n-icon @click="togglePasswordVisibility"
+              <Icon @click="togglePasswordVisibility" color="gray" size="30"
                 class="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer">
-                <n-icon :name="showPassword ? 'eye-off' : 'eye'" />
-              </n-icon>
+                <IosEye v-if="!showPassword" />
+                <IosEyeOff v-if="showPassword" />
+              </Icon>
             </n-form-item>
 
             <!-- Confirm Password field -->
             <n-form-item label="Confirm Password" :rules="{ required: true }">
               <n-input v-model:value="signUpForm.confirmPassword" :type="showPassword ? 'text' : 'password'"
                 placeholder="Confirm your password" />
-              <n-icon @click="togglePasswordVisibility"
+              <Icon @click="togglePasswordVisibility" color="gray" size="30"
                 class="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer">
-                <n-icon :name="showPassword ? 'eye-off' : 'eye'" />
-              </n-icon>
-            </n-form-item>
+                <IosEye v-if="!showPassword" />
+                <IosEyeOff v-if="showPassword" />
+              </Icon>
+              </n-form-item>
           </div>
 
           <!-- Actions -->
@@ -173,8 +174,8 @@
 
 <script setup>
 import { ref } from 'vue';
-import { NButton, NInput, NForm, NFormItem, NAlert, NIcon, NSelect } from 'naive-ui';
-import { LogoChrome, LogoGithub, LogoTwitter } from "@vicons/ionicons4";
+import { NButton, NInput, NForm, NFormItem, NAlert, NSelect } from 'naive-ui';
+import { LogoChrome, LogoGithub, LogoTwitter,IosEye,IosEyeOff } from "@vicons/ionicons4";
 import { Icon } from "@vicons/utils";
 import { registerUser } from '@/service/authService'; // Adjust the path as necessary
 import { useRouter } from 'vue-router';

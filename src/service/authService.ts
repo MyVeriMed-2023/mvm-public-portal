@@ -1,10 +1,12 @@
+import { AuthUserModel } from '@/model/user/AuthUserModel';
+import { AppConst } from '@/shared/AppConst';
+import axiosInstance from '@/shared/intecepter/axiosInstance';
 import axios from 'axios';
-const apiUrl = 'http://172.21.111.241:5000/api/v1';
 
 export async function loginUser(email: string, password: string) {
   try {
     const response = await axios.post(
-      `${apiUrl}/auth/login`,
+      `${AppConst.apiBaseUrl}/auth/login`,
       { email, password },
       { headers: { 'Content-Type': 'application/json' } }
     );
@@ -45,7 +47,7 @@ export async function logoutUser(store: any) {
 export async function registerUser(obj: any) {
   try {
     // Make an HTTP POST request using axios
-    const response = await axios.post(`${apiUrl}/user/`,
+    const response = await axios.post(`${AppConst.apiBaseUrl}/user/`,
       obj
       , {
         headers: {
@@ -81,5 +83,26 @@ export async function registerUser(obj: any) {
       success: false,
       message: 'An error occurred during registration',
     };
+  }
+}
+
+export async function getAuthUser() {
+  try {
+      const response = await axiosInstance.get(`${AppConst.apiBaseUrl}/auth/auth_user`, {
+          headers: { 'Content-Type': 'application/json' },
+      });
+
+      if (response.status === 200) {
+          // Assuming the response data is an array of blog objects
+          return {
+              success: true,
+              user: new AuthUserModel(response.data.data)
+          };
+      } else {
+          return { success: false, message: response.data.message || 'Failed to fetch blog updates' };
+      }
+  } catch (error) {
+      console.error('Error fetching blog updates:', error);
+      return { success: false, message: 'An error occurred while fetching blog updates' };
   }
 }
