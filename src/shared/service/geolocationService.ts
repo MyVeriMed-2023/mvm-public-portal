@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BASE_URL = 'http://ip-api.com/json/';
+const BASE_URL = 'https://ipinfo.io/json';
 
 export interface GeolocationData {
   status: string;
