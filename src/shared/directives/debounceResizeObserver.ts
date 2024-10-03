@@ -3,7 +3,7 @@
 import debounce from 'lodash/debounce';
 
 export default {
-  mounted(el, binding) {
+  mounted(el:any, binding:any) {
     const callback = binding.value;
     const delay = binding.arg || 100; // Default debounce delay
 
@@ -16,7 +16,7 @@ export default {
 
     el._resizeObserver = observer;
   },
-  unmounted(el) {
+  unmounted(el:any) {
     if (el._resizeObserver) {
       el._resizeObserver.disconnect();
     }

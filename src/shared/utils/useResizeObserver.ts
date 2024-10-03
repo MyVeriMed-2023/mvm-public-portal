@@ -3,9 +3,9 @@
 import { ref, onMounted, onBeforeUnmount } from 'vue';
 import throttle from 'lodash/throttle';
 
-export function useResizeObserver(callback, delay = 100) {
+export function useResizeObserver(callback:any, delay = 100) {
   const elementRef = ref(null);
-  let observer = null;
+  let observer:any = null;
 
   const throttledCallback = throttle(callback, delay);
 

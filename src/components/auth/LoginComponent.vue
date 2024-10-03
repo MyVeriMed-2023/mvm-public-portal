@@ -105,7 +105,8 @@
           </div>
 
           <!-- Submit button -->
-          <n-button @click="signIn" :loading="loading" type="submit" class="w-full mt-6 bg-app-color text-white font-bold"
+          <n-button @click="signIn" :loading="loading" type="submit"
+            class="w-full mt-6 bg-app-color text-white font-bold"
             :disabled="!isValidEmail(signInForm.email) || !signInForm.password">
             Sign in
           </n-button>
@@ -152,7 +153,7 @@
 
           <div class="flex items-center pb-8 space-x-4">
             <n-button @click="goToMyVerimed()" class="w-full mt-6 bg-blue-custom text-white font-bold">
-              {{appName}} website
+              {{ appName }} website
             </n-button>
           </div>
 
@@ -215,15 +216,18 @@ export default {
     };
 
     const signIn = async () => {
-      loading.value = true
-      console.log('sign in working ');
-      if (!isValidEmail(signInForm.value.email) || !signInForm.value.password) {
-        showAlert.value = true;
-        alert.value.message = 'Please enter valid credentials';
-        return;
-      }
+
 
       try {
+
+        loading.value = true
+        console.log('sign in working ');
+        if (!isValidEmail(signInForm.value.email) || !signInForm.value.password) {
+          showAlert.value = true;
+          alert.value.message = 'Please enter valid credentials';
+          return;
+        }
+
         const response = await loginUser(signInForm.value.email, signInForm.value.password);
 
         if (response.success) {
@@ -245,8 +249,9 @@ export default {
           showAlert.value = true;
           alert.value.message = response.message;
         }
-      } catch (error) {
-          loading.value = false
+      }
+      catch (error) {
+        loading.value = false
         showAlert.value = true;
         alert.value.message = 'An error occurred. Please try again later.';
       }
