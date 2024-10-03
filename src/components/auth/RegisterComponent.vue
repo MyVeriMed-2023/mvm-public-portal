@@ -113,7 +113,7 @@
 
             <!-- Confirm Password field -->
             <n-form-item label="Confirm Password" :rules="{ required: true }">
-              <n-input v-model:value="signUpForm.confirmPassword" :type="showPassword ? 'text' : 'password'"
+              <n-input v-model:value="signUpForm.confirmPassword" :type="showPassword ? 'text' : 'password'" :status="passwordStatus"
                 placeholder="Confirm your password" />
               <Icon @click="togglePasswordVisibility" color="gray" size="30"
                 class="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer">
@@ -134,7 +134,7 @@
           </div>
 
           <!-- Submit button -->
-          <n-button @click="signUp" type="submit" class="w-full mt-6 bg-app-color text-white font-bold"
+          <n-button @click="signUp" :loading="loading" type="submit" class="w-full mt-6 bg-app-color text-white font-bold"
             :disabled="!isFormValid()">
             Sign up
           </n-button>
@@ -181,6 +181,8 @@ import { registerUser } from '@/service/authService'; // Adjust the path as nece
 import { useRouter } from 'vue-router';
 
 const router = useRouter();
+const loading = ref(false)
+const passwordStatus = ref('')
 
 const userTypeOptions = ref([
   { label: 'Medical Doctor', value: 'medical-doctor' },
@@ -215,6 +217,12 @@ const isValidEmail = (email) => {
 };
 
 const isFormValid = () => {
+  if(signUpForm.value.password !== signUpForm.value.confirmPassword ){
+    passwordStatus.value = 'error'
+  }
+  else{
+    passwordStatus.value = ''
+  }
   return (
     isValidEmail(signUpForm.value.email) &&
     signUpForm.value.password === signUpForm.value.confirmPassword &&
@@ -225,7 +233,10 @@ const isFormValid = () => {
 };
 
 const signUp = async () => {
+
+ loading.value = true
   if (!isFormValid()) {
+    loading.value = false
     showAlert.value = true;
     alert.value.message = 'Please fill out the form correctly';
     return;
@@ -246,13 +257,16 @@ const signUp = async () => {
     const response = await registerUser(obj);
 
     if (response.success) {
+      loading.value = false
       alert.value = { type: 'success', message: response.message };
       router.push('/login');
     } else {
+      loading.value = false
       showAlert.value = true;
       alert.value.message = response.message;
     }
   } catch (error) {
+    loading.value = false
     showAlert.value = true;
     alert.value.message = 'An error occurred. Please try again later.';
   }
