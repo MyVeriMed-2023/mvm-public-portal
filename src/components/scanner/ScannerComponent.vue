@@ -12,7 +12,7 @@
 
 <script setup>
 
-import { ref, computed,onMounted} from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import { QrcodeStream } from 'vue-qrcode-reader'
 import { useRouter } from 'vue-router'
 import PageHeader from '@/shared/components/PageHeader'
@@ -34,9 +34,15 @@ const onDetect = async (detectedCodes) => {
     console.log(detectedCodes);
 
     // Play preloaded audio immediately
-    if (detectedSound) {
-        detectedSound.play();
-    }
+    // if (detectedSound) {
+    //     detectedSound.play();
+    // }
+
+    const audio = new Audio(require('@/assets/audio/beep.mp3'));
+    audio.play().catch((error) => {
+        console.log('Error playing sound:', error);
+    });
+
     result.value = JSON.stringify(detectedCodes.map((code) => code.rawValue));
 
     const full_value = result.value;

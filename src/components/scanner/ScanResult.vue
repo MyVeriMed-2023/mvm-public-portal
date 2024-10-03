@@ -16,10 +16,10 @@
         </svg>
       </button>
 
-      <div v-if="!showBarCode" class="text-xl mt-6">
+      <div  class="text-xl mt-6">
         {{ productDetails.status }}
       </div>
-      <div v-if="!showBarCode" class="flex justify-center mt-2">
+      <div  class="flex justify-center mt-2">
         <img v-if="productDetails.status === AppConst.status.valid.value" class="w-16" src="@/assets/images/success.png"
           alt="Success" />
         <img v-if="productDetails.status === AppConst.status.danger.value" class="w-16" src="@/assets/images/danger.png"
