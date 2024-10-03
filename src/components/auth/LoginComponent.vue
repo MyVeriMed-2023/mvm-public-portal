@@ -105,7 +105,7 @@
           </div>
 
           <!-- Submit button -->
-          <n-button @click="signIn" type="submit" class="w-full mt-6 bg-app-color text-white font-bold"
+          <n-button @click="signIn" :loading="loading" type="submit" class="w-full mt-6 bg-app-color text-white font-bold"
             :disabled="!isValidEmail(signInForm.email) || !signInForm.password">
             Sign in
           </n-button>
@@ -190,6 +190,7 @@ export default {
 
     const store = useStore();
     const router = useRouter();
+    const loading = ref(false)
 
     const signInForm = ref({
       email: '',
@@ -214,8 +215,7 @@ export default {
     };
 
     const signIn = async () => {
-
-      router.push('/dashboard');
+      loading.value = true
       console.log('sign in working ');
       if (!isValidEmail(signInForm.value.email) || !signInForm.value.password) {
         showAlert.value = true;
@@ -227,6 +227,7 @@ export default {
         const response = await loginUser(signInForm.value.email, signInForm.value.password);
 
         if (response.success) {
+          loading.value = false;
           console.log(response);
           const { token, user } = response;
           store.commit('setAuth', { token, user });
@@ -240,10 +241,12 @@ export default {
           // Redirect or other actions
         } else {
           // Handle login failure
+          loading.value = false
           showAlert.value = true;
           alert.value.message = response.message;
         }
       } catch (error) {
+          loading.value = false
         showAlert.value = true;
         alert.value.message = 'An error occurred. Please try again later.';
       }
@@ -262,6 +265,7 @@ export default {
 
 
     return {
+      loading,
       signInForm,
       showPassword,
       showAlert,

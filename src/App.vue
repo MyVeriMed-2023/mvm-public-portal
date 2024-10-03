@@ -5,6 +5,7 @@
       <n-notification-provider>
         <n-loading-bar-provider>
           <component :is="layoutComponent">
+            <LoadingSpinner/>
             <router-view />
           </component>
         </n-loading-bar-provider>
@@ -19,6 +20,7 @@
 import { computed } from 'vue';
 import { useRoute } from 'vue-router';
 import MainLayout from '@/layouts/MainLayout.vue';
+import LoadingSpinner from '@/shared/components/LoadingSpinner.vue';
 
 import {
 	NMessageProvider,
