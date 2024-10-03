@@ -1,0 +1,15 @@
+{
+    "name": "myverimed-pwa",
+    "short_name": "myverimed-pwa",
+    "start_url": "./index.html",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "lang": "en",
+    "icons": [
+      {
+        "src": "/img/icons/android-chrome-192x192.png",
+        "type": "image/png",
+        "sizes": "144x144"
+      }
+    ]
+  }
