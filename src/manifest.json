@@ -1,5 +1,5 @@
 {
-    "name": "myverimed-pwa",
+    "name": "MyVeriMed",
     "short_name": "myverimed-pwa",
     "start_url": "./index.html",
     "display": "standalone",
