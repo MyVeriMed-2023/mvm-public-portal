@@ -1,31 +1,69 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon-16x16.png" />
+    <link rel="mask-icon" href="/assets/images/safari-pinned-tab.svg" color="#5bbad5" />
+    <meta name="msapplication-TileColor" content="#da532c" />
+    <meta name="theme-color" content="#ffffff" />
+    <title>MyVeriMed</title>
+    <link
+      rel="manifest"
+      id="my-manifest-id"
+      href="/dist/manifest.webmanifest"
+      crossorigin="anonymous"
+    />
 
-<head>
-  <meta charset="utf-8">
-  <meta name="description" content="MyVeriMed® Securing the chain">
-  <meta name="keywords" content="Inventory Management,Multi-Platform Accessibility, Adverse Event Reporting">
-  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, minimum-scale=1.0">
+    <!-- Dynamic Manifest Code -->
+    <script>
+      var base_url = new URL(window.location.href)
+      base_url.pathname = '/' // Set the base path
+      var myDynamicManifest = {
+        name: 'MyVeriMed',
+        short_name: 'MyVeriMed',
+        start_url: base_url.href,
+        display: 'standalone',
+        background_color: '#ffffff',
+        lang: 'en',
+        description: 'MyVeriMed',
+        scope: base_url.href,
+        icons: [
+          {
+            src: base_url.href + 'img/icons/ms-icon-144x144.png',
+            type: 'image/png',
+            sizes: '144x144'
+          }
+        ]
+      }
+      const stringManifest = JSON.stringify(myDynamicManifest)
+      const blob = new Blob([stringManifest], { type: 'application/json' })
+      const manifestURL = URL.createObjectURL(blob)
+      document.querySelector('#my-manifest-id').setAttribute('href', manifestURL)
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png" />
-  <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32x32.png" />
-  <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon-16x16.png" />
-  <link rel="mask-icon" href="/assets/images/safari-pinned-tab.svg" color="#5bbad5" />
-
-  <link rel="icon" href="<%= BASE_URL %>favicon.ico">
-  <link rel="manifest" href="../src//manifest.json">
-  <title>
-    <%= htmlWebpackPlugin.options.title %>
-  </title>
-</head>
-
-<body>
-  <noscript>
-    <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled.
-        Please enable it to continue.</strong>
-  </noscript>
-  <div id="app"></div>
-  <!-- built files will be auto injected -->
-</body>
-
+      var link = document.createElement('link')
+      link.rel = 'manifest'
+      link.setAttribute('href', 'data:application/json;charset=8' + stringManifest)
+      document.head.appendChild(link)
+    </script>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker
+            .register('/dist/sw.js', { scope: '/dist/' })
+            .then((registration) => {})
+            .catch((error) => {
+              console.error('Service worker registration failed:', error)
+            })
+        })
+      }
+    </script>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module" src="../src/main.ts"></script>
+  </body>
 </html>
