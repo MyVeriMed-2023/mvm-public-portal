@@ -12,19 +12,31 @@
 
 <script setup>
 
-import { ref, computed } from 'vue'
+import { ref, computed,onMounted} from 'vue'
 import { QrcodeStream } from 'vue-qrcode-reader'
 import { useRouter } from 'vue-router'
 import PageHeader from '@/shared/components/PageHeader'
-
 const result = ref('');
 const type = ref('');
 const exp_date = ref('');
 const lot_no = ref('');
 const router = useRouter()
+let detectedSound = null;
+
+onMounted(() => {
+    // Preload the audio file when the component is mounted
+    detectedSound = new Audio(require('@/assets/audio/beep.mp3'));
+    detectedSound.preload = 'auto';
+});
+
 
 const onDetect = async (detectedCodes) => {
     console.log(detectedCodes);
+
+    // Play preloaded audio immediately
+    if (detectedSound) {
+        detectedSound.play();
+    }
     result.value = JSON.stringify(detectedCodes.map((code) => code.rawValue));
 
     const full_value = result.value;
@@ -36,25 +48,17 @@ const onDetect = async (detectedCodes) => {
 
     type.value = cis_13;
     // Redirect to the results page
-  router.push({
-    name: 'ScanResult',
-    query: {
-      exp_date: exp_date.value,
-      lot_no: lot_no.value,
-      code13: type.value
-    }
-  })
-    // try {
-    //     const response = await getProductByCode13(cis_13);
-    //     if (response.success) {
-    //         productDetails.value = response.product; // Assuming response.product holds the product details
-    //         console.log('Product details:', productDetails.value);
-    //     } else {
-    //         console.error('Error fetching product:', response.message);
-    //     }
-    // } catch (error) {
-    //     console.error('An error occurred while fetching the product:', error);
-    // }
+
+    setTimeout(() => {
+        router.push({
+            name: 'ScanResult',
+            query: {
+                exp_date: exp_date.value,
+                lot_no: lot_no.value,
+                code13: type.value
+            }
+        })
+    }, 1000);
 
     console.log('lot_no', lot_no.value);
     console.log('exp_date', exp_date.value);

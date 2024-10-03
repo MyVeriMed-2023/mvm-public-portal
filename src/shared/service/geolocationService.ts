@@ -16,7 +16,7 @@ export interface GeolocationData {
   isp: string;
   org: string;
   as: string;
-  query: string;
+  ip: string;
 }
 
 export const getGeolocation = async (): Promise<GeolocationData | null> => {
