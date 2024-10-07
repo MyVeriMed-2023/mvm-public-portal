@@ -9,13 +9,7 @@ const apiUrl = AppConst.apiBaseUrl;
 // Create an Axios instance
 const axiosInstance = axios.create({
   baseURL: apiUrl,
-  timeout: 10000,
-});
-
-// Retry logic: Retry up to 3 times with exponential backoff
-axiosRetry(axiosInstance, {
-  retries: 3,
-  retryDelay: axiosRetry.exponentialDelay,
+  timeout: 30000,
 });
 
 // Request interceptor to add the token to headers
