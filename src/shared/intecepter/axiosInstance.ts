@@ -1,32 +1,37 @@
-// src/axiosInstance.js
-
 import axios from 'axios';
 import { AppConst } from '../AppConst';
-
-import store from '@/store'; // Import your Vuex store
-import router from '@/router'; // Import your Vue Router instance
+import axiosRetry from 'axios-retry';
+import store from '@/store';
+import router from '@/router';
 
 const apiUrl = AppConst.apiBaseUrl;
+
 // Create an Axios instance
 const axiosInstance = axios.create({
-  baseURL: apiUrl, // Replace with your API's base URL
-  timeout: 10000, // Optional: timeout after 10 seconds
+  baseURL: apiUrl,
+  timeout: 10000,
+});
+
+// Retry logic: Retry up to 3 times with exponential backoff
+axiosRetry(axiosInstance, {
+  retries: 3,
+  retryDelay: axiosRetry.exponentialDelay,
 });
 
 // Request interceptor to add the token to headers
 axiosInstance.interceptors.request.use(
   (config) => {
     store.dispatch('startLoading');
-    const token = localStorage.getItem('token'); // Get the token from local storage
+    const token = localStorage.getItem('token');
     if (token) {
-      config.headers.Authorization = `Bearer ${token}`; // Attach the token
+      config.headers.Authorization = `Bearer ${token}`;
     }
     return config;
   },
   (error) => {
 
     setTimeout(() => {
-      store.dispatch('stopLoading'); // Stop loading on error
+      store.dispatch('stopLoading');
     }, 2000)
 
 
@@ -34,21 +39,21 @@ axiosInstance.interceptors.request.use(
   }
 );
 
-// Optionally, you can add a response interceptor
+
 axiosInstance.interceptors.response.use(
   (response) => {
     setTimeout(() => {
-      store.dispatch('stopLoading'); // Stop loading on error
-    }, 2000)// Stop loading when response is received
+      store.dispatch('stopLoading');
+    }, 2000)
     return response;
   },
   (error) => {
-    // Handle errors, like refreshing token, redirecting to login, etc.
+
     setTimeout(() => {
-      store.dispatch('stopLoading'); // Stop loading on error
+      store.dispatch('stopLoading');
     }, 2000)
-    store.commit('clearAuth'); // Clear the auth details from the Vuex store
-    router.push('/login'); // Redirect to the login page
+    store.commit('clearAuth');
+    router.push('/login');
 
     return Promise.reject(error);
   }
