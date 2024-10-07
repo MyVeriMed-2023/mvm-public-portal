@@ -1,4 +1,4 @@
-# myverimed-puplic-portal
+# myverimed-public-portal
 
 ## Project setup
 ```

@@ -32,6 +32,11 @@ const store = createStore<State>({
       state.loading = isLoading;
     },
 
+    updateUser(state, user: any) {
+      state.user = new AuthUserModel(user);
+      localStorage.setItem('user', JSON.stringify(user)); // Update the user in localStorage
+    },
+
   },
   actions: {
     logout({ commit }) {

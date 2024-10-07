@@ -106,3 +106,50 @@ export async function getAuthUser() {
       return { success: false, message: 'An error occurred while fetching blog updates' };
   }
 }
+
+export async function UpdateUserProfile(obj: any,id:string) {
+  try {
+    // Make an HTTP POST request using axios
+    const response = await axiosInstance.post(
+      `${AppConst.apiBaseUrl}/user/update_public_profile`, // API URL
+      obj, // Payload data (object to send)
+      {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        params: {
+          user_id: encodeURIComponent(id),
+        },
+      }
+    );
+
+    // Check if the response is successful
+    if (response.status === 200) {
+      return {
+        success: true,
+        message: response.data.message || 'Profile updated successfully',
+        data: response.data,
+      };
+    } else {
+      return {
+        success: false,
+        message: response.data.message || 'Profile update failed',
+      };
+    }
+  } catch (error: any) {
+    console.error('Error during profile update:', error);
+
+    // Handle errors that are responses from the server
+    if (error.response) {
+      return {
+        success: false,
+        message: error.response.data.message || 'Profile update failed',
+      };
+    }
+
+    return {
+      success: false,
+      message: 'An error occurred during profile update',
+    };
+  }
+}

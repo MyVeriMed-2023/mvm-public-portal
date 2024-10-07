@@ -25,7 +25,7 @@ const logout = () => {
 </script>
 
 <template>
-  <footer class="bg-gray-300 text-white py-2">
+  <footer class="bg-white text-white py-2">
     <div class="container mx-auto flex justify-center">
       <button @click="goToHome" class="mx-2 bg-app-color hover:bg-green-700  px-4 py-2 text-white rounded">
         <IconConfigProvider color="white" size="40">

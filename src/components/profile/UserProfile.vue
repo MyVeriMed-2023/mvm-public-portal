@@ -1,6 +1,6 @@
 <template>
     <div class="bg-gray-100">
-        <div v-if="user" class="container mx-auto my-5">
+        <div v-if="authUser" class="container mx-auto my-5">
 
             <div class="mb-6">
                 <!-- <h3 class="text-center text-white text-lg bg-app-color p-2">
@@ -29,7 +29,7 @@
                         <ul class="text-gray-600 hover:text-gray-700 hover:shadow py-2 mt-3 divide-y rounded shadow-sm">
                             <li class="flex items-center py-3">
                                 <span>Status</span>
-                                <span class="ml-auto"><span class="bg-app-color py-1 px-2 rounded text-white text-sm">{{
+                                <span class="ml-auto"><span class="py-1 px-2 rounded text-sm">{{
                                     user.account_status }}</span></span>
                             </li>
                             <li class="flex items-center py-3">
@@ -65,7 +65,7 @@
                             <div class="text-center">
                                 <div class="flex items-center space-x-2 font-semibold text-gray-900 leading-8">
 
-                                    <span class="ml-auto"><span
+                                    <span class="ml-auto"><span @click="editProfile(user)"
                                             class="bg-app-color py-2 px-3 rounded text-white text-sm">
                                             <IconConfigProvider color="white" size="20" class="p-2">
                                                 <Icon class="rounded-full  pt-2 text-yellow-500">
@@ -85,28 +85,16 @@
                             <div class="grid md:grid-cols-2 text-sm">
                                 <div class="grid grid-cols-2">
                                     <div class="px-4 py-2 font-semibold">First Name</div>
-                                    <div class="px-4 py-2">{{ user.first_name }}</div>
+                                    <div class="px-4 py-2 truncate">{{ user.first_name }}</div>
                                 </div>
                                 <div class="grid grid-cols-2">
                                     <div class="px-4 py-2 font-semibold">Last Name</div>
-                                    <div class="px-4 py-2">{{ user.last_name }}</div>
+                                    <div class="px-4 py-2 truncate">{{ user.last_name }}</div>
                                 </div>
                                 <div class="grid grid-cols-2">
                                     <div class="px-4 py-2 font-semibold">Email</div>
-                                    <div class="px-4 py-2">{{ user.email }}</div>
+                                    <div class="px-4 py-2 truncate">{{ user.email }}</div>
                                 </div>
-
-                                <!-- <div>
-                                    <p v-if="loading">Fetching location data...</p>
-                                    <p v-if="error">{{ error }}</p>
-                                    <div v-if="location && !loading">
-                                        <p><strong>IP:</strong> {{ location.query }}</p>
-                                        <p><strong>Country:</strong> {{ location.country }}</p>
-                                        <p><strong>City:</strong> {{ location.city }}</p>
-                                        <p><strong>Latitude:</strong> {{ location.lat }}</p>
-                                        <p><strong>Longitude:</strong> {{ location.lon }}</p>
-                                    </div>
-                                </div> -->
 
                                 <div class="grid grid-cols-2">
                                     <p v-if="loading">Fetching location data...</p>
@@ -142,17 +130,6 @@
 
                             </div>
 
-                            <!-- <div class="grid grid-cols-2">
-                                    <div class="px-4 py-2 font-semibold">Longitude</div>
-                                    <div class="px-4 py-2">
-                                        <a class="text-blue-800" href="mailto:jane@example.com">{{ position?.longitude
-                                            }}</a>
-                                    </div>
-                                </div>
-                                <div class="grid grid-cols-2">
-                                    <div class="px-4 py-2 font-semibold">Latitude</div>
-                                    <div class="px-4 py-2"> {{ position?.latitude }} </div>
-                                </div> -->
                         </div>
                     </div>
 
@@ -199,14 +176,17 @@
 </template>
 
 <script lang="ts">
-import { computed } from 'vue';
+import { computed, h } from 'vue';
 import { useStore } from 'vuex';
 import { AuthUserModel } from '@/model/user/AuthUserModel';
-import { ref, onMounted } from 'vue';
+import { ref, onMounted} from 'vue';
 import { getGeolocation, GeolocationData } from '@/shared/service/geolocationService';
 import { getAuthUser } from '@/service/authService';
-import { Pencil } from '@vicons/tabler'
+import { Pencil } from '@vicons/tabler';
 import { IconConfigProvider, Icon } from '@vicons/utils';
+import { useDialog } from 'naive-ui';
+import UpdateProfileComponent from './dialog/UpdateProfileComponent.vue';
+
 export default {
     name: 'UserProfile',
     components: {
@@ -215,10 +195,10 @@ export default {
         Icon,
     },
     setup() {
+        const dialog = useDialog();
         const store = useStore();
         const user = computed(() => store.getters.getUser as AuthUserModel);
-        const authUser = ref<AuthUserModel>()
-
+        const authUser = ref<AuthUserModel>();
         const location = ref<GeolocationData | null>(null);
         const loading = ref(true);
         const error = ref<string | null>(null);
@@ -227,13 +207,9 @@ export default {
             try {
                 location.value = await getGeolocation();
                 let response = await getAuthUser();
-
                 if (response.success) {
-
-                    authUser.value = response.user
-
-                    console.log('auth user', response.user)
-
+                    authUser.value = response.user;
+                    console.log('auth user', response.user);
                 }
             } catch (err) {
                 error.value = 'Failed to fetch location data.';
@@ -245,13 +221,29 @@ export default {
         const formatDate = (dateString: string) => {
             if (dateString) {
                 const date = new Date(dateString);
-                return date.toLocaleDateString(); // Format the date as "MM/DD/YYYY" or adjust as needed
+                return date.toLocaleDateString(); // Adjust the date format as needed
             }
             return '';
         };
 
-        return {
+        const editProfile = (user: AuthUserModel) => {
+            const dialogRef = ref(null);
 
+            dialog.success({
+                title: 'Update profile',
+                content: () =>
+                    h(UpdateProfileComponent, {
+                        user: user,
+                        dialogRef: dialogRef, // Pass the dialogRef to UpdateProfileComponent
+                    }),
+                action: () => null
+            });
+
+            return dialogRef; // Return the dialog reference
+        };
+
+        return {
+            editProfile,
             user,
             formatDate,
             location,
