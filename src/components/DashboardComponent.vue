@@ -13,7 +13,7 @@
           class="flex justify-center items-center grid grid-cols-1 sm:grid-cols-1 xs:grid-cols-1 md:grid-cols-4 lg:grid-cols-5 text-center"
           id="widget">
 
-          <div class="bg-white py-2 flex flex-col justify-center sm:py-12 cursor-pointer" @click="scanProduct">
+          <div class="bg-white py-4 flex flex-col justify-center sm:py-12 cursor-pointer" @click="scanProduct">
             <div class=" rounded-full flex bg-blue-50 border-2 border-green-900 flex-row"
               id="widget">
               <div class="py-4 rounded-l-full pr-10 relative  bg-white w-auto">
@@ -37,7 +37,7 @@
 
           </div>
 
-          <div class="bg-white py-2 flex flex-col justify-center sm:py-12 cursor-pointer" @click="electronicProduct">
+          <div class="bg-white py-4 flex flex-col justify-center sm:py-12 cursor-pointer" @click="electronicProduct">
             <div class="sm:max-w-xl sm:mx-auto rounded-full flex bg-blue-50 border-2 border-green-900 flex-row"
               id="widget">
               <div class="py-4 rounded-l-full pr-10 relative  bg-white w-auto">
@@ -62,7 +62,7 @@
 
           </div>
 
-          <div class="bg-white py-2 flex flex-col justify-center sm:py-12 cursor-pointer" @click="report">
+          <div class="bg-white py-4 flex flex-col justify-center sm:py-12 cursor-pointer" @click="report">
             <div class="sm:max-w-xl sm:mx-auto rounded-full flex bg-blue-50 border-2 border-green-900 flex-row"
               id="widget">
               <div class="py-4 rounded-l-full pr-10 relative  bg-white w-auto">
@@ -86,7 +86,7 @@
 
           </div>
 
-          <div class="bg-white py-2 flex flex-col justify-center sm:py-12 cursor-pointer" @click="whereGetinDifficulty">
+          <div class="bg-white py-4 flex flex-col justify-center sm:py-12 cursor-pointer" @click="whereGetinDifficulty">
             <div class="sm:max-w-xl sm:mx-auto rounded-full flex bg-blue-50 border-2 border-green-900 flex-row"
               id="widget">
               <div class="py-4 rounded-l-full pr-10 relative  bg-white w-auto">
@@ -111,11 +111,11 @@
 
           </div>
 
-          <div class="bg-white py-2 flex flex-col justify-center sm:py-12 cursor-pointer" @click="whereToBuy">
+          <div class="bg-white py-4 flex flex-col justify-center sm:py-12 cursor-pointer" @click="whereToBuy">
             <div class="sm:max-w-xl sm:mx-auto rounded-full flex bg-blue-50 border-2 border-green-900 flex-row"
               id="widget">
               <div class="py-4 rounded-l-full pr-10 relative  bg-white w-auto">
-                <img src="https://cdn-icons-png.flaticon.com/512/11411/11411479.png"
+                <img src="https://cdn-icons-png.flaticon.com/512/14230/14230627.png"
                   class="w-8 border-green-200 relative left-5 inline-block mx-auto" />
 
               </div>
