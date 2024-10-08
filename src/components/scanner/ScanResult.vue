@@ -7,7 +7,7 @@
     </div>
   </div>
 
-  <div v-if="!loading && productDetails" class="flex flex-col justify-between items-center p-6"
+  <!-- <div v-if="!loading && productDetails" class="flex flex-col justify-between items-center p-6"
     :style="{ backgroundColor: productDetails.color }" style="height: 100vh; overflow: hidden;">
     <div class="w-full relative flex-1 flex flex-col items-center text-center">
       <button @click="goBack" class="absolute top-4 right-4 text-gray-600 hover:text-gray-800">
@@ -16,10 +16,10 @@
         </svg>
       </button>
 
-      <div  class="text-xl mt-6">
+      <div class="text-xl mt-6">
         {{ productDetails.status }}
       </div>
-      <div  class="flex justify-center mt-2">
+      <div class="flex justify-center mt-2">
         <img v-if="productDetails.status === AppConst.status.valid.value" class="w-16" src="@/assets/images/success.png"
           alt="Success" />
         <img v-if="productDetails.status === AppConst.status.danger.value" class="w-16" src="@/assets/images/danger.png"
@@ -86,7 +86,7 @@
         class="shadow-2xl bg-gray-100 flex-grow text-black border-l-8 border-red-500 rounded-md px-3 py-2 w-full md:w-5/12 lg:w-3/12">
         {{ item.description }}
 
-        <div class="text-gray-500 font-thin text-sm pt-1">
+        <div class="text-white font-thin text-sm pt-1">
           <span>{{ formattedCreatedDate(item.created_date) }}</span>
         </div>
       </a>
@@ -113,7 +113,157 @@
 
       </a>
     </div>
+  </div> -->
+
+  <!-- test -->
+  <div v-if="!loading && productDetails" class="w-full h-screen" :style="{ backgroundColor: productDetails.color }">
+
+    <div class=" relative mb-32" :style="{ backgroundColor: productDetails.color }">
+      <div class="rounded overflow-hidden" :style="{ backgroundColor: productDetails.color }">
+
+        <div class="flex justify-end">
+          <button @click="goBack" class="top-4 p-4 right-4 text-gray-600 hover:text-gray-800">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+          </button>
+
+        </div>
+        <div class="absolute w-full flex justify-center" :style="{ backgroundColor: productDetails.color }">
+          <div class="h-16 w-16" :style="{ backgroundColor: productDetails.color }">
+
+            <img v-if="productDetails.status === AppConst.status.valid.value"
+              class="rounded-full object-cover h-full w-full shadow-md" src="@/assets/images/success.png"
+              alt="Success" />
+            <img v-if="productDetails.status === AppConst.status.danger.value"
+              class="rounded-full object-cover h-full w-full shadow-md" src="@/assets/images/danger.png" alt="Danger" />
+            <img v-if="productDetails.status === AppConst.status.warning.value"
+              class="rounded-full object-cover h-full w-full shadow-md" src="@/assets/images/warning.png"
+              alt="Warning" />
+            <img v-if="productDetails.status === AppConst.status.info.value"
+              class="rounded-full object-cover h-full w-full shadow-md" src="@/assets/images/info.png" alt="Info" />
+
+            <!-- <img src="https://cdn-icons-png.flaticon.com/512/2355/2355692.png"
+              class="rounded-full object-cover h-full w-full shadow-md" /> -->
+          </div>
+        </div>
+          <ul class="overflow-hidden sm:rounded-md sm:max-w-2xl max-w-sm mx-auto mt-20">
+            <li>
+              <div class=" py-5 sm:px-6">
+                <div :class="`grid grid-cols-2 gap-2 ${productDetails.textClass}`"> <!-- Create a grid layout -->
+                  <h3 class="text-lg leading-6 font-medium  text-start">Brand</h3>
+                  <p class="mt-1 text-sm text-start">{{ productDetails.product_cis.denomination_du_medicament
+                    }}</p>
+                </div>
+              </div>
+            </li>
+            <li class="border-t border-gray-200">
+              <div class=" py-5 sm:px-6">
+                <div :class="`grid grid-cols-2 gap-2 ${productDetails.textClass}`"> <!-- Create a grid layout -->
+                  <h3 class="text-lg leading-6 font-medium text-start">Holder</h3>
+                  <p class="mt-1 text-sm text-start">{{ productDetails.product_cis.titulaire }}</p>
+                </div>
+              </div>
+            </li>
+            <li class="border-t border-gray-200">
+              <div class=" py-5 sm:px-6">
+                <div :class="`grid grid-cols-2 gap-2 ${productDetails.textClass}`">
+                  <h3 class="text-lg leading-6 font-medium w-24">Chemical</h3>
+                  <p class="mt-1 max-w-2xl text-sm text-start">{{
+                    productDetails.product_bdpm.denomination_substance }}</p>
+                </div>
+              </div>
+            </li>
+
+            <li class="border-t border-gray-200">
+              <div class=" py-5 sm:px-6">
+                <div :class="`grid grid-cols-2 gap-2 ${productDetails.textClass}`">
+                  <h3 class="text-lg leading-6 font-medium w-24">CIP</h3>
+                  <p class="mt-1 max-w-2xl text-sm text-start"> {{ productDetails.code_cip13 }}</p>
+                </div>
+              </div>
+            </li>
+
+            <li class="border-t border-gray-200">
+              <div class=" py-5 sm:px-6">
+                <div :class="`grid grid-cols-2 gap-2 ${productDetails.textClass}`">
+                  <h3 class="text-lg leading-6 font-medium w-24">Form</h3>
+                  <p class="mt-1 max-w-2xl text-sm text-start"> {{
+                    productDetails.product_cis.forme_pharmaceutique }}</p>
+                </div>
+              </div>
+            </li>
+
+            <li class="border-t border-gray-200">
+              <div class=" py-5 sm:px-6">
+                <div :class="`grid grid-cols-2 gap-2 ${productDetails.textClass}`">
+                  <h3 class="text-lg leading-6 font-medium w-24">Dosage</h3>
+                  <p class="mt-1 max-w-2xl text-sm text-start"> {{ productDetails.lotNo }}</p>
+                </div>
+              </div>
+            </li>
+
+            <li class="border-t border-gray-200">
+              <div class=" py-5 sm:px-6">
+                <div :class="`grid grid-cols-2 gap-2 ${productDetails.textClass}`">
+                  <h3 class="text-lg leading-6 font-medium w-24">Expiry </h3>
+                  <p class="mt-1 max-w-2xl text-sm text-start"> {{ productDetails.expiryDate }}</p>
+                </div>
+              </div>
+            </li>
+
+            <li class="border-t border-gray-200">
+              <div class=" py-5 sm:px-6">
+                <div :class="`grid grid-cols-2 gap-2 ${productDetails.textClass}`">
+                  <h3 class="text-lg leading-6 font-medium w-24">Description </h3>
+                  <p class="mt-1 max-w-2xl text-sm text-start"> {{ productDetails.desc }}</p>
+                </div>
+              </div>
+            </li>
+
+
+
+          </ul>
+          <div class="w-full flex justify-center pt-5 pb-5">
+            <div v-if="productDetails.status === AppConst.status.info.value"
+              class="flex flex-wrap gap-4 p-6 justify-center text-lg font-serif">
+              <a v-for="(item, index) in productDetails.product_info " :key="index" :href=item.link target="_blank"
+                class="shadow-2xl bg-gray-100 flex-grow text-black border-l-8 border-red-500 rounded-md px-3 py-2 w-full md:w-5/12 lg:w-3/12">
+                {{ item.description }}
+
+                <div class="font-thin text-sm pt-1">
+                  <span>{{ formattedCreatedDate(item.created_date) }}</span>
+                </div>
+              </a>
+            </div>
+
+            <div v-if="productDetails.is_recalled" class="flex flex-wrap gap-4 p-6 justify-center text-lg font-serif">
+              <a style="background-color: #e5cf07bf;"
+                class=" text-white text-center shadow-2xl bg-gray-100 flex-grow text-black border-l-8 border-red-500 rounded-md px-3 py-2 w-full md:w-5/12 lg:w-3/12">
+                Alert
+
+                <div class="text-white font-thin text-sm pt-1">
+                  <span>
+                    {{ getContent(productDetails) }}
+                  </span>
+                </div>
+
+                <div class="text-white font-thin text-sm pt-1">
+                  <span>
+                    <a @click="report" href="" class="text-blue-500">
+                      report
+                    </a>
+                  </span>
+                </div>
+
+              </a>
+            </div>
+          </div>
+      </div>
+    </div>
   </div>
+
 </template>
 
 
@@ -164,6 +314,7 @@ onMounted(async () => {
         status: statusDetails.status,
         color: statusDetails.color,
         desc: statusDetails.desc,
+        textClass:statusDetails.textClass,
         ...response.product
       }
 
@@ -192,17 +343,20 @@ function getStatus(item, expDate) {
   let status = AppConst.status.warning.value
   let color = AppConst.status.warning.color
   let desc = AppConst.status.warning.desc
+  let textClass = AppConst.status.warning.textClass
 
   // expired
   if (expireDateF < currentDate || item.is_recalled) {
     status = AppConst.status.danger.value
     color = AppConst.status.danger.color
     desc = AppConst.status.danger.desc
+    textClass = AppConst.status.danger.textClass
 
     return {
       status,
       color,
-      desc
+      desc,
+      textClass
     }
   }
   // info
@@ -210,11 +364,13 @@ function getStatus(item, expDate) {
     status = AppConst.status.info.value
     color = AppConst.status.info.color
     desc = AppConst.status.info.desc
+    textClass = AppConst.status.info.textClass
 
     return {
       status,
       color,
-      desc
+      desc,
+      textClass
     }
   }
 
@@ -222,11 +378,13 @@ function getStatus(item, expDate) {
     status = AppConst.status.valid.value
     color = AppConst.status.valid.color
     desc = AppConst.status.valid.desc
+    textClass = AppConst.status.info.textClass
 
     return {
       status,
       color,
-      desc
+      desc,
+      textClass
     }
 
   }
@@ -251,9 +409,9 @@ function getContent(product) {
 
   // Using string interpolation correctly
   if (product.is_batch_recalled) {
-    content = `This Batch (${product.lotNo}) has been recalled from ${ formattedCreatedDate(product.recalled.publish_date)}`;
+    content = `This Batch (${product.lotNo}) has been recalled from ${formattedCreatedDate(product.recalled.publish_date)}`;
   } else {
-    content = `This Product has been recalled from ${ formattedCreatedDate(product.recalled.publish_date)}`;
+    content = `This Product has been recalled from ${formattedCreatedDate(product.recalled.publish_date)}`;
   }
 
   return content;

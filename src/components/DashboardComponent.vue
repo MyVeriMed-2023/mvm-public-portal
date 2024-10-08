@@ -10,7 +10,7 @@
 
       <div class=" flex-col bg-white py-6 sm:py-12">
         <div
-          class="flex justify-center items-center grid grid-cols-1 sm:grid-cols-1 xs:grid-cols-1 md:grid-cols-4 lg:grid-cols-5 text-center"
+          class="flex justify-center items-center grid grid-cols-1 sm:grid-cols-1 xs:grid-cols-1 md:grid-cols-4 lg:grid-cols-5 text-center gap-4"
           id="widget">
 
           <div class="bg-white py-4 flex flex-col justify-center sm:py-12 cursor-pointer" @click="scanProduct">

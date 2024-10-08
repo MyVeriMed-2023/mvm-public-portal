@@ -4,33 +4,38 @@ export class AppConst {
     static readonly appLinkedinUrl = 'https://www.linkedin.com/company/mvmed-agency/';
     static readonly euUnionUrl = 'https://plm-portal.ema.europa.eu/ePIDetails/?epiid=76aee351-1a2d-ee11-a81c-6045bda028a5';
     static readonly ansmproductUrl = 'https://base-donnees-publique.medicaments.gouv.fr/';
-    static readonly apiBaseUrl = 'https://www.testapi.myverimed.com/api/v1'
+    static readonly apiBaseUrl = 'https://www.testapi.myverimed.com//api/v1'
+    // static readonly apiBaseUrl = 'http://127.0.0.1:5000/api/v1'
     static readonly appName  = 'MyVeriMed®'
 
     static readonly status = {
         valid: {
             value: 'VALID',
-            color: '#00FF00',
+            color: '#FFF600',//color: '#249b24',
             desc: 'Product Know & secured by MyVeriMed',
-            title: 'VERIFIED'
+            title: 'VERIFIED',
+            textClass: "text-white"
         },
         danger: {
             value: 'DANGER',
-            color: '#FF0800',
+            color: '#f51109',
             desc: 'Product known by myVeriMed. But Product was expired / recalled',
-            title: 'DANGER'
+            title: 'DANGER',
+            textClass: "text-white"
         },
         warning: {
             value: '',
             color: '#FF8C00',
             desc: 'Product recorded in Health Authority database where manufatured. But Orgin of the product unknown by MyVeriMed',
-            title: 'NOT KNOWN'
+            title: 'NOT KNOWN',
+            textClass: "text-white"
         },
         info: {
             value: 'INFO',
             color: '#FFF600',
             desc: 'Known by MyVeriMed. New information added',
-            title: 'CAUTION'
+            title: 'CAUTION',
+            textClass: "text-black"
         },
 
     }

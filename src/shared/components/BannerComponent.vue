@@ -9,12 +9,12 @@
            class="w-full inline-flex flex-nowrap overflow-hidden [mask-image:_linear-gradient(to_right,transparent_0,_black_128px,_black_calc(100%-128px),transparent_100%)]">
         <ul x-ref="logos"
             class="flex items-center w-full justify-center animate-scroll"> <!-- Added class 'animate-scroll' -->
-          <li class="w-full flex-shrink-0">
+          <li class="w-full flex-shrink-0 border-2 border-red-400">
             <n-alert title="Warning Alert" type="warning" closable>
               Unusual Scanning Identified
             </n-alert>
           </li>
-          <li class="w-full flex-shrink-0">
+          <li class="w-full flex-shrink-0 border-2 border-red-400">
             <n-alert title="Danger Alert" type="error" closable>
               Found some fake product in your country.
             </n-alert>
