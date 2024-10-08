@@ -1,6 +1,6 @@
 <template>
-  <div class="container mx-auto">
-    <PageHeader subtitle="welcome to MVMED" />
+  <div class="container mx-auto bg-white">
+    <!-- <PageHeader subtitle="welcome to MVMED" /> -->
     <div class="my-6">
       <Banner />
 
@@ -8,41 +8,158 @@
     <main class="">
 
 
-      <div class=" flex-col bg-gray-100 py-6 sm:py-12">
-        <div class="flex grid grid-cols-1 sm:grid-cols-1 xs:grid-cols-1 md:grid-cols-4 lg:grid-cols-5 gap-4"
+      <div class=" flex-col bg-white py-6 sm:py-12">
+        <div
+          class="flex justify-center items-center grid grid-cols-1 sm:grid-cols-1 xs:grid-cols-1 md:grid-cols-4 lg:grid-cols-5 text-center"
           id="widget">
 
-          <div
-            class="flex xs:h-32 h-30 md:h-64 w-auto  items-center justify-center rounded-lg bg-app-color cursor-pointer"
-            @click="scanProduct">
-            <div class="flex flex-col space-x-2">
+          <div class="bg-white py-2 flex flex-col justify-center sm:py-12 cursor-pointer" @click="scanProduct">
+            <div class=" rounded-full flex bg-blue-50 border-2 border-green-900 flex-row"
+              id="widget">
+              <div class="py-4 rounded-l-full pr-10 relative  bg-white w-auto">
+                <img src="https://cdn-icons-png.flaticon.com/512/3126/3126504.png"
+                  class="w-8 border-green-200 relative left-5 inline-block mx-auto" />
 
-              <!-- <n-button ghost color="green">
-                <template #icon>
-                  <n-icon>
-                    <IosQrScanner />
-                  </n-icon>
-                </template>
-                Scan a product
-              </n-button> -->
-
-              <div class="text-center">
-                <IconConfigProvider color="white" size="40">
-                  <Icon class="mb-5 rounded-full  p-1 text-yellow-500">
-                    <IosQrScanner />
-                  </Icon>
-                </IconConfigProvider>
               </div>
-              <div class="text-center  text-sm md:text-sm font-bold text-white"> {{$t('dashboard.scanAProduct')}}</div>
-              <div class="my-2 text-center text-gray-500">
+              <div class="flex flex-col ml-2 p-2">
+                <div class="flex items-center text-center">
+                  <h4 class="text-md font-semibold">
+                    {{$t('dashboard.scanAProduct')}}
 
+                  </h4>
+
+                </div>
+                <p class="text-sm">
+                  use datamatrix on the medicine box
+                </p>
               </div>
             </div>
+
+          </div>
+
+          <div class="bg-white py-2 flex flex-col justify-center sm:py-12 cursor-pointer" @click="electronicProduct">
+            <div class="sm:max-w-xl sm:mx-auto rounded-full flex bg-blue-50 border-2 border-green-900 flex-row"
+              id="widget">
+              <div class="py-4 rounded-l-full pr-10 relative  bg-white w-auto">
+                <img src="	https://cdn-icons-png.flaticon.com/512/9132/9132480.png"
+                  class="w-8 border-green-200 relative left-5 inline-block mx-auto" />
+
+              </div>
+              <div class="flex flex-col ml-2 p-2">
+                <div class="flex  items-center">
+                  <h4 class="text-md font-semibold">
+                    {{ $t('dashboard.electronicProductInfo')
+                }}
+
+                  </h4>
+
+                </div>
+                <p class="text-sm">
+                  use datamatrix on the medicine box
+                </p>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="bg-white py-2 flex flex-col justify-center sm:py-12 cursor-pointer" @click="report">
+            <div class="sm:max-w-xl sm:mx-auto rounded-full flex bg-blue-50 border-2 border-green-900 flex-row"
+              id="widget">
+              <div class="py-4 rounded-l-full pr-10 relative  bg-white w-auto">
+                <img src="https://cdn-icons-png.flaticon.com/512/2355/2355692.png"
+                  class="w-8 border-green-200 relative left-5 inline-block mx-auto" />
+
+              </div>
+              <div class="flex flex-col ml-2 p-2">
+                <div class="flex  items-center">
+                  <h4 class="text-md font-semibold">
+                    {{ $t('dashboard.reportOrFillForm') }}
+
+                  </h4>
+
+                </div>
+                <p class="text-sm">
+                  use datamatrix on the medicine box
+                </p>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="bg-white py-2 flex flex-col justify-center sm:py-12 cursor-pointer" @click="whereGetinDifficulty">
+            <div class="sm:max-w-xl sm:mx-auto rounded-full flex bg-blue-50 border-2 border-green-900 flex-row"
+              id="widget">
+              <div class="py-4 rounded-l-full pr-10 relative  bg-white w-auto">
+                <img src="https://cdn-icons-png.flaticon.com/512/14230/14230627.png"
+                  class="w-8 border-green-200 relative left-5 inline-block mx-auto" />
+
+              </div>
+              <div class="flex flex-col ml-2 p-2">
+                <div class="flex items-center">
+                  <h4 class="text-md font-semibold">
+                    {{ $t('dashboard.whereToGetSupplyDiff')
+                }}
+
+                  </h4>
+
+                </div>
+                <p class="text-sm">
+                  use datamatrix on the medicine box
+                </p>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="bg-white py-2 flex flex-col justify-center sm:py-12 cursor-pointer" @click="whereToBuy">
+            <div class="sm:max-w-xl sm:mx-auto rounded-full flex bg-blue-50 border-2 border-green-900 flex-row"
+              id="widget">
+              <div class="py-4 rounded-l-full pr-10 relative  bg-white w-auto">
+                <img src="https://cdn-icons-png.flaticon.com/512/11411/11411479.png"
+                  class="w-8 border-green-200 relative left-5 inline-block mx-auto" />
+
+              </div>
+              <div class="flex flex-col ml-2 p-2">
+                <div class="flex items-center">
+                  <h4 class="text-md font-semibold">
+                    {{ $t('dashboard.whereToGetSecureProd')
+                }}
+                  </h4>
+
+                </div>
+                <p class="text-sm">
+                  use datamatrix on the medicine box
+                </p>
+              </div>
+            </div>
+
           </div>
 
 
 
-          <div
+
+          <!-- <div class="flex xs:h-32 h-30 md:h-64 w-48 items-center justify-center bg-app-color cursor-pointer"
+            @click="scanProduct">
+            <div class="flex flex-col space-x-2">
+
+              <div class="text-center">
+                <IconConfigProvider color="white" size="40">
+                  <Icon class="mb-5 rounded-full p-1 text-yellow-500">
+                    <IosQrScanner />
+                  </Icon>
+                </IconConfigProvider>
+              </div>
+              <div class="text-center text-sm md:text-sm font-bold text-white">
+                {{ $t('dashboard.scanAProduct') }}
+              </div>
+              <div class="my-2 text-center text-gray-500">
+              </div>
+            </div>
+          </div> -->
+
+
+
+          <!-- <div
             class="flex xs:h-32 h-30 md:h-64 w-auto  items-center justify-center rounded-lg bg-app-color cursor-pointer"
             @click="electronicProduct">
             <div class="flex flex-col space-x-2">
@@ -58,17 +175,7 @@
               <div class="my-2 text-center text-gray-500">
 
               </div>
-              <!-- <div class="flex items-center text-green-500">
-                <div class="mx-auto flex">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="w-6" viewBox="0 0 24 24" stroke-width="1.5"
-                    stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                    <line x1="17" y1="7" x2="7" y2="17"></line>
-                    <polyline points="8 7 17 7 17 16"></polyline>
-                  </svg>
-                  <span>10.5%</span>
-                </div>
-              </div> -->
+
             </div>
           </div>
 
@@ -126,24 +233,21 @@
 
               </div>
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
-
-
     </main>
   </div>
-
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
 import { useRouter } from 'vue-router';
-import { IosInformationCircleOutline, IosPaper, IosQrScanner } from "@vicons/ionicons4";
-import { IconConfigProvider } from '@vicons/utils';
-import { Icon } from "@vicons/utils";
-import { AddLocationOutlined } from '@vicons/material'
-import PageHeader from '@/shared/components/PageHeader.vue'
+// import { IosInformationCircleOutline, IosPaper } from "@vicons/ionicons4";
+// import { IconConfigProvider } from '@vicons/utils';
+// import { Icon } from "@vicons/utils";
+// import { AddLocationOutlined } from '@vicons/material'
+// import PageHeader from '@/shared/components/PageHeader.vue'
 import Banner from '@/shared/components/BannerComponent.vue'
 // import { CashOutline as CashIcon } from '@vicons/ionicons5'
 
@@ -151,11 +255,11 @@ import Banner from '@/shared/components/BannerComponent.vue'
 export default defineComponent({
   name: 'DashboardComponent',
   components: {
-    IconConfigProvider, Icon,
+    // IconConfigProvider, Icon,
     // CashIcon,
-    IosQrScanner,
-    IosInformationCircleOutline, IosPaper, AddLocationOutlined,
-    PageHeader,
+    // IosQrScanner,
+    // IosInformationCircleOutline, IosPaper, AddLocationOutlined,
+    // PageHeader,
     Banner
   },
   setup() {
@@ -191,7 +295,7 @@ export default defineComponent({
     }
 
     return {
-      logout, scanProduct, fillForm, electronicProduct, PageHeader, report, whereGetinDifficulty, whereToBuy
+      logout, scanProduct, fillForm, electronicProduct, report, whereGetinDifficulty, whereToBuy
       // Banner
     };
   },
