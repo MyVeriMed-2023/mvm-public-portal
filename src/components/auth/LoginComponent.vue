@@ -172,6 +172,7 @@ import { loginUser } from '@/service/authService'; // Adjust the path as necessa
 import { useRouter } from 'vue-router';
 import { useStore } from 'vuex';
 import { AppConst } from '@/shared/AppConst';
+import { useMessage } from 'naive-ui'
 
 export default {
   components: {
@@ -192,6 +193,7 @@ export default {
     const store = useStore();
     const router = useRouter();
     const loading = ref(false)
+    const message = useMessage()
 
     const signInForm = ref({
       email: '',
@@ -217,13 +219,13 @@ export default {
 
     const signIn = async () => {
 
-
       try {
 
         loading.value = true
         console.log('sign in working ');
         if (!isValidEmail(signInForm.value.email) || !signInForm.value.password) {
           showAlert.value = true;
+          message.error('Please enter valid credentials')
           alert.value.message = 'Please enter valid credentials';
           return;
         }
@@ -241,6 +243,8 @@ export default {
             message: 'Login successful!'
           };
 
+          message.success('Login successful!')
+
           router.push('/dashboard'); // Redirect to dashboard
           // Redirect or other actions
         } else {
@@ -248,11 +252,13 @@ export default {
           loading.value = false
           showAlert.value = true;
           alert.value.message = response.message;
+          message.error(response.message)
         }
       }
       catch (error) {
         loading.value = false
         showAlert.value = true;
+        message.error(error)
         alert.value.message = 'An error occurred. Please try again later.';
       }
     };

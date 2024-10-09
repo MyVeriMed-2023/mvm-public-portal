@@ -1,6 +1,14 @@
 <template>
 
     <div class="py-4">
+
+        <n-breadcrumb>
+            <n-breadcrumb-item @click= "()=> router.push('/dashboard')"> Home</n-breadcrumb-item>
+            <n-breadcrumb-item>
+                report
+            </n-breadcrumb-item>
+        </n-breadcrumb>
+
         <div class="max-w-5xl mx-auto mt-6 p-6">
 
             <div class="flex grid grid-cols-1 sm:grid-cols-1 xs:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-4"
@@ -21,7 +29,7 @@
                                 </h4>
 
                             </div>
-                            <p class="text-sm">
+                            <p class="text-xs">
                                 {{i.subTitle}}
                             </p>
                         </div>
@@ -40,28 +48,28 @@ import { useRouter } from 'vue-router'
 const router = useRouter()
 const items = [
     {
-        title:'Report an adverse reaction',
-        subtitle:'summery of product charectors',
+        title:'Adverse reaction',
+        subTitle:'Report adverse reaction',
         path:'SMPC',
-        icon: 'https://cdn-icons-png.flaticon.com/512/10433/10433044.png'
+        icon: 'https://cdn-icons-png.flaticon.com/512/17295/17295839.png'
     },
     {
-        title:'Report a supply difficulty with/without medical impact',
-        subtitle:'product Labelling information',
+        title:'Supply difficulty',
+        subTitle:'Report a supply difficulty with/without medical impact',
         path:'LABEL',
-        icon: 'https://cdn-icons-png.flaticon.com/512/10433/10433044.png'
+        icon: 'https://cdn-icons-png.flaticon.com/512/17295/17295839.png'
     },
     {
-        title:'Report a suspect or fake medicinal product',
-        subtitle:'Latest Patient leaflet',
+        title:'Suspect or fake product',
+        subTitle:'Report a suspect or fake medicinal product',
         path:'PL',
-        icon: 'https://cdn-icons-png.flaticon.com/512/10433/10433044.png'
+        icon: 'https://cdn-icons-png.flaticon.com/512/17295/17295839.png'
     },
     {
         title:'Fill a template',
-        subtitle:'Latest Patient leaflet',
+        subTitle:'Fill a template',
         path:'PL',
-        icon: 'https://cdn-icons-png.flaticon.com/512/10433/10433044.png'
+        icon: 'https://cdn-icons-png.flaticon.com/512/17295/17295839.png'
     }
 
 

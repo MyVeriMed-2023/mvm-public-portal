@@ -9,7 +9,7 @@ import ScanResult from '@/components/scanner/ScanResult.vue'
 import ElectronicProduct from '@/components/electronic-product/ElectronicProduct.vue'
 import ElectronicProductDetails from '@/components/electronic-product/ElectronicProductDetails.vue'
 import ReportAnEvent from '@/components/report/ReportAnEvent.vue'
-import WhereGetProductDifficulty from '@/components/where-to-buy-product-in-difficulty/WhereToGetProductDifficulty.vue'
+import SelectByProduct from '@/components/where-to-buy-product-in-difficulty/WhereToGetProductDifficulty.vue'
 import SelectProductToBuy from '@/components/where-to-buy-product-in-difficulty/SelectByProduct.vue'
 import ComminSoon from '@/shared/components/ComingSoon.vue'
 import Blog from '@/components/blogs/layout/BlogLayout.vue'
@@ -36,7 +36,7 @@ const routes = [
             { path: 'electronic-product', name: 'electronic-product', component: ElectronicProduct, meta: { requiresAuth: true } },
             { path: 'electronic-product-details/:type', name: 'electronic-product-details', component: ElectronicProductDetails, meta: { requiresAuth: true } },
             { path: 'select-product-to-buy', name: 'select-product-to-buy', component: SelectProductToBuy, meta: { requiresAuth: true } },
-            { path: 'getProduct', name: 'getProduct', component: WhereGetProductDifficulty, meta: { requiresAuth: true } },
+            { path: 'getProduct', name: 'getProduct', component: SelectByProduct, meta: { requiresAuth: true } },
             { path: 'report', name: 'report', component: ReportAnEvent, meta: { requiresAuth: true } },
             { path: 'adverse-reaction', name: 'adverseReaction', component: AdverseReaction, meta: { requiresAuth: true } },
             { path: 'map-view', name: 'mapView', component: MapView, meta: { requiresAuth: true } },

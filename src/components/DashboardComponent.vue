@@ -8,12 +8,12 @@
     <main class="">
 
 
-      <div class=" flex-col bg-white py-6 sm:py-12">
+      <div class=" flex-col bg-white py-6 ">
         <div
           class="flex justify-center items-center grid grid-cols-1 sm:grid-cols-1 xs:grid-cols-1 md:grid-cols-4 lg:grid-cols-5 text-center gap-4"
           id="widget">
 
-          <div class="bg-white py-4 flex flex-col justify-center sm:py-12 cursor-pointer" @click="scanProduct">
+          <div class="bg-white py-4 flex flex-col justify-center  cursor-pointer" @click="scanProduct">
             <div class=" rounded-full flex bg-blue-50 border-2 border-green-900 flex-row"
               id="widget">
               <div class="py-4 rounded-l-full pr-10 relative  bg-white w-auto">
@@ -37,8 +37,8 @@
 
           </div>
 
-          <div class="bg-white py-4 flex flex-col justify-center sm:py-12 cursor-pointer" @click="electronicProduct">
-            <div class="sm:max-w-xl sm:mx-auto rounded-full flex bg-blue-50 border-2 border-green-900 flex-row"
+          <div class="bg-white py-4 flex flex-col justify-center  cursor-pointer" @click="electronicProduct">
+            <div class="rounded-full flex bg-blue-50 border-2 border-green-900 flex-row"
               id="widget">
               <div class="py-4 rounded-l-full pr-10 relative  bg-white w-auto">
                 <img src="	https://cdn-icons-png.flaticon.com/512/9132/9132480.png"
@@ -62,8 +62,8 @@
 
           </div>
 
-          <div class="bg-white py-4 flex flex-col justify-center sm:py-12 cursor-pointer" @click="report">
-            <div class="sm:max-w-xl sm:mx-auto rounded-full flex bg-blue-50 border-2 border-green-900 flex-row"
+          <div class="bg-white py-4 flex flex-col justify-center  cursor-pointer" @click="report">
+            <div class="rounded-full flex bg-blue-50 border-2 border-green-900 flex-row"
               id="widget">
               <div class="py-4 rounded-l-full pr-10 relative  bg-white w-auto">
                 <img src="https://cdn-icons-png.flaticon.com/512/2355/2355692.png"
@@ -86,8 +86,8 @@
 
           </div>
 
-          <div class="bg-white py-4 flex flex-col justify-center sm:py-12 cursor-pointer" @click="whereGetinDifficulty">
-            <div class="sm:max-w-xl sm:mx-auto rounded-full flex bg-blue-50 border-2 border-green-900 flex-row"
+          <div class="bg-white py-4 flex flex-col justify-center  cursor-pointer" @click="whereToBuy">
+            <div class="rounded-full flex bg-blue-50 border-2 border-green-900 flex-row"
               id="widget">
               <div class="py-4 rounded-l-full pr-10 relative  bg-white w-auto">
                 <img src="https://cdn-icons-png.flaticon.com/512/14230/14230627.png"
@@ -111,8 +111,8 @@
 
           </div>
 
-          <div class="bg-white py-4 flex flex-col justify-center sm:py-12 cursor-pointer" @click="whereToBuy">
-            <div class="sm:max-w-xl sm:mx-auto rounded-full flex bg-blue-50 border-2 border-green-900 flex-row"
+          <div class="bg-white py-4 flex flex-col justify-center  cursor-pointer" @click="whereToBuy">
+            <div class="rounded-full flex bg-blue-50 border-2 border-green-900 flex-row"
               id="widget">
               <div class="py-4 rounded-l-full pr-10 relative  bg-white w-auto">
                 <img src="https://cdn-icons-png.flaticon.com/512/14230/14230627.png"

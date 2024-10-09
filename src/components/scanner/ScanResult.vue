@@ -148,118 +148,177 @@
               class="rounded-full object-cover h-full w-full shadow-md" /> -->
           </div>
         </div>
-          <ul class="overflow-hidden sm:rounded-md sm:max-w-2xl max-w-sm mx-auto mt-20">
-            <li>
-              <div class=" py-5 sm:px-6">
-                <div :class="`grid grid-cols-2 gap-2 ${productDetails.textClass}`"> <!-- Create a grid layout -->
-                  <h3 class="text-lg leading-6 font-medium  text-start">Brand</h3>
-                  <p class="mt-1 text-sm text-start">{{ productDetails.product_cis.denomination_du_medicament
-                    }}</p>
-                </div>
+        <ul class="overflow-hidden sm:rounded-md sm:max-w-2xl mx-auto mt-20 px-4">
+          <li>
+            <div class=" py-5 sm:px-6">
+              <div :class="`grid grid-cols-2 gap-2 ${productDetails.textClass}`"> <!-- Create a grid layout -->
+                <h3 class="text-lg leading-6 font-medium  text-start">Brand</h3>
+                <p class=" text-sm text-start">{{ productDetails.product_cis.denomination_du_medicament
+                  }}</p>
               </div>
-            </li>
-            <li class="border-t border-gray-200">
-              <div class=" py-5 sm:px-6">
-                <div :class="`grid grid-cols-2 gap-2 ${productDetails.textClass}`"> <!-- Create a grid layout -->
-                  <h3 class="text-lg leading-6 font-medium text-start">Holder</h3>
-                  <p class="mt-1 text-sm text-start">{{ productDetails.product_cis.titulaire }}</p>
-                </div>
-              </div>
-            </li>
-            <li class="border-t border-gray-200">
-              <div class=" py-5 sm:px-6">
-                <div :class="`grid grid-cols-2 gap-2 ${productDetails.textClass}`">
-                  <h3 class="text-lg leading-6 font-medium w-24">Chemical</h3>
-                  <p class="mt-1 max-w-2xl text-sm text-start">{{
-                    productDetails.product_bdpm.denomination_substance }}</p>
-                </div>
-              </div>
-            </li>
-
-            <li class="border-t border-gray-200">
-              <div class=" py-5 sm:px-6">
-                <div :class="`grid grid-cols-2 gap-2 ${productDetails.textClass}`">
-                  <h3 class="text-lg leading-6 font-medium w-24">CIP</h3>
-                  <p class="mt-1 max-w-2xl text-sm text-start"> {{ productDetails.code_cip13 }}</p>
-                </div>
-              </div>
-            </li>
-
-            <li class="border-t border-gray-200">
-              <div class=" py-5 sm:px-6">
-                <div :class="`grid grid-cols-2 gap-2 ${productDetails.textClass}`">
-                  <h3 class="text-lg leading-6 font-medium w-24">Form</h3>
-                  <p class="mt-1 max-w-2xl text-sm text-start"> {{
-                    productDetails.product_cis.forme_pharmaceutique }}</p>
-                </div>
-              </div>
-            </li>
-
-            <li class="border-t border-gray-200">
-              <div class=" py-5 sm:px-6">
-                <div :class="`grid grid-cols-2 gap-2 ${productDetails.textClass}`">
-                  <h3 class="text-lg leading-6 font-medium w-24">Dosage</h3>
-                  <p class="mt-1 max-w-2xl text-sm text-start"> {{ productDetails.lotNo }}</p>
-                </div>
-              </div>
-            </li>
-
-            <li class="border-t border-gray-200">
-              <div class=" py-5 sm:px-6">
-                <div :class="`grid grid-cols-2 gap-2 ${productDetails.textClass}`">
-                  <h3 class="text-lg leading-6 font-medium w-24">Expiry </h3>
-                  <p class="mt-1 max-w-2xl text-sm text-start"> {{ productDetails.expiryDate }}</p>
-                </div>
-              </div>
-            </li>
-
-            <li class="border-t border-gray-200">
-              <div class=" py-5 sm:px-6">
-                <div :class="`grid grid-cols-2 gap-2 ${productDetails.textClass}`">
-                  <h3 class="text-lg leading-6 font-medium w-24">Description </h3>
-                  <p class="mt-1 max-w-2xl text-sm text-start"> {{ productDetails.desc }}</p>
-                </div>
-              </div>
-            </li>
-
-
-
-          </ul>
-          <div class="w-full flex justify-center pt-5 pb-5">
-            <div v-if="productDetails.status === AppConst.status.info.value"
-              class="flex flex-wrap gap-4 p-6 justify-center text-lg font-serif">
-              <a v-for="(item, index) in productDetails.product_info " :key="index" :href=item.link target="_blank"
-                class="shadow-2xl bg-gray-100 flex-grow text-black border-l-8 border-red-500 rounded-md px-3 py-2 w-full md:w-5/12 lg:w-3/12">
-                {{ item.description }}
-
-                <div class="font-thin text-sm pt-1">
-                  <span>{{ formattedCreatedDate(item.created_date) }}</span>
-                </div>
-              </a>
             </div>
-
-            <div v-if="productDetails.is_recalled" class="flex flex-wrap gap-4 p-6 justify-center text-lg font-serif">
-              <a style="background-color: #e5cf07bf;"
-                class=" text-white text-center shadow-2xl bg-gray-100 flex-grow text-black border-l-8 border-red-500 rounded-md px-3 py-2 w-full md:w-5/12 lg:w-3/12">
-                Alert
-
-                <div class="text-white font-thin text-sm pt-1">
-                  <span>
-                    {{ getContent(productDetails) }}
-                  </span>
-                </div>
-
-                <div class="text-white font-thin text-sm pt-1">
-                  <span>
-                    <a @click="report" href="" class="text-blue-500">
-                      report
-                    </a>
-                  </span>
-                </div>
-
-              </a>
+          </li>
+          <li class="border-t border-gray-200">
+            <div class=" py-5 sm:px-6">
+              <div :class="`grid grid-cols-2 gap-2 ${productDetails.textClass}`"> <!-- Create a grid layout -->
+                <h3 class="text-lg leading-6 font-medium text-start">Holder</h3>
+                <p class=" text-sm text-start">{{ productDetails.product_cis.titulaire }}</p>
+              </div>
             </div>
+          </li>
+          <li class="border-t border-gray-200">
+            <div class=" py-5 sm:px-6">
+              <div :class="`grid grid-cols-2 gap-2 ${productDetails.textClass}`">
+                <h3 class="text-lg leading-6 font-medium w-24">Chemical</h3>
+                <p class=" max-w-2xl text-sm text-start">{{
+                  productDetails.product_bdpm.denomination_substance }}</p>
+              </div>
+            </div>
+          </li>
+
+          <li class="border-t border-gray-200">
+            <div class=" py-5 sm:px-6">
+              <div :class="`grid grid-cols-2 gap-2 ${productDetails.textClass}`">
+                <h3 class="text-lg leading-6 font-medium w-24">CIP</h3>
+                <p class=" max-w-2xl text-sm text-start"> {{ productDetails.code_cip13 }}</p>
+              </div>
+            </div>
+          </li>
+
+          <li class="border-t border-gray-200">
+            <div class=" py-5 sm:px-6">
+              <div :class="`grid grid-cols-2 gap-2 ${productDetails.textClass}`">
+                <h3 class="text-lg leading-6 font-medium w-24">Form</h3>
+                <p class=" max-w-2xl text-sm text-start"> {{
+                  productDetails.product_cis.forme_pharmaceutique }}</p>
+              </div>
+            </div>
+          </li>
+
+          <li class="border-t border-gray-200">
+            <div class=" py-5 sm:px-6">
+              <div :class="`grid grid-cols-2 gap-2 ${productDetails.textClass}`">
+                <h3 class="text-lg leading-6 font-medium w-24">Dosage</h3>
+                <p class=" max-w-2xl text-sm text-start"> {{ productDetails.lotNo }}</p>
+              </div>
+            </div>
+          </li>
+
+          <li class="border-t border-gray-200">
+            <div class=" py-5 sm:px-6">
+              <div :class="`grid grid-cols-2 gap-2 ${productDetails.textClass}`">
+                <h3 class="text-lg leading-6 font-medium w-24">Expiry </h3>
+                <p class=" max-w-2xl text-sm text-start"> {{ productDetails.expiryDate }}</p>
+              </div>
+            </div>
+          </li>
+
+          <li class="border-t border-gray-200">
+            <div class=" py-5 sm:px-6">
+              <div :class="`grid grid-cols-2 gap-2 ${productDetails.textClass}`">
+                <h3 class="text-lg leading-6 font-medium w-24">Description </h3>
+                <p class=" max-w-2xl text-xs text-start"> {{ productDetails.desc }}</p>
+              </div>
+            </div>
+          </li>
+
+
+          <!-- <li :class="`border-t border-gray-200  ${productDetails.textClass}`">
+            <n-collapse>
+              <n-collapse-item title="Electronic product information" name="1">
+
+
+                    <div>SMPC</div>
+
+                    <div>LABEL</div>
+
+                    <div>PL</div>
+
+              </n-collapse-item>
+
+            </n-collapse>
+          </li> -->
+
+
+        </ul>
+
+        <div class="w-full flex justify-center pt-5 pb-5">
+          <div class="flex flex-wrap gap-4 px-6 justify-center text-lg font-serif min-w-full">
+            <n-collapse style="background-color: #e5cf07bf; color:white"
+              class="shadow-2xl bg-gray-100 flex-grow text-black border-l-8 border-red-500 rounded-md px-3 py-2 w-full md:w-5/12 lg:w-3/12">
+              <n-collapse-item title="Electronic product information" name="1">
+
+                <div class="columns-3">
+
+                  <div class="font-thin text-sm pt-1 text-center">
+                    <span>
+                      <a @click="report" href="" class="text-blue-500">
+                        SMPC
+                      </a>
+                    </span>
+                  </div>
+
+                  <div class="font-thin text-sm pt-1 text-center">
+                    <span>
+                      <a @click="report" href="" class="text-blue-500">
+                        LABEL
+                      </a>
+                    </span>
+                  </div>
+
+                  <div class="font-thin text-sm pt-1 text-center">
+                    <span>
+                      <a @click="report" href="" class="text-blue-500">
+                        PL
+                      </a>
+                    </span>
+                  </div>
+
+                </div>
+
+              </n-collapse-item>
+
+            </n-collapse>
           </div>
+        </div>
+
+        <div class="w-full flex justify-center pt-5 pb-5">
+
+          <div v-if="productDetails.status === AppConst.status.info.value"
+            class="flex flex-wrap gap-4 px-6 justify-center text-lg font-serif">
+            <a v-for="(item, index) in productDetails.product_info " :key="index" :href=item.link target="_blank"
+              class="shadow-2xl bg-gray-100 flex-grow text-black border-l-8 border-red-500 rounded-md px-3 py-2 w-full md:w-5/12 lg:w-3/12">
+              {{ item.description }}
+
+              <div class="font-thin text-sm pt-1">
+                <span>{{ formattedCreatedDate(item.created_date) }}</span>
+              </div>
+            </a>
+          </div>
+
+          <div v-if="productDetails.is_recalled"
+            class=" min-w-full flex flex-wrap gap-4 px-6 justify-center text-lg font-serif">
+            <a style="background-color: #e5cf07bf;"
+              class="min-w-full text-center shadow-2xl bg-gray-100 flex-grow text-black border-l-8 border-red-500 rounded-md px-3 py-2 w-full md:w-5/12 lg:w-3/12">
+              Alert
+
+              <div class="font-thin text-sm pt-1">
+                <span>
+                  {{ getContent(productDetails) }}
+                </span>
+              </div>
+
+              <div class="font-thin text-sm pt-1">
+                <span>
+                  <a @click="report" href="" class="text-blue-500">
+                    report
+                  </a>
+                </span>
+              </div>
+
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -314,7 +373,7 @@ onMounted(async () => {
         status: statusDetails.status,
         color: statusDetails.color,
         desc: statusDetails.desc,
-        textClass:statusDetails.textClass,
+        textClass: statusDetails.textClass,
         ...response.product
       }
 
@@ -392,7 +451,8 @@ function getStatus(item, expDate) {
   return {
     status,
     color,
-    desc
+    desc,
+    textClass
   }
 
 
@@ -447,5 +507,9 @@ function getContent(product) {
   flex-direction: column;
   align-items: center;
   text-align: center;
+}
+
+.n-collapse .n-collapse-item:not(.n-collapse-item--disabled).n-collapse-item--trigger-area-main .n-collapse-item__header .n-collapse-item__header-main {
+  color: white !important;
 }
 </style>

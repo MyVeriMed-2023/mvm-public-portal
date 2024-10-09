@@ -1,5 +1,15 @@
 <template>
     <div ref="container" class="py-4">
+        <n-breadcrumb>
+            <n-breadcrumb-item @click= "()=> router.push('/dashboard')"> Home</n-breadcrumb-item>
+            <n-breadcrumb-item @click= "()=> router.push('/electronic-product')">
+                Electronic product
+            </n-breadcrumb-item>
+            <n-breadcrumb-item>
+                Summary product
+            </n-breadcrumb-item>
+        </n-breadcrumb>
+
         <div class="max-w-5xl mx-auto mt-6">
             <div class="max-w-5xl mx-auto mt-6 p-6">
                 <div class="grid md:grid-cols-1 lg:grid-cols-1 sm:grid-cols-1 gap-4 grid-cols-1">

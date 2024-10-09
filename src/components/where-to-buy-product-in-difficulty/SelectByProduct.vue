@@ -1,5 +1,14 @@
 <template>
     <div ref="container" class="py-4">
+
+        <n-breadcrumb>
+            <n-breadcrumb-item @click= "()=> router.push('/dashboard')"> Home</n-breadcrumb-item>
+            <n-breadcrumb-item>
+                Product
+            </n-breadcrumb-item>
+
+        </n-breadcrumb>
+
         <div class="max-w-5xl mx-auto mt-6">
             <div class="max-w-5xl mx-auto mt-6 p-6">
                 <div class="grid md:grid-cols-1 lg:grid-cols-1 sm:grid-cols-1 gap-4 grid-cols-1">
@@ -16,7 +25,7 @@
 
             <!-- Google Map will be displayed here -->
             <div v-if="showMap" class="map-container mt-6">
-                <iframe width="100%" height="100%" style="border:0" allowfullscreen="" loading="lazy"
+                <iframe width="100%" height="100%" style="border:0" loading="lazy"
                     referrerpolicy="no-referrer-when-downgrade" :src="mapSrc"></iframe>
             </div>
         </div>
@@ -26,7 +35,9 @@
 <script setup lang="ts">
 import { getProductShort } from '@/service/productService';
 import { ref, onMounted, onBeforeUnmount } from 'vue';
+import { useRouter } from 'vue-router'
 
+const router = useRouter()
 const selectedValue = ref(''); // Holds the selected product code
 const container = ref(null);
 let filteredOptions = ref<{ label: string; value: string; }[]>([]);
