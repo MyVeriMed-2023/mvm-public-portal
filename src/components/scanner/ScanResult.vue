@@ -134,7 +134,7 @@
           <div class="h-16 w-16" :style="{ backgroundColor: productDetails.color }">
 
             <img v-if="productDetails.status === AppConst.status.valid.value"
-              class="rounded-full object-cover h-full w-full shadow-md" src="@/assets/images/success.png"
+              class="rounded-full border-2 object-cover h-full w-full shadow-md" src="@/assets/images/success.png"
               alt="Success" />
             <img v-if="productDetails.status === AppConst.status.danger.value"
               class="rounded-full object-cover h-full w-full shadow-md" src="@/assets/images/danger.png" alt="Danger" />
@@ -144,14 +144,12 @@
             <img v-if="productDetails.status === AppConst.status.info.value"
               class="rounded-full object-cover h-full w-full shadow-md" src="@/assets/images/info.png" alt="Info" />
 
-            <!-- <img src="https://cdn-icons-png.flaticon.com/512/2355/2355692.png"
-              class="rounded-full object-cover h-full w-full shadow-md" /> -->
           </div>
         </div>
         <ul class="overflow-hidden sm:rounded-md sm:max-w-2xl mx-auto mt-20 px-4">
           <li>
             <div class=" py-5 sm:px-6">
-              <div :class="`grid grid-cols-2 gap-2 ${productDetails.textClass}`"> <!-- Create a grid layout -->
+              <div :class="`grid grid-cols-2 gap-2 ${productDetails.textClass}`">
                 <h3 class="text-lg leading-6 font-medium  text-start">Brand</h3>
                 <p class=" text-sm text-start">{{ productDetails.product_cis.denomination_du_medicament
                   }}</p>
@@ -160,7 +158,7 @@
           </li>
           <li class="border-t border-gray-200">
             <div class=" py-5 sm:px-6">
-              <div :class="`grid grid-cols-2 gap-2 ${productDetails.textClass}`"> <!-- Create a grid layout -->
+              <div :class="`grid grid-cols-2 gap-2 ${productDetails.textClass}`">
                 <h3 class="text-lg leading-6 font-medium text-start">Holder</h3>
                 <p class=" text-sm text-start">{{ productDetails.product_cis.titulaire }}</p>
               </div>
@@ -221,30 +219,11 @@
               </div>
             </div>
           </li>
-
-
-          <!-- <li :class="`border-t border-gray-200  ${productDetails.textClass}`">
-            <n-collapse>
-              <n-collapse-item title="Electronic product information" name="1">
-
-
-                    <div>SMPC</div>
-
-                    <div>LABEL</div>
-
-                    <div>PL</div>
-
-              </n-collapse-item>
-
-            </n-collapse>
-          </li> -->
-
-
         </ul>
 
         <div class="w-full flex justify-center pt-5 pb-5">
           <div class="flex flex-wrap gap-4 px-6 justify-center text-lg font-serif min-w-full">
-            <n-collapse style="background-color: #e5cf07bf; color:white"
+            <n-collapse style="background-color: #ffffff96; color:white"
               class="shadow-2xl bg-gray-100 flex-grow text-black border-l-8 border-red-500 rounded-md px-3 py-2 w-full md:w-5/12 lg:w-3/12">
               <n-collapse-item title="Electronic product information" name="1">
 
@@ -252,7 +231,7 @@
 
                   <div class="font-thin text-sm pt-1 text-center">
                     <span>
-                      <a @click="report" href="" class="text-blue-500">
+                      <a @click="openDocument('SMPC', productDetails.code_cis)"  class="text-blue-500">
                         SMPC
                       </a>
                     </span>
@@ -260,7 +239,7 @@
 
                   <div class="font-thin text-sm pt-1 text-center">
                     <span>
-                      <a @click="report" href="" class="text-blue-500">
+                      <a @click="openDocument('LABEL', productDetails.code_cis)"  class="text-blue-500">
                         LABEL
                       </a>
                     </span>
@@ -268,7 +247,7 @@
 
                   <div class="font-thin text-sm pt-1 text-center">
                     <span>
-                      <a @click="report" href="" class="text-blue-500">
+                      <a @click="openDocument('PL', productDetails.code_cis)" class="text-blue-500">
                         PL
                       </a>
                     </span>
@@ -324,9 +303,6 @@
   </div>
 
 </template>
-
-
-
 
 <script setup>
 import { ref, onMounted } from 'vue'
@@ -437,7 +413,7 @@ function getStatus(item, expDate) {
     status = AppConst.status.valid.value
     color = AppConst.status.valid.color
     desc = AppConst.status.valid.desc
-    textClass = AppConst.status.info.textClass
+    textClass = AppConst.status.valid.textClass
 
     return {
       status,
@@ -475,6 +451,27 @@ function getContent(product) {
   }
 
   return content;
+}
+
+function openDocument(fileType,code_cis) {
+
+if (fileType === 'SMPC') {
+
+    window.open(`${AppConst.ansmproductUrl}affichageDoc.php?specid=${code_cis}&typedoc=R`, '_blank')
+
+}
+
+if (fileType === 'PL') {
+
+    window.open(`${AppConst.ansmproductUrl}affichageDoc.php?specid=${code_cis}&typedoc=N`, '_blank')
+}
+
+else{
+    window.open(`${AppConst.ansmproductUrl}extrait.php?specid=${code_cis}`, '_blank')
+
+}
+
+
 }
 </script>
 
