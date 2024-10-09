@@ -15,10 +15,10 @@
             @click="scanProduct"
           >
             <div
-              class="rounded-full flex bg-blue-50 border-2 border-green-900 flex-row"
+              class="flex bg-blue-50 border border-green-900 flex-row"
               id="widget"
             >
-              <div class="py-4 rounded-l-full pr-10 relative bg-white w-auto">
+              <div class="py-4 pr-10 relative bg-white w-auto">
                 <img
                   src="https://cdn-icons-png.flaticon.com/512/3126/3126504.png"
                   class="w-8 border-green-200 relative left-5 inline-block mx-auto"
@@ -40,10 +40,10 @@
             @click="electronicProduct"
           >
             <div
-              class="rounded-full flex bg-blue-50 border-2 border-green-900 flex-row"
+              class="flex bg-blue-50 border border-green-900 flex-row"
               id="widget"
             >
-              <div class="py-4 rounded-l-full pr-10 relative bg-white w-auto">
+              <div class="py-4 pr-10 relative bg-white w-auto">
                 <img
                   src="	https://cdn-icons-png.flaticon.com/512/9132/9132480.png"
                   class="w-8 border-green-200 relative left-5 inline-block mx-auto"
@@ -65,10 +65,10 @@
             @click="report"
           >
             <div
-              class="rounded-full flex bg-blue-50 border-2 border-green-900 flex-row"
+              class="flex bg-blue-50 border border-green-900 flex-row"
               id="widget"
             >
-              <div class="py-4 rounded-l-full pr-10 relative bg-white w-auto">
+              <div class="py-4 pr-10 relative bg-white w-auto">
                 <img
                   src="https://cdn-icons-png.flaticon.com/512/2355/2355692.png"
                   class="w-8 border-green-200 relative left-5 inline-block mx-auto"
@@ -90,10 +90,10 @@
             @click="whereToBuy"
           >
             <div
-              class="rounded-full flex bg-blue-50 border-2 border-green-900 flex-row"
+              class="flex bg-blue-50 border border-green-900 flex-row"
               id="widget"
             >
-              <div class="py-4 rounded-l-full pr-10 relative bg-white w-auto">
+              <div class="py-4 pr-10 relative bg-white w-auto">
                 <img
                   src="https://cdn-icons-png.flaticon.com/512/14230/14230627.png"
                   class="w-8 border-green-200 relative left-5 inline-block mx-auto"
@@ -115,10 +115,10 @@
             @click="whereToBuy"
           >
             <div
-              class="rounded-full flex bg-blue-50 border-2 border-green-900 flex-row"
+              class="flex bg-blue-50 border border-green-900 flex-row"
               id="widget"
             >
-              <div class="py-4 rounded-l-full pr-10 relative bg-white w-auto">
+              <div class="py-4 pr-10 relative bg-white w-auto">
                 <img
                   src="https://cdn-icons-png.flaticon.com/512/14230/14230627.png"
                   class="w-8 border-green-200 relative left-5 inline-block mx-auto"
