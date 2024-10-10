@@ -82,27 +82,27 @@
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <!-- First Name field -->
             <n-form-item label="First Name" :rules="{ required: true }">
-              <n-input v-model="signUpForm.firstName" type="text" placeholder="Enter your first name" />
+              <n-input v-model:value="signUpForm.firstName" type="text" placeholder="Enter your first name" />
             </n-form-item>
 
             <!-- Last Name field -->
             <n-form-item label="Last Name" :rules="{ required: true }">
-              <n-input v-model="signUpForm.lastName" type="text" placeholder="Enter your last name" />
+              <n-input v-model:value="signUpForm.lastName" type="text" placeholder="Enter your last name" />
             </n-form-item>
 
             <!-- Email field -->
             <n-form-item label="Email address" :rules="{ required: true, type: 'email' }">
-              <n-input v-model="signUpForm.email" type="email" placeholder="Enter your email" />
+              <n-input v-model:value="signUpForm.email" type="email" placeholder="Enter your email" />
             </n-form-item>
 
             <!-- User Type field -->
             <n-form-item label="User Type" :rules="{ required: true }">
-              <n-select v-model="signUpForm.userType" :options="userTypeOptions" />
+              <n-select v-model:value="signUpForm.userType" :options="userTypeOptions" />
             </n-form-item>
 
             <!-- Password field -->
             <n-form-item label="Password" :rules="{ required: true }">
-              <n-input v-model="signUpForm.password" :type="showPassword ? 'text' : 'password'"
+              <n-input v-model:value="signUpForm.password" :type="showPassword ? 'text' : 'password'"
                 placeholder="Enter your password" />
               <Icon @click="togglePasswordVisibility" color="gray" size="30"
                 class="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer">
@@ -113,14 +113,14 @@
 
             <!-- Confirm Password field -->
             <n-form-item label="Confirm Password" :rules="{ required: true }">
-              <n-input v-model="signUpForm.confirmPassword" :type="showPassword ? 'text' : 'password'"
-                :status="passwordStatus" placeholder="Confirm your password" />
+              <n-input v-model:value="signUpForm.confirmPassword" :type="showPassword ? 'text' : 'password'" :status="passwordStatus"
+                placeholder="Confirm your password" />
               <Icon @click="togglePasswordVisibility" color="gray" size="30"
                 class="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer">
                 <IosEye v-if="!showPassword" />
                 <IosEyeOff v-if="showPassword" />
               </Icon>
-            </n-form-item>
+              </n-form-item>
           </div>
 
           <!-- Actions -->
@@ -134,8 +134,8 @@
           </div>
 
           <!-- Submit button -->
-          <n-button @click="signUp" :loading="loading" type="submit"
-            class="w-full mt-6 bg-app-color text-white font-bold" :disabled="!isFormValid()">
+          <n-button @click="signUp" :loading="loading" type="submit" class="w-full mt-6 bg-app-color text-white font-bold"
+            :disabled="!isFormValid()">
             Sign up
           </n-button>
 
@@ -175,7 +175,7 @@
 <script setup>
 import { ref } from 'vue';
 import { NButton, NInput, NForm, NFormItem, NAlert, NSelect } from 'naive-ui';
-import { LogoChrome, LogoGithub, LogoTwitter, IosEye, IosEyeOff } from "@vicons/ionicons4";
+import { LogoChrome, LogoGithub, LogoTwitter,IosEye,IosEyeOff } from "@vicons/ionicons4";
 import { Icon } from "@vicons/utils";
 import { registerUser } from '@/service/authService'; // Adjust the path as necessary
 import { useRouter } from 'vue-router';
@@ -217,10 +217,10 @@ const isValidEmail = (email) => {
 };
 
 const isFormValid = () => {
-  if (signUpForm.value.password !== signUpForm.value.confirmPassword) {
+  if(signUpForm.value.password !== signUpForm.value.confirmPassword ){
     passwordStatus.value = 'error'
   }
-  else {
+  else{
     passwordStatus.value = ''
   }
   return (
@@ -234,7 +234,7 @@ const isFormValid = () => {
 
 const signUp = async () => {
 
-  loading.value = true
+ loading.value = true
   if (!isFormValid()) {
     loading.value = false
     showAlert.value = true;

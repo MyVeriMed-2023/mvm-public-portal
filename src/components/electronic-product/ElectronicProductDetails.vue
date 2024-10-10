@@ -14,7 +14,7 @@
             <div class="max-w-5xl mx-auto mt-6 p-6">
                 <div class="grid md:grid-cols-1 lg:grid-cols-1 sm:grid-cols-1 gap-4 grid-cols-1">
                     <n-space vertical>
-                        <n-select placeholder="Select product" v-model="selectedValue" :options="filteredOptions"
+                        <n-select placeholder="Select product" v-model:value="selectedValue" :options="filteredOptions"
                             :on-search="searchHandle" filterable />
                     </n-space>
 
@@ -59,7 +59,7 @@ onMounted(async () => {
         const response = await getProductShort('');
         if (response.success && response.product) {
             // Transform product data to match the select options structure
-            filteredOptions.value = response.product.map((item) => ({
+            filteredOptions.value = response.product.map((item: any) => ({
                 label: item.denomination_du_medicament, // Product name
                 value: item.code_cis, // Example of unique value
             }));
@@ -110,7 +110,7 @@ const searchHandle = async (value: string) => {
         const response = await getProductShort(value);
         if (response.success && response.product) {
             // Transform product data to match the select options structure
-            filteredOptions.value = response.product.map((item) => ({
+            filteredOptions.value = response.product.map((item: any) => ({
                 label: item.denomination_du_medicament, // Product name
                 value: item.code_cis, // Example of unique value
             }));
