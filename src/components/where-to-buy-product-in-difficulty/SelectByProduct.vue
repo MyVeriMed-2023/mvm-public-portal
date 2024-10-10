@@ -2,7 +2,7 @@
     <div ref="container" class="py-4">
 
         <n-breadcrumb>
-            <n-breadcrumb-item @click= "()=> router.push('/dashboard')"> Home</n-breadcrumb-item>
+            <n-breadcrumb-item @click="() => router.push('/dashboard')"> Home</n-breadcrumb-item>
             <n-breadcrumb-item>
                 Product
             </n-breadcrumb-item>
@@ -13,7 +13,7 @@
             <div class="max-w-5xl mx-auto mt-6 p-6">
                 <div class="grid md:grid-cols-1 lg:grid-cols-1 sm:grid-cols-1 gap-4 grid-cols-1">
                     <n-space vertical>
-                        <n-select placeholder="Select product" v-model:value="selectedValue" :options="filteredOptions"
+                        <n-select placeholder="Select product" :value="selectedValue" :options="filteredOptions"
                             :on-search="searchHandle" filterable />
                     </n-space>
 
@@ -123,18 +123,19 @@ const searchHandle = async (value: string) => {
 
 <style scoped>
 .map-container {
-  position: relative;
-  width: 100%;
-  padding-top: 56.25%; /* Aspect ratio for 16:9 */
-  height: 0;
-  overflow: hidden;
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%;
+    /* Aspect ratio for 16:9 */
+    height: 0;
+    overflow: hidden;
 }
 
 .map-container iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
 }
 </style>

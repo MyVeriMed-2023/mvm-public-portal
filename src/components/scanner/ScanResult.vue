@@ -1,294 +1,207 @@
 <template>
-  <div v-if="loading" class="page-loader bg-app-color">
-    <div class="__inner">
-      <img
-        class="w-24 h-24"
-        src="@/assets/loading/ambulance-bg.gif"
-        alt="Loading"
-      />
-      <span>Loading! Please Wait...</span>
+  <div>
+
+    <div v-if="loading" class="page-loader bg-app-color">
+      <div class="__inner">
+        <img class="w-24 h-24" src="@/assets/loading/ambulance-bg.gif" alt="Loading" />
+        <span>Loading! Please Wait...</span>
+      </div>
     </div>
-  </div>
 
-  <div
-    v-if="!loading && productDetails"
-    class="w-full h-screen"
-    :style="{ backgroundColor: productDetails.color }"
-  >
-    <div
-      class="relative mb-32"
-      :style="{ backgroundColor: productDetails.color }"
-    >
-      <div
-        class="rounded overflow-hidden"
-        :style="{ backgroundColor: productDetails.color }"
-      >
-        <div class="flex justify-end">
-          <button
-            @click="goBack"
-            class="top-4 p-4 right-4 text-gray-600 hover:text-gray-800"
-          >
-            <svg
-              class="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M6 18L18 6M6 6l12 12"
-              ></path>
-            </svg>
-          </button>
-        </div>
-        <div
-          class="absolute w-full flex justify-center"
-          :style="{ backgroundColor: productDetails.color }"
-        >
-          <div
-            class="h-16 w-16"
-            :style="{ backgroundColor: productDetails.color }"
-          >
-            <img
-              v-if="productDetails.status === AppConst.status.valid.value"
-              class="rounded-full border-2 object-cover h-full w-full shadow-md"
-              src="@/assets/images/success.png"
-              alt="Success"
-            />
-            <img
-              v-if="productDetails.status === AppConst.status.danger.value"
-              class="rounded-full object-cover h-full w-full shadow-md"
-              src="@/assets/images/danger.png"
-              alt="Danger"
-            />
-            <img
-              v-if="productDetails.status === AppConst.status.warning.value"
-              class="rounded-full object-cover h-full w-full shadow-md"
-              src="@/assets/images/warning.png"
-              alt="Warning"
-            />
-            <img
-              v-if="productDetails.status === AppConst.status.info.value"
-              class="rounded-full object-cover h-full w-full shadow-md"
-              src="@/assets/images/info.png"
-              alt="Info"
-            />
+    <div v-if="!loading && productDetails" class="w-full h-screen" :style="{ backgroundColor: productDetails.color }">
+      <div class="relative mb-32" :style="{ backgroundColor: productDetails.color }">
+        <div class="rounded overflow-hidden" :style="{ backgroundColor: productDetails.color }">
+          <div class="flex justify-end">
+            <button @click="goBack" class="top-4 p-4 right-4 text-gray-600 hover:text-gray-800">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+              </svg>
+            </button>
           </div>
-        </div>
-        <ul
-          class="overflow-hidden sm:rounded-md sm:max-w-2xl mx-auto mt-20 px-4"
-        >
-          <li>
-            <div class="py-3 sm:px-6">
-              <div
-                :class="`grid grid-cols-2 gap-2 ${productDetails.textClass}`"
-              >
-                <h3 class="text-md leading-6 font-medium text-start">Brand</h3>
-                <p class="text-sm text-start">
-                  {{ productDetails.product_cis.denomination_du_medicament }}
-                </p>
-              </div>
+          <div class="absolute w-full flex justify-center" :style="{ backgroundColor: productDetails.color }">
+            <div class="h-16 w-16" :style="{ backgroundColor: productDetails.color }">
+              <img v-if="productDetails.status === AppConst.status.valid.value"
+                class="rounded-full border-2 object-cover h-full w-full shadow-md" src="@/assets/images/success.png"
+                alt="Success" />
+              <img v-if="productDetails.status === AppConst.status.danger.value"
+                class="rounded-full object-cover h-full w-full shadow-md" src="@/assets/images/danger.png"
+                alt="Danger" />
+              <img v-if="productDetails.status === AppConst.status.warning.value"
+                class="rounded-full object-cover h-full w-full shadow-md" src="@/assets/images/warning.png"
+                alt="Warning" />
+              <img v-if="productDetails.status === AppConst.status.info.value"
+                class="rounded-full object-cover h-full w-full shadow-md" src="@/assets/images/info.png" alt="Info" />
             </div>
-          </li>
-          <li class="border-t border-gray-200">
-            <div class="py-3 sm:px-6">
-              <div
-                :class="`grid grid-cols-2 gap-2 ${productDetails.textClass}`"
-              >
-                <h3 class="text-md leading-6 font-medium text-start">Holder</h3>
-                <p class="text-sm text-start">
-                  {{ productDetails.product_cis.titulaire }}
-                </p>
-              </div>
-            </div>
-          </li>
-          <li class="border-t border-gray-200">
-            <div class="py-3 sm:px-6">
-              <div
-                :class="`grid grid-cols-2 gap-2 ${productDetails.textClass}`"
-              >
-                <h3 class="text-md leading-6 font-medium w-24">Chemical</h3>
-                <p class="max-w-2xl text-sm text-start">
-                  {{ productDetails.product_bdpm.denomination_substance }}
-                </p>
-              </div>
-            </div>
-          </li>
-
-          <li class="border-t border-gray-200">
-            <div class="py-3 sm:px-6">
-              <div
-                :class="`grid grid-cols-2 gap-2 ${productDetails.textClass}`"
-              >
-                <h3 class="text-md leading-6 font-medium w-24">CIP</h3>
-                <p class="max-w-2xl text-sm text-start">
-                  {{ productDetails.code_cip13 }}
-                </p>
-              </div>
-            </div>
-          </li>
-
-          <li class="border-t border-gray-200">
-            <div class="py-3 sm:px-6">
-              <div
-                :class="`grid grid-cols-2 gap-2 ${productDetails.textClass}`"
-              >
-                <h3 class="text-md leading-6 font-medium w-24">
-                  Serial No (SN)
-                </h3>
-                <p class="max-w-2xl text-sm text-start">
-                  {{ productDetails.dataMatrixProps.serial_number }}
-                </p>
-              </div>
-            </div>
-          </li>
-
-          <li class="border-t border-gray-200">
-            <div class="py-3 sm:px-6">
-              <div
-                :class="`grid grid-cols-2 gap-2 ${productDetails.textClass}`"
-              >
-                <h3 class="text-md leading-6 font-medium w-24">Form</h3>
-                <p class="max-w-2xl text-sm text-start">
-                  {{ productDetails.product_cis.forme_pharmaceutique }}
-                </p>
-              </div>
-            </div>
-          </li>
-
-          <li class="border-t border-gray-200">
-            <div class="py-3 sm:px-6">
-              <div
-                :class="`grid grid-cols-2 gap-2 ${productDetails.textClass}`"
-              >
-                <h3 class="text-md leading-6 font-medium w-24">Dosage</h3>
-                <p class="max-w-2xl text-sm text-start">
-                  {{ productDetails.lotNo }}
-                </p>
-              </div>
-            </div>
-          </li>
-
-          <li class="border-t border-gray-200">
-            <div class="py-3 sm:px-6">
-              <div
-                :class="`grid grid-cols-2 gap-2 ${productDetails.textClass}`"
-              >
-                <h3 class="text-md leading-6 font-medium w-24">Expiry</h3>
-                <p class="max-w-2xl text-sm text-start">
-                  {{ productDetails.expiryDate }}
-                </p>
-              </div>
-            </div>
-          </li>
-
-          <li class="border-t border-gray-200">
-            <div class="py-3 sm:px-6">
-              <div
-                :class="`grid grid-cols-2 gap-2 ${productDetails.textClass}`"
-              >
-                <h3 class="text-md leading-6 font-medium w-24">Description</h3>
-                <p class="max-w-2xl text-xs text-start">
-                  {{ productDetails.desc }}
-                </p>
-              </div>
-            </div>
-          </li>
-        </ul>
-
-        <div class="w-full flex justify-center pt-5 pb-5">
-          <div
-            class="flex flex-wrap gap-4 px-6 justify-center text-lg font-serif min-w-full"
-          >
-            <n-collapse
-              style="background-color: #ffffff96; color: white"
-              class="shadow-2xl bg-gray-100 flex-grow text-black border-l-8 border-red-500 rounded-md px-3 py-2 w-full md:w-5/12 lg:w-3/12"
-            >
-              <n-collapse-item title="Electronic product information" name="1">
-                <div class="columns-3">
-                  <div class="font-thin text-sm pt-1 text-center">
-                    <span>
-                      <a
-                        @click="openDocument('SMPC', productDetails.code_cis)"
-                        class="text-blue-500"
-                      >
-                        SMPC
-                      </a>
-                    </span>
-                  </div>
-
-                  <div class="font-thin text-sm pt-1 text-center">
-                    <span>
-                      <a
-                        @click="openDocument('LABEL', productDetails.code_cis)"
-                        class="text-blue-500"
-                      >
-                        LABEL
-                      </a>
-                    </span>
-                  </div>
-
-                  <div class="font-thin text-sm pt-1 text-center">
-                    <span>
-                      <a
-                        @click="openDocument('PL', productDetails.code_cis)"
-                        class="text-blue-500"
-                      >
-                        PL
-                      </a>
-                    </span>
-                  </div>
+          </div>
+          <ul class="overflow-hidden sm:rounded-md sm:max-w-2xl mx-auto mt-20 px-4">
+            <li>
+              <div class="py-3 sm:px-6">
+                <div :class="`grid grid-cols-2 gap-2 ${productDetails.textClass}`">
+                  <h3 class="text-md leading-6 font-medium text-start">Brand</h3>
+                  <p class="text-sm text-start">
+                    {{ productDetails.product_cis.denomination_du_medicament }}
+                  </p>
                 </div>
-              </n-collapse-item>
-            </n-collapse>
+              </div>
+            </li>
+            <li class="border-t border-gray-200">
+              <div class="py-3 sm:px-6">
+                <div :class="`grid grid-cols-2 gap-2 ${productDetails.textClass}`">
+                  <h3 class="text-md leading-6 font-medium text-start">Holder</h3>
+                  <p class="text-sm text-start">
+                    {{ productDetails.product_cis.titulaire }}
+                  </p>
+                </div>
+              </div>
+            </li>
+            <li class="border-t border-gray-200">
+              <div class="py-3 sm:px-6">
+                <div :class="`grid grid-cols-2 gap-2 ${productDetails.textClass}`">
+                  <h3 class="text-md leading-6 font-medium w-24">Chemical</h3>
+                  <p class="max-w-2xl text-sm text-start">
+                    {{ productDetails.product_bdpm.denomination_substance }}
+                  </p>
+                </div>
+              </div>
+            </li>
+
+            <li class="border-t border-gray-200">
+              <div class="py-3 sm:px-6">
+                <div :class="`grid grid-cols-2 gap-2 ${productDetails.textClass}`">
+                  <h3 class="text-md leading-6 font-medium w-24">CIP</h3>
+                  <p class="max-w-2xl text-sm text-start">
+                    {{ productDetails.code_cip13 }}
+                  </p>
+                </div>
+              </div>
+            </li>
+
+            <li class="border-t border-gray-200">
+              <div class="py-3 sm:px-6">
+                <div :class="`grid grid-cols-2 gap-2 ${productDetails.textClass}`">
+                  <h3 class="text-md leading-6 font-medium w-24">
+                    Serial No (SN)
+                  </h3>
+                  <p class="max-w-2xl text-sm text-start">
+                    {{ productDetails.dataMatrixProps.serial_number }}
+                  </p>
+                </div>
+              </div>
+            </li>
+
+            <li class="border-t border-gray-200">
+              <div class="py-3 sm:px-6">
+                <div :class="`grid grid-cols-2 gap-2 ${productDetails.textClass}`">
+                  <h3 class="text-md leading-6 font-medium w-24">Form</h3>
+                  <p class="max-w-2xl text-sm text-start">
+                    {{ productDetails.product_cis.forme_pharmaceutique }}
+                  </p>
+                </div>
+              </div>
+            </li>
+
+            <li class="border-t border-gray-200">
+              <div class="py-3 sm:px-6">
+                <div :class="`grid grid-cols-2 gap-2 ${productDetails.textClass}`">
+                  <h3 class="text-md leading-6 font-medium w-24">Dosage</h3>
+                  <p class="max-w-2xl text-sm text-start">
+                    {{ productDetails.lotNo }}
+                  </p>
+                </div>
+              </div>
+            </li>
+
+            <li class="border-t border-gray-200">
+              <div class="py-3 sm:px-6">
+                <div :class="`grid grid-cols-2 gap-2 ${productDetails.textClass}`">
+                  <h3 class="text-md leading-6 font-medium w-24">Expiry</h3>
+                  <p class="max-w-2xl text-sm text-start">
+                    {{ productDetails.expiryDate }}
+                  </p>
+                </div>
+              </div>
+            </li>
+
+            <li class="border-t border-gray-200">
+              <div class="py-3 sm:px-6">
+                <div :class="`grid grid-cols-2 gap-2 ${productDetails.textClass}`">
+                  <h3 class="text-md leading-6 font-medium w-24">Description</h3>
+                  <p class="max-w-2xl text-xs text-start">
+                    {{ productDetails.desc }}
+                  </p>
+                </div>
+              </div>
+            </li>
+          </ul>
+
+          <div class="w-full flex justify-center pt-5 pb-5">
+            <div class="flex flex-wrap gap-4 px-6 justify-center text-lg font-serif min-w-full">
+              <n-collapse style="background-color: #ffffff96; color: white"
+                class="shadow-2xl bg-gray-100 flex-grow text-black border-l-8 border-red-500 rounded-md px-3 py-2 w-full md:w-5/12 lg:w-3/12">
+                <n-collapse-item title="Electronic product information" name="1">
+                  <div class="columns-3">
+                    <div class="font-thin text-sm pt-1 text-center">
+                      <span>
+                        <a @click="openDocument('SMPC', productDetails.code_cis)" class="text-blue-500">
+                          SMPC
+                        </a>
+                      </span>
+                    </div>
+
+                    <div class="font-thin text-sm pt-1 text-center">
+                      <span>
+                        <a @click="openDocument('LABEL', productDetails.code_cis)" class="text-blue-500">
+                          LABEL
+                        </a>
+                      </span>
+                    </div>
+
+                    <div class="font-thin text-sm pt-1 text-center">
+                      <span>
+                        <a @click="openDocument('PL', productDetails.code_cis)" class="text-blue-500">
+                          PL
+                        </a>
+                      </span>
+                    </div>
+                  </div>
+                </n-collapse-item>
+              </n-collapse>
+            </div>
           </div>
-        </div>
 
-        <div class="w-full flex justify-center pt-5 pb-5">
-          <div
-            v-if="productDetails.status === AppConst.status.info.value"
-            class="min-w-full flex flex-wrap gap-4 px-6 justify-center text-lg font-serif"
-          >
-            <a
-              v-for="(item, index) in productDetails.product_info"
-              :key="index"
-              :href="item.link"
-              target="_blank"
-              class="min-w-full shadow-2xl bg-gray-100 flex-grow text-black border-l-8 border-red-500 rounded-md px-3 py-2 w-full md:w-5/12 lg:w-3/12"
-            >
-              {{ item.description }}
+          <div class="w-full flex justify-center pt-5 pb-5">
+            <div v-if="productDetails.status === AppConst.status.info.value"
+              class="min-w-full flex flex-wrap gap-4 px-6 justify-center text-lg font-serif">
+              <a v-for="(item, index) in productDetails.product_info" :key="index" :href="item.link" target="_blank"
+                class="min-w-full shadow-2xl bg-gray-100 flex-grow text-black border-l-8 border-red-500 rounded-md px-3 py-2 w-full md:w-5/12 lg:w-3/12">
+                {{ item.description }}
 
-              <div class="font-thin text-sm pt-1">
-                <span>{{ formattedCreatedDate(item.created_date) }}</span>
-              </div>
-            </a>
-          </div>
+                <div class="font-thin text-sm pt-1">
+                  <span>{{ formattedCreatedDate(item.created_date) }}</span>
+                </div>
+              </a>
+            </div>
 
-          <div
-            v-if="productDetails.is_recalled"
-            class="min-w-full flex flex-wrap gap-4 px-6 justify-center text-lg font-serif"
-          >
-            <a
-              style="background-color: #e5cf07bf"
-              class="min-w-full text-center shadow-2xl bg-gray-100 flex-grow text-black border-l-8 border-red-500 rounded-md px-3 py-2 w-full md:w-5/12 lg:w-3/12"
-            >
-              Alert
+            <div v-if="productDetails.is_recalled"
+              class="min-w-full flex flex-wrap gap-4 px-6 justify-center text-lg font-serif">
+              <a style="background-color: #e5cf07bf"
+                class="min-w-full text-center shadow-2xl bg-gray-100 flex-grow text-black border-l-8 border-red-500 rounded-md px-3 py-2 w-full md:w-5/12 lg:w-3/12">
+                Alert
 
-              <div class="font-thin text-sm pt-1">
-                <span>
-                  {{ getContent(productDetails) }}
-                </span>
-              </div>
+                <div class="font-thin text-sm pt-1">
+                  <span>
+                    {{ getContent(productDetails) }}
+                  </span>
+                </div>
 
-              <div class="font-thin text-sm pt-1">
-                <span>
-                  <a @click="report" href="" class="text-blue-500"> report </a>
-                </span>
-              </div>
-            </a>
+                <div class="font-thin text-sm pt-1">
+                  <span>
+                    <a @click="report" href="" class="text-blue-500"> report </a>
+                  </span>
+                </div>
+              </a>
+            </div>
           </div>
         </div>
       </div>
@@ -435,11 +348,10 @@ function getContent(product) {
 
   // Using string interpolation correctly
   if (product.is_batch_recalled) {
-    content = `This Batch (${
-      product.lotNo
-    }) has been recalled from ${formattedCreatedDate(
-      product.recalled.publish_date
-    )}`;
+    content = `This Batch (${product.lotNo
+      }) has been recalled from ${formattedCreatedDate(
+        product.recalled.publish_date
+      )}`;
   } else {
     content = `This Product has been recalled from ${formattedCreatedDate(
       product.recalled.publish_date
@@ -501,12 +413,7 @@ function openDocument(fileType, code_cis) {
   text-align: center;
 }
 
-.n-collapse
-  .n-collapse-item:not(
-    .n-collapse-item--disabled
-  ).n-collapse-item--trigger-area-main
-  .n-collapse-item__header
-  .n-collapse-item__header-main {
+.n-collapse .n-collapse-item:not(.n-collapse-item--disabled).n-collapse-item--trigger-area-main .n-collapse-item__header .n-collapse-item__header-main {
   color: white !important;
 }
 </style>

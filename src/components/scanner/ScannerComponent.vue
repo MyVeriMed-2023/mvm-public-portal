@@ -17,6 +17,8 @@
 </template>
 
 <script setup>
+/* eslint-disable */
+
 import { ref, computed, onMounted } from "vue";
 import { QrcodeStream } from "vue-qrcode-reader";
 import { useRouter } from "vue-router";

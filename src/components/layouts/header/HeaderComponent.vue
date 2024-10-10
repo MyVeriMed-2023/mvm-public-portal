@@ -218,11 +218,6 @@ export default defineComponent({
           }),
         positiveText: '',
         negativeText: '',
-        onPositiveClick: () => {
-
-        },
-        onNegativeClick: () => {
-        },
       });
     };
 

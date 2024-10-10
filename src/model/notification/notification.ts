@@ -1,5 +1,4 @@
 import { getRelativeTime } from "@/shared/utils/dateFormatter";
-import _ from "lodash";
 
 export class Notification {
     id: string;

@@ -5,22 +5,22 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <!-- First Name field -->
                 <n-form-item label="First Name" :rules="{ required: true }">
-                    <n-input v-model:value="signUpForm.firstName" type="text" placeholder="Enter your first name" />
+                    <n-input :value="signUpForm.firstName" type="text" placeholder="Enter your first name" />
                 </n-form-item>
 
                 <!-- Last Name field -->
                 <n-form-item label="Last Name" :rules="{ required: true }">
-                    <n-input v-model:value="signUpForm.lastName" type="text" placeholder="Enter your last name" />
+                    <n-input :value="signUpForm.lastName" type="text" placeholder="Enter your last name" />
                 </n-form-item>
 
                 <!-- Email field -->
                 <n-form-item label="Email address" :rules="{ required: true, type: 'email' }">
-                    <n-input v-model:value="signUpForm.email" type="email" placeholder="Enter your email" />
+                    <n-input :value="signUpForm.email"  placeholder="Enter your email" />
                 </n-form-item>
             </div>
 
             <!-- Submit button -->
-            <n-button @click="signUp" :loading="loading" type="submit"
+            <n-button @click="signUp" :loading="loading"
                 class="w-full mt-6 bg-app-color text-white font-bold" :disabled="!isFormValid()">
                 Update Profile
             </n-button>

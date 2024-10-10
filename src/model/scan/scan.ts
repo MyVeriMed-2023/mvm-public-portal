@@ -1,5 +1,3 @@
-
-import _ from "lodash";
 import { AuthUserModel } from "../user/AuthUserModel";
 import { getRelativeTime } from "@/shared/utils/dateFormatter";
 

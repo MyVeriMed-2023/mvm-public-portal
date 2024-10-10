@@ -143,22 +143,11 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import { useRouter } from "vue-router";
-// import { IosInformationCircleOutline, IosPaper } from "@vicons/ionicons4";
-// import { IconConfigProvider } from '@vicons/utils';
-// import { Icon } from "@vicons/utils";
-// import { AddLocationOutlined } from '@vicons/material'
-// import PageHeader from '@/shared/components/PageHeader.vue'
 import Banner from "@/shared/components/BannerComponent.vue";
-// import { CashOutline as CashIcon } from '@vicons/ionicons5'
 
 export default defineComponent({
   name: "DashboardComponent",
   components: {
-    // IconConfigProvider, Icon,
-    // CashIcon,
-    // IosQrScanner,
-    // IosInformationCircleOutline, IosPaper, AddLocationOutlined,
-    // PageHeader,
     Banner,
   },
   setup() {

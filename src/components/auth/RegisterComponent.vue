@@ -82,27 +82,27 @@
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <!-- First Name field -->
             <n-form-item label="First Name" :rules="{ required: true }">
-              <n-input v-model:value="signUpForm.firstName" type="text" placeholder="Enter your first name" />
+              <n-input :value="signUpForm.firstName" type="text" placeholder="Enter your first name" />
             </n-form-item>
 
             <!-- Last Name field -->
             <n-form-item label="Last Name" :rules="{ required: true }">
-              <n-input v-model:value="signUpForm.lastName" type="text" placeholder="Enter your last name" />
+              <n-input :value="signUpForm.lastName" type="text" placeholder="Enter your last name" />
             </n-form-item>
 
             <!-- Email field -->
             <n-form-item label="Email address" :rules="{ required: true, type: 'email' }">
-              <n-input v-model:value="signUpForm.email" type="email" placeholder="Enter your email" />
+              <n-input :value="signUpForm.email" type="email" placeholder="Enter your email" />
             </n-form-item>
 
             <!-- User Type field -->
             <n-form-item label="User Type" :rules="{ required: true }">
-              <n-select v-model:value="signUpForm.userType" :options="userTypeOptions" />
+              <n-select :value="signUpForm.userType" :options="userTypeOptions" />
             </n-form-item>
 
             <!-- Password field -->
             <n-form-item label="Password" :rules="{ required: true }">
-              <n-input v-model:value="signUpForm.password" :type="showPassword ? 'text' : 'password'"
+              <n-input :value="signUpForm.password" :type="showPassword ? 'text' : 'password'"
                 placeholder="Enter your password" />
               <Icon @click="togglePasswordVisibility" color="gray" size="30"
                 class="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer">
@@ -113,7 +113,7 @@
 
             <!-- Confirm Password field -->
             <n-form-item label="Confirm Password" :rules="{ required: true }">
-              <n-input v-model:value="signUpForm.confirmPassword" :type="showPassword ? 'text' : 'password'" :status="passwordStatus"
+              <n-input :value="signUpForm.confirmPassword" :type="showPassword ? 'text' : 'password'" :status="passwordStatus"
                 placeholder="Confirm your password" />
               <Icon @click="togglePasswordVisibility" color="gray" size="30"
                 class="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer">
