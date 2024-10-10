@@ -5,17 +5,20 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <!-- First Name field -->
                 <n-form-item label="First Name" :rules="{ required: true }">
-                    <n-input v-model:value="signUpForm.firstName" type="text" placeholder="Enter your first name" />
+                    <n-input :value="signUpForm.firstName" @input="signUpForm.firstName = $event" type="text"
+                        placeholder="Enter your first name" />
                 </n-form-item>
 
                 <!-- Last Name field -->
                 <n-form-item label="Last Name" :rules="{ required: true }">
-                    <n-input v-model:value="signUpForm.lastName" type="text" placeholder="Enter your last name" />
+                    <n-input :value="signUpForm.lastName" @input="signUpForm.lastName = $event" type="text"
+                        placeholder="Enter your last name" />
                 </n-form-item>
 
                 <!-- Email field -->
                 <n-form-item label="Email address" :rules="{ required: true, type: 'email' }">
-                    <n-input v-model:value="signUpForm.email" type="email" placeholder="Enter your email" />
+                    <n-input :value="signUpForm.email" @input="signUpForm.email = $event" type="email"
+                        placeholder="Enter your email" />
                 </n-form-item>
             </div>
 

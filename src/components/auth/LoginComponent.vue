@@ -80,13 +80,14 @@
         <n-form ref="formRef" @submit.prevent="signIn" class="mt-8">
           <!-- Email field -->
           <n-form-item label="Email address" :rules="{ required: true, type: 'email' }">
-            <n-input v-model:value="signInForm.email" type="email" placeholder="Enter your email" />
+            <n-input :value="signInForm.email" @input="signInForm.email = $event" type="email"
+              placeholder="Enter your email" />
           </n-form-item>
 
           <!-- Password field -->
           <n-form-item label="Password" :rules="{ required: true }">
-            <n-input v-model:value="signInForm.password" :type="showPassword ? 'text' : 'password'"
-              placeholder="Enter your password" />
+            <n-input :value="signInForm.password" :type="showPassword ? 'text' : 'password'"
+              placeholder="Enter your password" @input="signInForm.password = $event" />
             <Icon @click="togglePasswordVisibility" color="gray" size="30"
               class="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer">
               <IosEye v-if="!showPassword" />
