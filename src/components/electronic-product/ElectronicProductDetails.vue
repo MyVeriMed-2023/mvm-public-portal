@@ -1,8 +1,8 @@
 <template>
     <div ref="container" class="py-4">
         <n-breadcrumb>
-            <n-breadcrumb-item @click= "()=> router.push('/dashboard')"> Home</n-breadcrumb-item>
-            <n-breadcrumb-item @click= "()=> router.push('/electronic-product')">
+            <n-breadcrumb-item @click="() => router.push('/dashboard')"> Home</n-breadcrumb-item>
+            <n-breadcrumb-item @click="() => router.push('/electronic-product')">
                 Electronic product
             </n-breadcrumb-item>
             <n-breadcrumb-item>
@@ -14,7 +14,7 @@
             <div class="max-w-5xl mx-auto mt-6 p-6">
                 <div class="grid md:grid-cols-1 lg:grid-cols-1 sm:grid-cols-1 gap-4 grid-cols-1">
                     <n-space vertical>
-                        <n-select placeholder="Select product" :value="selectedValue" :options="filteredOptions"
+                        <n-select placeholder="Select product" v-model="selectedValue" :options="filteredOptions"
                             :on-search="searchHandle" filterable />
                     </n-space>
 
@@ -94,7 +94,7 @@ function openPdf() {
         window.open(`${AppConst.ansmproductUrl}affichageDoc.php?specid=${selectedValue.value}&typedoc=N`, '_blank')
     }
 
-    else{
+    else {
         window.open(`${AppConst.ansmproductUrl}extrait.php?specid=${selectedValue.value}`, '_blank')
 
     }
