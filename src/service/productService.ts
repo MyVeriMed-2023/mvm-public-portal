@@ -4,12 +4,13 @@ import axiosInstance from '@/shared/intecepter/axiosInstance';
 import { AppConst } from '@/shared/AppConst';
 
 
-export async function getProductByCode13(code13: string, lotNo: string, location: any): Promise<{ success: boolean; product?: Product; message?: string }> {
+export async function getProductByCode13(code13: string, lotNo: string, location: any, dataMatrix:any): Promise<{ success: boolean; product?: Product; message?: string }> {
     try {
         const response = await axiosInstance.post(`${AppConst.apiBaseUrl}/product/get_product_by_code13`, {
             code13,
             lotNo,
             location,
+            dataMatrix
         }, {
             headers: { 'Content-Type': 'application/json' },
         });

@@ -10,115 +10,6 @@
     </div>
   </div>
 
-  <!-- <div v-if="!loading && productDetails" class="flex flex-col justify-between items-center p-6"
-    :style="{ backgroundColor: productDetails.color }" style="height: 100vh; overflow: hidden;">
-    <div class="w-full relative flex-1 flex flex-col items-center text-center">
-      <button @click="goBack" class="absolute top-4 right-4 text-gray-600 hover:text-gray-800">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-        </svg>
-      </button>
-
-      <div class="text-xl mt-6">
-        {{ productDetails.status }}
-      </div>
-      <div class="flex justify-center mt-2">
-        <img v-if="productDetails.status === AppConst.status.valid.value" class="w-16" src="@/assets/images/success.png"
-          alt="Success" />
-        <img v-if="productDetails.status === AppConst.status.danger.value" class="w-16" src="@/assets/images/danger.png"
-          alt="Danger" />
-        <img v-if="productDetails.status === AppConst.status.warning.value" class="w-16"
-          src="@/assets/images/warning.png" alt="Warning" />
-        <img v-if="productDetails.status === AppConst.status.info.value" class="w-16" src="@/assets/images/info.png"
-          alt="Info" />
-      </div>
-
-      <div class="grid grid-cols-2 gap-y-4 text-lg mt-8 w-full">
-        <span class="font-medium text-left">Brand</span>
-        <span class="text-primary-primaryblueET text-left font-semibold">
-          {{ productDetails.product_cis.denomination_du_medicament }}
-        </span>
-
-        <span class="font-medium text-left">Holder</span>
-        <span class="text-primary-primaryblueET text-left font-semibold">
-          {{ productDetails.product_cis.titulaire }}
-        </span>
-
-        <span class="font-medium text-left">Chemical</span>
-        <span class="text-primary-primaryblueET text-left font-semibold">
-          {{ productDetails.product_bdpm.denomination_substance }}
-        </span>
-
-        <span class="font-medium text-left">CIP</span>
-        <span class="text-primary-primaryblueET text-left font-semibold">
-          {{ productDetails.code_cip13 }}
-        </span>
-
-        <span class="font-medium text-left">Form</span>
-        <span class="text-primary-primaryblueET text-left font-semibold">
-          {{ productDetails.product_cis.forme_pharmaceutique }}
-        </span>
-
-        <span class="font-medium text-left">Dosage</span>
-        <span class="text-primary-primaryblueET text-left font-semibold">
-          {{ productDetails.product_bdpm.dosage_substance }}
-        </span>
-
-        <span class="font-medium text-left">Batch no</span>
-        <span class="text-primary-primaryblueET text-left font-semibold">
-          {{ productDetails.lotNo }}
-        </span>
-
-        <span class="font-medium text-left">Expiry</span>
-        <span class="text-primary-primaryblueET text-left font-semibold">
-          {{ productDetails.expiryDate }}
-        </span>
-
-        <span class="font-medium text-left">Description</span>
-        <span class="text-primary-primaryblueET text-sm text-left font-semibold">
-          {{ productDetails.desc }}
-        </span>
-      </div>
-    </div>
-
-
-
-    <div v-if="productDetails.status === AppConst.status.info.value"
-      class="flex flex-wrap gap-4 p-6 justify-center text-lg font-serif">
-      <a v-for="(item, index) in productDetails.product_info " :key="index" :href=item.link target="_blank"
-        class="shadow-2xl bg-gray-100 flex-grow text-black border-l-8 border-red-500 rounded-md px-3 py-2 w-full md:w-5/12 lg:w-3/12">
-        {{ item.description }}
-
-        <div class="text-white font-thin text-sm pt-1">
-          <span>{{ formattedCreatedDate(item.created_date) }}</span>
-        </div>
-      </a>
-    </div>
-
-    <div v-if="productDetails.is_recalled" class="flex flex-wrap gap-4 p-6 justify-center text-lg font-serif">
-      <a style="background-color: #e5cf07bf;"
-        class=" text-white text-center shadow-2xl bg-gray-100 flex-grow text-black border-l-8 border-red-500 rounded-md px-3 py-2 w-full md:w-5/12 lg:w-3/12">
-        Alert
-
-        <div class="text-white font-thin text-sm pt-1">
-          <span>
-            {{ getContent(productDetails) }}
-          </span>
-        </div>
-
-        <div class="text-white font-thin text-sm pt-1">
-          <span>
-            <a @click="report" href="" class="text-blue-500">
-              report
-            </a>
-          </span>
-        </div>
-
-      </a>
-    </div>
-  </div> -->
-
-  <!-- test -->
   <div
     v-if="!loading && productDetails"
     class="w-full h-screen"
@@ -245,6 +136,21 @@
               <div
                 :class="`grid grid-cols-2 gap-2 ${productDetails.textClass}`"
               >
+                <h3 class="text-md leading-6 font-medium w-24">
+                  Serial No (SN)
+                </h3>
+                <p class="max-w-2xl text-sm text-start">
+                  {{ productDetails.dataMatrixProps.serial_number }}
+                </p>
+              </div>
+            </div>
+          </li>
+
+          <li class="border-t border-gray-200">
+            <div class="py-3 sm:px-6">
+              <div
+                :class="`grid grid-cols-2 gap-2 ${productDetails.textClass}`"
+              >
                 <h3 class="text-md leading-6 font-medium w-24">Form</h3>
                 <p class="max-w-2xl text-sm text-start">
                   {{ productDetails.product_cis.forme_pharmaceutique }}
@@ -344,14 +250,14 @@
         <div class="w-full flex justify-center pt-5 pb-5">
           <div
             v-if="productDetails.status === AppConst.status.info.value"
-            class="flex flex-wrap gap-4 px-6 justify-center text-lg font-serif"
+            class="min-w-full flex flex-wrap gap-4 px-6 justify-center text-lg font-serif"
           >
             <a
               v-for="(item, index) in productDetails.product_info"
               :key="index"
               :href="item.link"
               target="_blank"
-              class="shadow-2xl bg-gray-100 flex-grow text-black border-l-8 border-red-500 rounded-md px-3 py-2 w-full md:w-5/12 lg:w-3/12"
+              class="min-w-full shadow-2xl bg-gray-100 flex-grow text-black border-l-8 border-red-500 rounded-md px-3 py-2 w-full md:w-5/12 lg:w-3/12"
             >
               {{ item.description }}
 
@@ -404,6 +310,8 @@ const productDetails = ref(null);
 const code13 = route.query.code13;
 const expDate = route.query.exp_date;
 const lotNo = route.query.lot_no;
+const dataMatrix = route.query.data_matrix;
+
 const error = ref(null);
 const loading = ref(true);
 const location = ref(null);
@@ -420,7 +328,12 @@ onMounted(async () => {
   }
 
   try {
-    const response = await getProductByCode13(code13, lotNo, location.value);
+    const response = await getProductByCode13(
+      code13,
+      lotNo,
+      location.value,
+      dataMatrix
+    );
     if (response.success) {
       // Get product status and additional details
       const statusDetails = getStatus(response.product, expDate);

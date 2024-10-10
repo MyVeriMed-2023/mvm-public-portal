@@ -1,6 +1,5 @@
 import { createApp } from 'vue';
 import App from './App.vue';
-import { create, NButton, NInput,NAlert,NSpace,NSelect, NBadge, NAvatar, NDialog} from 'naive-ui';
 import router from './router/index';
 import store from './store/index';
 import naiveUI from 'naive-ui'

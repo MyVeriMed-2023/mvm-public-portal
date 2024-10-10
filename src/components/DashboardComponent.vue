@@ -1,5 +1,5 @@
 <template>
-  <div class="container mx-auto bg-white">
+  <div class="container mx-auto bg-white" style="max-height: 100vh">
     <!-- <PageHeader subtitle="welcome to MVMED" /> -->
     <div class="mt-6">
       <Banner />
@@ -7,11 +7,11 @@
     <main class="">
       <div class="flex-col bg-white pb-6">
         <div
-          class="flex justify-center items-center grid grid-cols-1 sm:grid-cols-1 xs:grid-cols-1 md:grid-cols-4 lg:grid-cols-5 text-center"
+          class="flex justify-center items-center grid grid-cols-1 sm:grid-cols-1 xs:grid-cols-1 lg:grid-cols-2 gap-4 text-center py-4"
           id="widget"
         >
           <div
-            class="bg-white py-4 flex flex-col justify-center cursor-pointer"
+            class="bg-white flex flex-col justify-center cursor-pointer"
             @click="scanProduct"
           >
             <div
@@ -36,7 +36,7 @@
           </div>
 
           <div
-            class="bg-white py-4 flex flex-col justify-center cursor-pointer"
+            class="bg-white flex flex-col justify-center cursor-pointer"
             @click="electronicProduct"
           >
             <div
@@ -61,7 +61,7 @@
           </div>
 
           <div
-            class="bg-white py-4 flex flex-col justify-center cursor-pointer"
+            class="bg-white flex flex-col justify-center cursor-pointer"
             @click="report"
           >
             <div
@@ -86,7 +86,7 @@
           </div>
 
           <div
-            class="bg-white py-4 flex flex-col justify-center cursor-pointer"
+            class="bg-white flex flex-col justify-center cursor-pointer"
             @click="whereToBuy"
           >
             <div
@@ -111,7 +111,7 @@
           </div>
 
           <div
-            class="bg-white py-4 flex flex-col justify-center cursor-pointer"
+            class="bg-white flex flex-col justify-center cursor-pointer"
             @click="whereToBuy"
           >
             <div
