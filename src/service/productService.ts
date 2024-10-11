@@ -2,9 +2,10 @@ import { Product } from '@/model/product/Product';
 import { ProductShort } from '@/model/product/ProductShort';
 import axiosInstance from '@/shared/intecepter/axiosInstance';
 import { AppConst } from '@/shared/AppConst';
+import { ScanResult } from '@/model/product/ScanResult';
 
 
-export async function getProductByCode13(code13: string, lotNo: string, location: any, dataMatrix:any): Promise<{ success: boolean; product?: Product; message?: string }> {
+export async function getProductByCode13(code13: string, lotNo: string, location: any, dataMatrix:any): Promise<{ success: boolean; product?: ScanResult; message?: string }> {
     try {
         const response = await axiosInstance.post(`${AppConst.apiBaseUrl}/product/get_product_by_code13`, {
             code13,
@@ -16,7 +17,7 @@ export async function getProductByCode13(code13: string, lotNo: string, location
         });
 
         if (response.status === 200) {
-            const product = new Product(response.data.data);
+            const product = new ScanResult(response.data.data);
             console.log(product);
             return { success: true, product: product };
         } else {

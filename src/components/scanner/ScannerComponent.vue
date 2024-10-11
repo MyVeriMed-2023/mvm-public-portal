@@ -3,15 +3,13 @@
     <PageHeader subtitle="scan a product" />
     <main>
       <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8 bg-gray-200">
-        <qrcode-stream
-          :constraints="selectedConstraints"
-          :track="trackFunctionSelected.value"
-          :formats="selectedBarcodeFormats"
-          @error="onError"
-          @detect="onDetect"
-          @camera-on="onCameraReady"
-        />
+        <qrcode-stream :constraints="selectedConstraints" :track="trackFunctionSelected.value"
+          :formats="selectedBarcodeFormats" @error="onError" @detect="onDetect" @camera-on="onCameraReady" />
       </div>
+
+      <!-- <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8 bg-gray-200">
+        <DataMatrixGenerator data="01034009267382661727013110CH418\u001d210085770620135" />
+      </div> -->
     </main>
   </div>
 </template>
@@ -23,6 +21,8 @@ import { ref, computed, onMounted } from "vue";
 import { QrcodeStream } from "vue-qrcode-reader";
 import { useRouter } from "vue-router";
 import PageHeader from "@/shared/components/PageHeader";
+import DataMatrixGenerator from '@/components/datamatrix/DataMatrixGenerator.vue';
+
 const result = ref("");
 const type = ref("");
 const exp_date = ref("");
