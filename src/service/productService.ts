@@ -1,4 +1,3 @@
-import { Product } from '@/model/product/Product';
 import { ProductShort } from '@/model/product/ProductShort';
 import axiosInstance from '@/shared/intecepter/axiosInstance';
 import { AppConst } from '@/shared/AppConst';
