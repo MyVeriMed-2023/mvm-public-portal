@@ -42,7 +42,7 @@ export class ScanResult {
     }
 
     isUnknownOrSuspect(){
-        return !this.is_serial_number_matched.serial_matched
+        return !this.is_serial_number_matched.all_matched
     }
   }
 
