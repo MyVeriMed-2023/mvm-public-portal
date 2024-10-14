@@ -25,58 +25,75 @@
                 class="rounded-full object-cover h-full w-full shadow-md" />
             </div>
           </div>
-          <ul class="overflow-hidden sm:rounded-md sm:max-w-2xl mx-auto mt-20 px-4">
-            <li v-for="(field, index) in productFields" :key="index" class="border-t border-gray-200">
-              <div class="py-3 sm:px-6">
-                <div :class="`grid grid-cols-2 gap-2 ${productDetails.status.textClass}`">
-                  <h3 class="text-md leading-6 font-medium text-start">{{ field.label }}</h3>
-                  <p class="text-sm text-start">{{ productDetails[field.key] }}</p>
-                </div>
-              </div>
-            </li>
-          </ul>
 
-          <div class="w-full flex justify-center pt-5 pb-5">
-            <div class="flex flex-wrap gap-4 px-6 justify-center text-lg font-serif min-w-full">
-              <n-collapse style="background-color: #ffffff96; color: white"
-                class="shadow-2xl bg-gray-100 flex-grow text-black border-l-8 border-red-500 rounded-md px-3 py-2 w-full md:w-5/12 lg:w-3/12">
-                <n-collapse-item title="Electronic product information" name="1">
-                  <div class="columns-3">
-                    <div v-for="type in ['SMPC', 'LABEL', 'PL']" :key="type" class="font-thin text-sm pt-1 text-center">
-                      <a @click="openDocument(type, productDetails.code_cis)" class="text-blue-500">{{ type }}</a>
-                    </div>
+          <template v-if="!productDetails.isUnknownOrSuspect()">
+            <ul class="overflow-hidden sm:rounded-md sm:max-w-2xl mx-auto mt-20 px-4">
+              <li v-for="(field, index) in productFields" :key="index" class="border-t border-gray-200">
+                <div class="py-3 sm:px-6">
+                  <div :class="`grid grid-cols-2 gap-2 ${productDetails.status.textClass}`">
+                    <h3 class="text-md leading-6 font-medium text-start">{{ field.label }}</h3>
+                    <p class="text-sm text-start">{{ productDetails[field.key] }}</p>
                   </div>
-                </n-collapse-item>
-              </n-collapse>
+                </div>
+              </li>
+
+
+            </ul>
+
+            <div class="w-full flex justify-center pt-5 pb-5">
+              <div class="flex flex-wrap gap-4 px-6 justify-center text-lg font-serif min-w-full">
+                <n-collapse style="background-color: #ffffff96; color: white"
+                  class="shadow-2xl bg-gray-100 flex-grow text-black border-l-8 border-red-500 rounded-md px-3 py-2 w-full md:w-5/12 lg:w-3/12">
+                  <n-collapse-item title="Electronic product information" name="1">
+                    <div class="columns-3">
+                      <div v-for="type in ['SMPC', 'LABEL', 'PL']" :key="type"
+                        class="font-thin text-sm pt-1 text-center">
+                        <a @click="openDocument(type, productDetails.code_cis)" class="text-blue-500">{{ type }}</a>
+                      </div>
+                    </div>
+                  </n-collapse-item>
+                </n-collapse>
+              </div>
             </div>
+
+            <div class="w-full flex justify-center pt-5 pb-5">
+              <div v-if="productDetails.status === AppConst.status.info.value"
+                class="min-w-full flex flex-wrap gap-4 px-6 justify-center text-lg font-serif">
+                <a v-for="(item, index) in productDetails.product_info" :key="index" :href="item.link" target="_blank"
+                  class="min-w-full shadow-2xl bg-gray-100 flex-grow text-black border-l-8 border-red-500 rounded-md px-3 py-2 w-full md:w-5/12 lg:w-3/12">
+                  {{ item.description }}
+
+                  <div class="font-thin text-sm pt-1">
+                    <span>{{ formattedCreatedDate(item.created_date) }}</span>
+                  </div>
+                </a>
+              </div>
+
+              <div v-if="productDetails.is_recalled"
+                class="flex flex-wrap gap-4 px-6 justify-center text-lg font-serif min-w-full">
+                <a style="background-color: #e5cf07bf" class="min-w-full text-center shadow-2xl bg-gray-100 flex-grow text-black border-l-8 border-red-500
+                        rounded-md px-3 py-2 w-full md:w-5/12 lg:w-3/12">
+                  Alert
+                  <div class="font-thin text-sm pt-1">{{ getContent(productDetails) }}</div>
+                  <div class="font-thin text-sm pt-1">
+                    <a @click="report" href="" class="text-blue-500">report</a>
+                  </div>
+                </a>
+              </div>
+
+            </div>
+          </template>
+
+          <div v-if="productDetails.isUnknownOrSuspect()" class="flex justify-center items-center mt-60">
+            <n-empty class="text-center" size="large" description="Product you are looking for is not found">
+              <template #extra>
+                <n-button @click="goBack()" size="small">
+                  Scan again
+                </n-button>
+              </template>
+            </n-empty>
           </div>
 
-          <div class="w-full flex justify-center pt-5 pb-5">
-            <div v-if="productDetails.status === AppConst.status.info.value"
-              class="min-w-full flex flex-wrap gap-4 px-6 justify-center text-lg font-serif">
-              <a v-for="(item, index) in productDetails.product_info" :key="index" :href="item.link" target="_blank"
-                class="min-w-full shadow-2xl bg-gray-100 flex-grow text-black border-l-8 border-red-500 rounded-md px-3 py-2 w-full md:w-5/12 lg:w-3/12">
-                {{ item.description }}
-
-                <div class="font-thin text-sm pt-1">
-                  <span>{{ formattedCreatedDate(item.created_date) }}</span>
-                </div>
-              </a>
-            </div>
-
-            <div v-if="productDetails.is_recalled"
-              class="flex flex-wrap gap-4 px-6 justify-center text-lg font-serif min-w-full">
-              <a style="background-color: #e5cf07bf" class="min-w-full text-center shadow-2xl bg-gray-100 flex-grow text-black border-l-8 border-red-500
-                rounded-md px-3 py-2 w-full md:w-5/12 lg:w-3/12">
-                Alert
-                <div class="font-thin text-sm pt-1">{{ getContent(productDetails) }}</div>
-                <div class="font-thin text-sm pt-1">
-                  <a @click="report" href="" class="text-blue-500">report</a>
-                </div>
-              </a>
-            </div>
-
-          </div>
         </div>
       </div>
     </div>
@@ -130,6 +147,8 @@ onMounted(async () => {
     const response = await getProductByCode13(code13, lotNo, location.value, dataMatrix);
     if (response.success) {
       productDetails.value = response.product;
+
+      console.log(productDetails.value.isUnknownOrSuspect())
     } else {
       console.error("Error fetching product:", response.message);
     }

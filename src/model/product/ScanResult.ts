@@ -40,6 +40,10 @@ export class ScanResult {
     this.is_product_recalled = data.is_product_recalled;
     this.is_recalled = data.is_recalled;
     }
+
+    isUnknownOrSuspect(){
+        return !this.is_serial_number_matched.serial_matched
+    }
   }
 
   export class SerialNumberMatched {
@@ -47,12 +51,14 @@ export class ScanResult {
     cip_matched: boolean;
     batch_matched: boolean;
     date_matched: boolean;
+    serial_matched: boolean;
 
     constructor(data?: any) {
       this.all_matched = data?.all_matched || false;
       this.cip_matched = data?.cip_matched || false;
       this.batch_matched = data?.batch_matched || false;
       this.date_matched = data?.date_matched || false;
+      this.serial_matched = data?.serial_matched || false;
     }
   }
 
