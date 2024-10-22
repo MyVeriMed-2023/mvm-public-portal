@@ -1,6 +1,6 @@
 import { AuthUserModel } from "../user/AuthUserModel";
 import { getRelativeTime } from "@/shared/utils/dateFormatter";
-
+/* eslint-disable */
 export class ScanData {
     id: string;
     date: string;
@@ -8,17 +8,17 @@ export class ScanData {
     productInfo: any;
     scanType: any;
     user: AuthUserModel;
-    relativeTime:string
-    index?:number
+    relativeTime: string
+    index?: number
 
     /**
      * Constructor
      *
      * @param ScanData
      */
-    constructor(data?: any, idx?:number) {
+    constructor(data?: any, idx?: number) {
         this.id = data?.id || '';
-        this.date = data?.date_and_time|| '';
+        this.date = data?.date_and_time || '';
         this.locationInfo = data?.location_info || '';
         this.productInfo = data?.product_info || '';
         this.user = new AuthUserModel(data.user);

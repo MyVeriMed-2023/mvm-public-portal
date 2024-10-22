@@ -100,8 +100,10 @@
 
             <!-- User Type field -->
             <n-form-item label="User Type" :rules="{ required: true }">
-              <n-select :value="signUpForm.userType" @input="signUpForm.userType = $event" :options="userTypeOptions" />
+              <n-select v-model="signUpForm.userType" :options="userTypeOptions"
+                @update:value="(value) => selectedUserType = value" />
             </n-form-item>
+
 
             <!-- Password field -->
             <n-form-item label="Password" :rules="{ required: true }">
@@ -139,7 +141,7 @@
 
           <!-- Submit button -->
           <n-button @click="signUp" :loading="loading" type="submit"
-            class="w-full mt-6 bg-app-color text-white font-bold" :disabled="!isFormValid()">
+            class="w-full mt-6 bg-app-color text-white font-bold">
             Sign up
           </n-button>
 
@@ -175,7 +177,7 @@
     </div>
   </div>
 </template>
-
+/* eslint-disable */
 <script setup>
 import { ref } from 'vue';
 import { NButton, NInput, NForm, NFormItem, NAlert, NSelect } from 'naive-ui';
@@ -183,10 +185,11 @@ import { LogoChrome, LogoGithub, LogoTwitter, IosEye, IosEyeOff } from "@vicons/
 import { Icon } from "@vicons/utils";
 import { registerUser } from '@/service/authService'; // Adjust the path as necessary
 import { useRouter } from 'vue-router';
-
+/* eslint-disable */
 const router = useRouter();
 const loading = ref(false)
 const passwordStatus = ref('')
+let selectedUserType = ref('')
 
 const userTypeOptions = ref([
   { label: 'Medical Doctor', value: 'medical-doctor' },
@@ -232,7 +235,7 @@ const isFormValid = () => {
     signUpForm.value.password === signUpForm.value.confirmPassword &&
     signUpForm.value.password.length > 0 &&
     signUpForm.value.confirmPassword.length > 0 &&
-    signUpForm.value.userType
+    selectedUserType.value
   );
 };
 

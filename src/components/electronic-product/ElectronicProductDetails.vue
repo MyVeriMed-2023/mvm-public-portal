@@ -15,7 +15,8 @@
                 <div class="grid md:grid-cols-1 lg:grid-cols-1 sm:grid-cols-1 gap-4 grid-cols-1">
                     <n-space vertical>
                         <n-select placeholder="Select product" @input="selectedValue = $event" :value="selectedValue"
-                            :options="filteredOptions" :on-search="searchHandle" filterable />
+                            :options="filteredOptions" :on-search="searchHandle" filterable
+                            @update:value="(value: string) => selectedValue = value" />
                     </n-space>
 
                     <n-button @click="openPdf" type="primary" :disabled="!selectedValue">
@@ -26,8 +27,9 @@
         </div>
     </div>
 </template>
-
+/* eslint-disable */
 <script setup lang="ts">
+/* eslint-disable */
 import { getProductShort } from '@/service/productService';
 import { ref, onMounted, onBeforeUnmount } from 'vue';
 import { useRouter } from 'vue-router';

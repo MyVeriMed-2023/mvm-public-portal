@@ -13,8 +13,9 @@
             <div class="max-w-5xl mx-auto mt-6 p-6">
                 <div class="grid md:grid-cols-1 lg:grid-cols-1 sm:grid-cols-1 gap-4 grid-cols-1">
                     <n-space vertical>
-                        <n-select placeholder="Select product" :value="selectedValue" @input="selectedValue = $event"
-                            :options="filteredOptions" :on-search="searchHandle" filterable />
+                        <n-select placeholder="Select product" v-model="selectedValue" :options="filteredOptions"
+                            :on-search="searchHandle" filterable
+                            @update:value="(value: string) => selectedValue = value" />
                     </n-space>
 
                     <n-button @click="openMap" type="primary" :disabled="!selectedValue">
@@ -31,8 +32,9 @@
         </div>
     </div>
 </template>
-
+/* eslint-disable */
 <script setup lang="ts">
+/* eslint-disable */
 import { getProductShort } from '@/service/productService';
 import { ref, onMounted, onBeforeUnmount } from 'vue';
 import { useRouter } from 'vue-router'

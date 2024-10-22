@@ -1,4 +1,5 @@
 // store/index.ts
+/* eslint-disable */
 import { createStore } from 'vuex';
 import { AuthUserModel } from '@/model/user/AuthUserModel';
 

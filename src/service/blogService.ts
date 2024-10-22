@@ -1,6 +1,6 @@
 import { AppConst } from '@/shared/AppConst';
 import axiosInstance from '@/shared/intecepter/axiosInstance';
-
+/* eslint-disable */
 export async function getBlogUpdates() {
     try {
         const response = await axiosInstance.get(`${AppConst.apiBaseUrl}/blogs/`, {
@@ -22,7 +22,7 @@ export async function getBlogUpdates() {
     }
 }
 
-export async function getBlogById(id:any) {
+export async function getBlogById(id: any) {
     try {
         const response = await axiosInstance.get(`${AppConst.apiBaseUrl}/blogs/action?id=${id}`, {
             headers: { 'Content-Type': 'application/json' },

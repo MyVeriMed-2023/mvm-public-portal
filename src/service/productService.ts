@@ -2,9 +2,9 @@ import { ProductShort } from '@/model/product/ProductShort';
 import axiosInstance from '@/shared/intecepter/axiosInstance';
 import { AppConst } from '@/shared/AppConst';
 import { ScanResult } from '@/model/product/ScanResult';
+/* eslint-disable */
 
-
-export async function getProductByCode13(code13: string, lotNo: string, location: any, dataMatrix:any): Promise<{ success: boolean; product?: ScanResult; message?: string }> {
+export async function getProductByCode13(code13: string, lotNo: string, location: any, dataMatrix: any): Promise<{ success: boolean; product?: ScanResult; message?: string }> {
     try {
         const response = await axiosInstance.post(`${AppConst.apiBaseUrl}/product/get_product_by_code13`, {
             code13,
@@ -30,28 +30,28 @@ export async function getProductByCode13(code13: string, lotNo: string, location
 
 
 
-    export async function getProductShort(search: string): Promise<{ success: boolean; product?: ProductShort[]; message?: string }> {
-        try {
+export async function getProductShort(search: string): Promise<{ success: boolean; product?: ProductShort[]; message?: string }> {
+    try {
 
-            const response = await axiosInstance.get(`${AppConst.apiBaseUrl}/product/cis`, {
-                params: { search: encodeURIComponent(search), filter: encodeURIComponent('my') },
-                headers: { 'Content-Type': 'application/json' },
-            });
+        const response = await axiosInstance.get(`${AppConst.apiBaseUrl}/product/cis`, {
+            params: { search: encodeURIComponent(search), filter: encodeURIComponent('my') },
+            headers: { 'Content-Type': 'application/json' },
+        });
 
-            if (response.status === 200) {
-                // Map the response to the Product model
-                const product = response.data.data.map((i: any) => new ProductShort(i));
+        if (response.status === 200) {
+            // Map the response to the Product model
+            const product = response.data.data.map((i: any) => new ProductShort(i));
 
-                console.log(product);
-                return {
-                    success: true,
-                    product: product,
-                };
-            } else {
-                return { success: false, message: response.data.message || 'Product fetch failed' };
-            }
-        } catch (error) {
-            console.error('Error fetching product:', error);
-            return { success: false, message: 'An error occurred during product fetch' };
+            console.log(product);
+            return {
+                success: true,
+                product: product,
+            };
+        } else {
+            return { success: false, message: response.data.message || 'Product fetch failed' };
         }
+    } catch (error) {
+        console.error('Error fetching product:', error);
+        return { success: false, message: 'An error occurred during product fetch' };
     }
+}

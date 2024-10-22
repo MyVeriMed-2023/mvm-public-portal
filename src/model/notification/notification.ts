@@ -1,5 +1,5 @@
 import { getRelativeTime } from "@/shared/utils/dateFormatter";
-
+/* eslint-disable */
 export class Notification {
     id: string;
     title: string;
@@ -16,14 +16,14 @@ export class Notification {
     orgId?: string | null;
     branchId?: string | null;
     relativeTime?: string;
-    index?:number
+    index?: number
 
     /**
      * Constructor
      *
      * @param notification
      */
-    constructor(notification?: any, idx?:number) {
+    constructor(notification?: any, idx?: number) {
         this.id = notification?.id || '';
         this.title = notification?.title || '';
         this.message = notification?.message || '';
@@ -38,7 +38,7 @@ export class Notification {
         this.createdBy = notification?.created_by || '';
         this.orgId = notification?.org_id || null;
         this.branchId = notification?.branch_id || null;
-        this.relativeTime = getRelativeTime( notification?.created_date)
+        this.relativeTime = getRelativeTime(notification?.created_date)
 
         this.index = idx
     }

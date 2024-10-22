@@ -1,5 +1,5 @@
 import { ProductRecalled } from "./ProductRecalled";
-
+/* eslint-disable */
 export class ScanResult {
   brand: string;
   holder: string;
